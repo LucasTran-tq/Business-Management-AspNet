@@ -203,18 +203,20 @@ namespace App
 
                 );
 
-                endpoints.MapAreaControllerRoute(
-                    name: "product",
-                    pattern: "/{controller}/{action=Index}/{id?}",
-                    areaName: "ProductManage"
-                );
                 
+                // endpoints.MapAreaControllerRoute(
+                //     name: "home",
+                //     areaName: "Identity",
+                //     pattern: "Identity/{controller=Account}/{action=Login}/{id?}"
+                // );
+
                 // Controller khong co Area
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "/{controller=Home}/{action=Index}/{id?}"
                 );
-
+                
+                
                 endpoints.MapRazorPages();
             });
         }

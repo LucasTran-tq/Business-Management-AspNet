@@ -58,7 +58,8 @@ namespace App.Areas.Identity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            // returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/admin/employee/index");
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -105,7 +106,8 @@ namespace App.Areas.Identity.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User đăng xuất");
-            return RedirectToAction("Index", "Home", new {area = ""});
+            // return RedirectToAction("Index", "Home", new {area = ""});
+            return RedirectToAction("Login", "Account", new {area = "Identity"});
         }
         //
         // GET: /Account/Register
