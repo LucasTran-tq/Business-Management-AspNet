@@ -3,13 +3,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppMvc.Net.Migrations
 {
-    public partial class AddPost : Migration
+    public partial class AddDepartment : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
                 name: "IX_Category_Slug",
                 table: "Category");
+
+            migrationBuilder.CreateTable(
+                name: "Department",
+                columns: table => new
+                {
+                    DepartmentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DepartmentName = table.Column<string>(type: "nvarchar(160)", maxLength: 160, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Department", x => x.DepartmentId);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Post",
@@ -22,7 +36,7 @@ namespace AppMvc.Net.Migrations
                     Slug = table.Column<string>(type: "nvarchar(160)", maxLength: 160, nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Published = table.Column<bool>(type: "bit", nullable: false),
-                    AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -34,7 +48,7 @@ namespace AppMvc.Net.Migrations
                         column: x => x.AuthorId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,6 +101,9 @@ namespace AppMvc.Net.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Department");
+
             migrationBuilder.DropTable(
                 name: "PostCategory");
 

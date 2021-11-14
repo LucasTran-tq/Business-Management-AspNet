@@ -17,7 +17,7 @@ namespace AppMvc.Areas.Blog.Controllers
 {
     [Area("Blog")]
     [Route("admin/blog/post/[action]/{id?}")]
-    [Authorize(Roles = RoleName.Administrator+  "," + RoleName.Editor)]
+    [Authorize(Roles = RoleName.Administrator)]
     public class PostController : Controller
     {
         private readonly AppDbContext _context;

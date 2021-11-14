@@ -1,5 +1,7 @@
+using App.Areas.EmployeeDepartment.Models.DepartmentModel;
 using App.Models.Blog;
 using App.Models.Contacts;
+
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,6 +45,10 @@ namespace App.Models
                 entity.HasIndex( p => p.Slug)
                       .IsUnique();
             });
+
+            // modelBuilder.Entity<Department>()
+            // .ToTable("Department", t => t.ExcludeFromMigrations());
+
         }
 
         public DbSet<Contact> Contacts { get; set; }
@@ -53,6 +59,7 @@ namespace App.Models
 
         public DbSet<PostCategory> PostCategories { get; set; }
 
+        public DbSet<Department> Departments { get; set; }
 
     }
 }
