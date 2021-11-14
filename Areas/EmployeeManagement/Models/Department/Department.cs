@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace App.Areas.EmployeeDepartment.Models.DepartmentModel
+namespace App.Areas.EmployeeDepartment.Models
 {
     [Table("Department")]
     public class Department

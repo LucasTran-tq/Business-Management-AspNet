@@ -6,22 +6,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using App.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace App.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly SignInManager<AppUser> SignInManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, SignInManager<AppUser> signInManager)
         {
             _logger = logger;
+            SignInManager = signInManager;
         }
 
         public string HiHome() => "Xin chao cac ban, toi la HiHome";
         public IActionResult Index()
         {
-            return View();
+            if (SignInManager.IsSignedIn(User))
+            {
+                return Redirect("admin/employee-management/department/index");
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         public IActionResult Privacy()
