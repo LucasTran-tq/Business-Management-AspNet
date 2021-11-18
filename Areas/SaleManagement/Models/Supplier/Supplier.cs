@@ -16,6 +16,7 @@ namespace App.Areas.SaleManagement.Models
         [StringLength(160)]
         public string SupplierName {set;get;}
 
+        //
     }
 
 }
