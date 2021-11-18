@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace App.Areas.EmployeeDepartment.Models
+namespace App.Areas.EmployeeManagement.Models
 {
     [Table("Address")]
     [Keyless]

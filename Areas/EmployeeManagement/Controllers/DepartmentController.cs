@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using App.Areas.EmployeeDepartment.Models;
+using App.Areas.EmployeeManagement.Models;
 using App.Models;
+
 
 namespace AppMvc.Areas.EmployeeManagement.Controllers
 {
