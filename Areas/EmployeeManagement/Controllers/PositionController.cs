@@ -11,23 +11,23 @@ using App.Models;
 namespace AppMvc.Areas.EmployeeManagement.Controllers
 {
     [Area("EmployeeManagement")]
-    [Route("admin/employee-management/skill/[action]/{id?}")]
-    public class SkillController : Controller
+    [Route("admin/employee-management/Position/[action]/{id?}")]
+    public class PositionController : Controller
     {
         private readonly AppDbContext _context;
 
-        public SkillController(AppDbContext context)
+        public PositionController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: EmployeeManagement/Skill
+        // GET: EmployeeManagement/Position
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Skills.ToListAsync());
+            return View(await _context.Positions.ToListAsync());
         }
 
-        // GET: EmployeeManagement/Skill/Details/5
+        // GET: EmployeeManagement/Position/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,39 +35,39 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 return NotFound();
             }
 
-            var skill = await _context.Skills
-                .FirstOrDefaultAsync(m => m.SkillId == id);
-            if (skill == null)
+            var position = await _context.Positions
+                .FirstOrDefaultAsync(m => m.PositionId == id);
+            if (position == null)
             {
                 return NotFound();
             }
 
-            return View(skill);
+            return View(position);
         }
 
-        // GET: EmployeeManagement/Skill/Create
+        // GET: EmployeeManagement/Position/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: EmployeeManagement/Skill/Create
+        // POST: EmployeeManagement/Position/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SkillId,SkillName")] Skill skill)
+        public async Task<IActionResult> Create([Bind("PositionId,PositionName")] Position position)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(skill);
+                _context.Add(position);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(skill);
+            return View(position);
         }
 
-        // GET: EmployeeManagement/Skill/Edit/5
+        // GET: EmployeeManagement/Position/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,22 +75,22 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 return NotFound();
             }
 
-            var skill = await _context.Skills.FindAsync(id);
-            if (skill == null)
+            var position = await _context.Positions.FindAsync(id);
+            if (position == null)
             {
                 return NotFound();
             }
-            return View(skill);
+            return View(position);
         }
 
-        // POST: EmployeeManagement/Skill/Edit/5
+        // POST: EmployeeManagement/Position/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SkillId,SkillName")] Skill skill)
+        public async Task<IActionResult> Edit(int id, [Bind("PositionId,PositionName")] Position position)
         {
-            if (id != skill.SkillId)
+            if (id != position.PositionId)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             {
                 try
                 {
-                    _context.Update(skill);
+                    _context.Update(position);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SkillExists(skill.SkillId))
+                    if (!PositionExists(position.PositionId))
                     {
                         return NotFound();
                     }
@@ -115,10 +115,10 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(skill);
+            return View(position);
         }
 
-        // GET: EmployeeManagement/Skill/Delete/5
+        // GET: EmployeeManagement/Position/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,30 +126,30 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 return NotFound();
             }
 
-            var skill = await _context.Skills
-                .FirstOrDefaultAsync(m => m.SkillId == id);
-            if (skill == null)
+            var position = await _context.Positions
+                .FirstOrDefaultAsync(m => m.PositionId == id);
+            if (position == null)
             {
                 return NotFound();
             }
 
-            return View(skill);
+            return View(position);
         }
 
-        // POST: EmployeeManagement/Skill/Delete/5
+        // POST: EmployeeManagement/Position/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var skill = await _context.Skills.FindAsync(id);
-            _context.Skills.Remove(skill);
+            var position = await _context.Positions.FindAsync(id);
+            _context.Positions.Remove(position);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SkillExists(int id)
+        private bool PositionExists(int id)
         {
-            return _context.Skills.Any(e => e.SkillId == id);
+            return _context.Positions.Any(e => e.PositionId == id);
         }
     }
 }

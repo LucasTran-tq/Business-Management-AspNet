@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace App.Areas.SaleDepartment.Models
+namespace App.Areas.SaleManagement.Models
 {
     [Table("Supplier")]
     public class Supplier

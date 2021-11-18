@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using App.Areas.SaleDepartment.Models;
+using App.Areas.SaleManagement.Models;
 using App.Models;
 
 namespace AppMvc.Areas.SaleManagement.Controllers

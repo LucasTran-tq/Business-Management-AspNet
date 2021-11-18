@@ -1,4 +1,4 @@
-@model IEnumerable<App.Areas.EmployeeManagement.Models.Employee_Skill>
+@model IEnumerable<App.Areas.EmployeeManagement.Models.Employee_Position>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,13 +16,13 @@
                 @Html.DisplayNameFor(model => model.Employee)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Skill)
+                @Html.DisplayNameFor(model => model.Position)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Level)
+                @Html.DisplayNameFor(model => model.StartTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EvaluationDate)
+                @Html.DisplayNameFor(model => model.EndTime)
             </th>
             <th></th>
         </tr>
@@ -34,13 +34,13 @@
                 @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Skill.SkillName)
+                @Html.DisplayFor(modelItem => item.Position.PositionName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Level)
+                @Html.DisplayFor(modelItem => item.StartTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EvaluationDate)
+                @Html.DisplayFor(modelItem => item.EndTime)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace App.Areas.EmployeeDepartment.Models
+namespace App.Areas.EmployeeManagement.Models
 {
     [Table("Level")]
     public class Level

@@ -1,5 +1,5 @@
-using App.Areas.EmployeeDepartment.Models;
-using App.Areas.SaleDepartment.Models;
+using App.Areas.EmployeeManagement.Models;
+using App.Areas.SaleManagement.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -47,6 +47,8 @@ namespace App.Models
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Employee_Skill> Employee_Skills { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<Employee_Position> Employee_Positions { get; set; }
         
     }
 }
