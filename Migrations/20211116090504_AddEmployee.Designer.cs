@@ -4,14 +4,16 @@ using App.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppMvc.Net.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211116090504_AddEmployee")]
+    partial class AddEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,36 +75,6 @@ namespace AppMvc.Net.Migrations
                     b.ToTable("Employee");
                 });
 
-            modelBuilder.Entity("App.Areas.EmployeeDepartment.Models.Employee_Skill", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("EvaluationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("Employee_Skill");
-                });
-
             modelBuilder.Entity("App.Areas.EmployeeDepartment.Models.Level", b =>
                 {
                     b.Property<int>("LevelId")
@@ -135,23 +107,6 @@ namespace AppMvc.Net.Migrations
                     b.HasKey("SkillId");
 
                     b.ToTable("Skill");
-                });
-
-            modelBuilder.Entity("App.Areas.SaleDepartment.Models.Supplier", b =>
-                {
-                    b.Property<int>("SupplierId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("SupplierName")
-                        .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("nvarchar(160)");
-
-                    b.HasKey("SupplierId");
-
-                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("App.Models.AppUser", b =>
@@ -357,25 +312,6 @@ namespace AppMvc.Net.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("App.Areas.EmployeeDepartment.Models.Employee_Skill", b =>
-                {
-                    b.HasOne("App.Areas.EmployeeDepartment.Models.Employee", "Employee")
-                        .WithMany("Employee_Skills")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("App.Areas.EmployeeDepartment.Models.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Skill");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -425,11 +361,6 @@ namespace AppMvc.Net.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("App.Areas.EmployeeDepartment.Models.Employee", b =>
-                {
-                    b.Navigation("Employee_Skills");
                 });
 #pragma warning restore 612, 618
         }
