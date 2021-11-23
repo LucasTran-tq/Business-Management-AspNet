@@ -16,6 +16,9 @@
                 @Html.DisplayNameFor(model => model.Position)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.AllowanceSalaryName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Allowance)
             </th>
             <th>
@@ -32,6 +35,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Position.PositionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllowanceSalaryName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Allowance)

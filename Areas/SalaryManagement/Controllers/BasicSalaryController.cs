@@ -12,6 +12,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 {
     [Area("SalaryManagement")]
     [Route("admin/salary-management/basic-salary/[action]/{id?}")]
+
     public class BasicSalaryController : Controller
     {
         private readonly AppDbContext _context;
@@ -59,7 +60,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BasicSalaryId,ContractTypeId,Money,StartTime,EndTime")] BasicSalary basicSalary)
+        public async Task<IActionResult> Create([Bind("BasicSalaryId,ContractTypeId,BasicSalaryName,Money,StartTime,EndTime")] BasicSalary basicSalary)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +94,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BasicSalaryId,ContractTypeId,Money,StartTime,EndTime")] BasicSalary basicSalary)
+        public async Task<IActionResult> Edit(int id, [Bind("BasicSalaryId,ContractTypeId,BasicSalaryName,Money,StartTime,EndTime")] BasicSalary basicSalary)
         {
             if (id != basicSalary.BasicSalaryId)
             {

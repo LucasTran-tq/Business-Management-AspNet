@@ -18,6 +18,12 @@ namespace App.Areas.SalaryManagement.Models
         public Position Position{set;get;}
 
 
+        [Required(ErrorMessage = "Must have Allowance Salary Name")]
+        [Display(Name = "Allowance Salary Name")]
+        [StringLength(200)]
+        public string AllowanceSalaryName { set; get; }
+
+
         [Required(ErrorMessage = "Must have Prize Money")]
         [Display(Name = "Prize Money")]
         public double Allowance {set;get;}

@@ -11,6 +11,12 @@ namespace App.Areas.SalaryManagement.Models
         public int OvertimeSalaryId { set; get; }
 
 
+        [Required(ErrorMessage = "Must have Overtime Salary Name")]
+        [Display(Name = "Overtime Salary Name")]
+        [StringLength(200)]
+        public string OvertimeSalaryName { set; get; }
+
+
         [Required(ErrorMessage = "Must have money per session")]
         [Display(Name = "Money per session")]
         public double moneyPerSession {set;get;}

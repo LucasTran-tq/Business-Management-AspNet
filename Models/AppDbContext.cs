@@ -59,7 +59,5 @@ namespace App.Models
         public DbSet<Salary> Salaries { get; set; }
 
 
-        
-
     }
 }

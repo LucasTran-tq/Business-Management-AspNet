@@ -192,6 +192,11 @@ namespace AppMvc.Net.Migrations
                     b.Property<double>("Allowance")
                         .HasColumnType("float");
 
+                    b.Property<string>("AllowanceSalaryName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
@@ -214,6 +219,11 @@ namespace AppMvc.Net.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BasicSalaryName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("ContractTypeId")
                         .HasColumnType("int");
@@ -243,6 +253,11 @@ namespace AppMvc.Net.Migrations
 
                     b.Property<int>("BonusLevel")
                         .HasColumnType("int");
+
+                    b.Property<string>("BonusSalaryName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
@@ -312,6 +327,11 @@ namespace AppMvc.Net.Migrations
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("OvertimeSalaryName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");

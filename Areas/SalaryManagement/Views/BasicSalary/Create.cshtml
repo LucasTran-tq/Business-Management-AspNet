@@ -17,6 +17,11 @@
                 <select asp-for="ContractTypeId" class ="form-control" asp-items="ViewBag.ContractTypeId"></select>
             </div>
             <div class="form-group">
+                <label asp-for="BasicSalaryName" class="control-label"></label>
+                <input asp-for="BasicSalaryName" class="form-control" />
+                <span asp-validation-for="BasicSalaryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Money" class="control-label"></label>
                 <input asp-for="Money" class="form-control" />
                 <span asp-validation-for="Money" class="text-danger"></span>

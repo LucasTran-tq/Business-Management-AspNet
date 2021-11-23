@@ -16,6 +16,12 @@ namespace App.Areas.SalaryManagement.Models
         public int BonusLevel {set;get;}
 
 
+        [Required(ErrorMessage = "Must have Bonus Salary Name")]
+        [Display(Name = "Bonus Salary Name")]
+        [StringLength(200)]
+        public string BonusSalaryName { set; get; }
+
+
         [Required(ErrorMessage = "Must have Prize Money")]
         [Display(Name = "Prize Money")]
         public double PrizeMoney {set;get;}

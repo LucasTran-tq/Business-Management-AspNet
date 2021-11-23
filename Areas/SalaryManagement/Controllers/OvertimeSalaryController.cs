@@ -12,6 +12,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 {
     [Area("SalaryManagement")]
     [Route("admin/salary-management/overtime-salary/[action]/{id?}")]
+
     public class OvertimeSalaryController : Controller
     {
         private readonly AppDbContext _context;
@@ -56,7 +57,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OvertimeSalaryId,moneyPerSession,StartTime,EndTime")] OvertimeSalary overtimeSalary)
+        public async Task<IActionResult> Create([Bind("OvertimeSalaryId,OvertimeSalaryName,moneyPerSession,StartTime,EndTime")] OvertimeSalary overtimeSalary)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +89,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OvertimeSalaryId,moneyPerSession,StartTime,EndTime")] OvertimeSalary overtimeSalary)
+        public async Task<IActionResult> Edit(int id, [Bind("OvertimeSalaryId,OvertimeSalaryName,moneyPerSession,StartTime,EndTime")] OvertimeSalary overtimeSalary)
         {
             if (id != overtimeSalary.OvertimeSalaryId)
             {

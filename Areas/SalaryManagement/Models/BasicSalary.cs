@@ -18,6 +18,12 @@ namespace App.Areas.SalaryManagement.Models
         public ContractType ContractType{set;get;}
 
 
+        [Required(ErrorMessage = "Must have Basic Salary Name")]
+        [Display(Name = "Basic Salary Name")]
+        [StringLength(200)]
+        public string BasicSalaryName { set; get; }
+
+
         [Required(ErrorMessage = "Must have Money")]
         [Display(Name = "Money")]
         public double Money{set;get;}

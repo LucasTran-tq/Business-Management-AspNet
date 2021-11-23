@@ -59,7 +59,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AllowanceSalaryId,PositionId,Allowance,StartTime,EndTime")] AllowanceSalary allowanceSalary)
+        public async Task<IActionResult> Create([Bind("AllowanceSalaryId,PositionId,AllowanceSalaryName,Allowance,StartTime,EndTime")] AllowanceSalary allowanceSalary)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AllowanceSalaryId,PositionId,Allowance,StartTime,EndTime")] AllowanceSalary allowanceSalary)
+        public async Task<IActionResult> Edit(int id, [Bind("AllowanceSalaryId,PositionId,AllowanceSalaryName,Allowance,StartTime,EndTime")] AllowanceSalary allowanceSalary)
         {
             if (id != allowanceSalary.AllowanceSalaryId)
             {
