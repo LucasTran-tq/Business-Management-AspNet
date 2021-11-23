@@ -1,0 +1,77 @@
+@model IEnumerable<App.Areas.SalaryManagement.Models.Salary>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllowanceSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BonusSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OvertimeSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BonusLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfSession)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalaryDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BasicSalary.BasicSalaryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllowanceSalary.AllowanceSalaryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BonusSalary.BonusSalaryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OvertimeSalary.OvertimeSalaryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BonusLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfSession)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalaryDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SalaryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SalaryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SalaryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

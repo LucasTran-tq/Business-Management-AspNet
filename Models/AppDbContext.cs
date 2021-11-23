@@ -56,6 +56,8 @@ namespace App.Models
         public DbSet<ContractType> ContractTypes { get; set; }
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<BasicSalary> BasicSalaries { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
+
 
         
 
