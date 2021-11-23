@@ -1,0 +1,66 @@
+@model App.Areas.SalaryManagement.Models.Salary
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Salary</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SalaryId" />
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label"></label>
+                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BasicSalaryId" class="control-label"></label>
+                <select asp-for="BasicSalaryId" class="form-control" asp-items="ViewBag.BasicSalaryId"></select>
+                <span asp-validation-for="BasicSalaryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AllowanceSalaryId" class="control-label"></label>
+                <select asp-for="AllowanceSalaryId" class="form-control" asp-items="ViewBag.AllowanceSalaryId"></select>
+                <span asp-validation-for="AllowanceSalaryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BonusSalaryId" class="control-label"></label>
+                <select asp-for="BonusSalaryId" class="form-control" asp-items="ViewBag.BonusSalaryId"></select>
+                <span asp-validation-for="BonusSalaryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OvertimeSalaryId" class="control-label"></label>
+                <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId"></select>
+                <span asp-validation-for="OvertimeSalaryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BonusLevel" class="control-label"></label>
+                <input asp-for="BonusLevel" class="form-control" />
+                <span asp-validation-for="BonusLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfSession" class="control-label"></label>
+                <input asp-for="NumberOfSession" class="form-control" />
+                <span asp-validation-for="NumberOfSession" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalaryDate" class="control-label"></label>
+                <input asp-for="SalaryDate" class="form-control" />
+                <span asp-validation-for="SalaryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
