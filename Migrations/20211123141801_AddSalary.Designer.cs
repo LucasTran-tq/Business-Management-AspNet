@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppMvc.Net.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211123030120_AddAllowance")]
-    partial class AddAllowance
+    [Migration("20211123141801_AddSalary")]
+    partial class AddSalary
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -194,6 +194,11 @@ namespace AppMvc.Net.Migrations
                     b.Property<double>("Allowance")
                         .HasColumnType("float");
 
+                    b.Property<string>("AllowanceSalaryName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
@@ -210,6 +215,37 @@ namespace AppMvc.Net.Migrations
                     b.ToTable("AllowanceSalary");
                 });
 
+            modelBuilder.Entity("App.Areas.SalaryManagement.Models.BasicSalary", b =>
+                {
+                    b.Property<int>("BasicSalaryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BasicSalaryName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ContractTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Money")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BasicSalaryId");
+
+                    b.HasIndex("ContractTypeId");
+
+                    b.ToTable("BasicSalary");
+                });
+
             modelBuilder.Entity("App.Areas.SalaryManagement.Models.BonusSalary", b =>
                 {
                     b.Property<int>("BonusSalaryId")
@@ -219,6 +255,11 @@ namespace AppMvc.Net.Migrations
 
                     b.Property<int>("BonusLevel")
                         .HasColumnType("int");
+
+                    b.Property<string>("BonusSalaryName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
@@ -234,6 +275,51 @@ namespace AppMvc.Net.Migrations
                     b.ToTable("BonusSalary");
                 });
 
+            modelBuilder.Entity("App.Areas.SalaryManagement.Models.Contract", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContractTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ContractTypeId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Contract");
+                });
+
+            modelBuilder.Entity("App.Areas.SalaryManagement.Models.ContractType", b =>
+                {
+                    b.Property<int>("ContractTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ContractTypeName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("ContractTypeId");
+
+                    b.ToTable("ContractType");
+                });
+
             modelBuilder.Entity("App.Areas.SalaryManagement.Models.OvertimeSalary", b =>
                 {
                     b.Property<int>("OvertimeSalaryId")
@@ -244,6 +330,11 @@ namespace AppMvc.Net.Migrations
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("OvertimeSalaryName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
@@ -253,6 +344,52 @@ namespace AppMvc.Net.Migrations
                     b.HasKey("OvertimeSalaryId");
 
                     b.ToTable("OvertimeSalary");
+                });
+
+            modelBuilder.Entity("App.Areas.SalaryManagement.Models.Salary", b =>
+                {
+                    b.Property<int>("SalaryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AllowanceSalaryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BasicSalaryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BonusLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BonusSalaryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("NumberOfSession")
+                        .HasColumnType("float");
+
+                    b.Property<int>("OvertimeSalaryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SalaryDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("SalaryId");
+
+                    b.HasIndex("AllowanceSalaryId");
+
+                    b.HasIndex("BasicSalaryId");
+
+                    b.HasIndex("BonusSalaryId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("OvertimeSalaryId");
+
+                    b.ToTable("Salary");
                 });
 
             modelBuilder.Entity("App.Areas.SaleManagement.Models.Supplier", b =>
@@ -522,6 +659,79 @@ namespace AppMvc.Net.Migrations
                         .IsRequired();
 
                     b.Navigation("Position");
+                });
+
+            modelBuilder.Entity("App.Areas.SalaryManagement.Models.BasicSalary", b =>
+                {
+                    b.HasOne("App.Areas.SalaryManagement.Models.ContractType", "ContractType")
+                        .WithMany()
+                        .HasForeignKey("ContractTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContractType");
+                });
+
+            modelBuilder.Entity("App.Areas.SalaryManagement.Models.Contract", b =>
+                {
+                    b.HasOne("App.Areas.SalaryManagement.Models.ContractType", "ContractType")
+                        .WithMany()
+                        .HasForeignKey("ContractTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Areas.EmployeeManagement.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContractType");
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("App.Areas.SalaryManagement.Models.Salary", b =>
+                {
+                    b.HasOne("App.Areas.SalaryManagement.Models.AllowanceSalary", "AllowanceSalary")
+                        .WithMany()
+                        .HasForeignKey("AllowanceSalaryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Areas.SalaryManagement.Models.BasicSalary", "BasicSalary")
+                        .WithMany()
+                        .HasForeignKey("BasicSalaryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Areas.SalaryManagement.Models.BonusSalary", "BonusSalary")
+                        .WithMany()
+                        .HasForeignKey("BonusSalaryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Areas.EmployeeManagement.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Areas.SalaryManagement.Models.OvertimeSalary", "OvertimeSalary")
+                        .WithMany()
+                        .HasForeignKey("OvertimeSalaryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AllowanceSalary");
+
+                    b.Navigation("BasicSalary");
+
+                    b.Navigation("BonusSalary");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("OvertimeSalary");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
