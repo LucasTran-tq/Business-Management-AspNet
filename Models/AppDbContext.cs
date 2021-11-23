@@ -1,4 +1,5 @@
 using App.Areas.EmployeeManagement.Models;
+using App.Areas.SalaryManagement.Models;
 using App.Areas.SaleManagement.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +50,14 @@ namespace App.Models
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Employee_Position> Employee_Positions { get; set; }
+        public DbSet<OvertimeSalary> OvertimeSalaries { get; set; }
+        public DbSet<BonusSalary> BonusSalaries { get; set; }
+        public DbSet<AllowanceSalary> AllowanceSalaries { get; set; }
+        public DbSet<ContractType> ContractTypes { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
+        public DbSet<BasicSalary> BasicSalaries { get; set; }
+
         
+
     }
 }

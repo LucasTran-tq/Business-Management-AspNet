@@ -4,14 +4,16 @@ using App.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppMvc.Net.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211123030120_AddAllowance")]
+    partial class AddAllowance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,32 +210,6 @@ namespace AppMvc.Net.Migrations
                     b.ToTable("AllowanceSalary");
                 });
 
-            modelBuilder.Entity("App.Areas.SalaryManagement.Models.BasicSalary", b =>
-                {
-                    b.Property<int>("BasicSalaryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ContractTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Money")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("BasicSalaryId");
-
-                    b.HasIndex("ContractTypeId");
-
-                    b.ToTable("BasicSalary");
-                });
-
             modelBuilder.Entity("App.Areas.SalaryManagement.Models.BonusSalary", b =>
                 {
                     b.Property<int>("BonusSalaryId")
@@ -256,51 +232,6 @@ namespace AppMvc.Net.Migrations
                     b.HasKey("BonusSalaryId");
 
                     b.ToTable("BonusSalary");
-                });
-
-            modelBuilder.Entity("App.Areas.SalaryManagement.Models.Contract", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ContractTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("ContractTypeId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Contract");
-                });
-
-            modelBuilder.Entity("App.Areas.SalaryManagement.Models.ContractType", b =>
-                {
-                    b.Property<int>("ContractTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ContractTypeName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("ContractTypeId");
-
-                    b.ToTable("ContractType");
                 });
 
             modelBuilder.Entity("App.Areas.SalaryManagement.Models.OvertimeSalary", b =>
@@ -591,36 +522,6 @@ namespace AppMvc.Net.Migrations
                         .IsRequired();
 
                     b.Navigation("Position");
-                });
-
-            modelBuilder.Entity("App.Areas.SalaryManagement.Models.BasicSalary", b =>
-                {
-                    b.HasOne("App.Areas.SalaryManagement.Models.ContractType", "ContractType")
-                        .WithMany()
-                        .HasForeignKey("ContractTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ContractType");
-                });
-
-            modelBuilder.Entity("App.Areas.SalaryManagement.Models.Contract", b =>
-                {
-                    b.HasOne("App.Areas.SalaryManagement.Models.ContractType", "ContractType")
-                        .WithMany()
-                        .HasForeignKey("ContractTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("App.Areas.EmployeeManagement.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ContractType");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
