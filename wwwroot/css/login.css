@@ -1,0 +1,229 @@
+/*#region Reset CSS*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+*{box-sizing:border-box;}input,button,textarea{border:0;outline:none;}
+/*#endregion Reset CSS*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+.login_header{
+	display: inline-flex;
+    background-color: #0089ED; 
+    width: 100vw; 
+    top:0;
+    height: 50vh; 
+    border-radius: 0 0 100px 100px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login_logo{
+	height: 367px; 
+	width: 35%;
+	padding-top: 29px;
+	padding-left: 200px; 
+}
+
+.login_logo-logo{
+	width: 102px;
+	height: 102px;
+}
+
+.login_logo-content{
+	margin-top: 24px;
+	font-family: 'Poppins', sans-serif;
+	font-style: normal;
+	letter-spacing: 0em;
+	text-align: left;
+	color: white;
+}
+
+.login_form{
+	border-radius: 20px;
+	background-color: white;
+	margin-top: 103px;
+	width: 30%;
+	font-family: 'Poppins', sans-serif;
+	font-style: normal;
+	letter-spacing: 0em;
+	text-align: left;
+	height: 548px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login_form-caption{
+	margin-top: 32px;
+	margin-left: 44px;
+	color: black;
+}
+
+.login_form-login{
+	margin-top: 48px;
+}
+
+.username-input,
+.password-input {
+	width: 90%;
+	border-radius: 8px;
+	border: 1px solid #a7a8b0;
+	padding: 15px;
+	margin-top: 13px;
+	display: flex;
+	align-items: center;
+	color: #a7a8b0;
+}
+
+.login_form-password{
+	margin-top: 48px;
+}
+
+.username-input input,
+.password-input input{
+	padding: 0 15px;
+	outline: none;
+	border: none;
+	line-height: normal;
+	width: 100%;
+    display: block;
+    color: black;
+    font-size: 16px;
+}
+
+.btn_signin {
+	background-color: #0089ED;
+	border-radius: 6px;
+	color: #ffffff;
+	display: block;
+	height: 50px;
+	width: 200px;
+	font-family: "Poppins",sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 24px;
+	letter-spacing: 0em;
+	text-align: center;
+	padding: 15px;
+	text-decoration: none;
+	z-index: 2;	
+}
+  
+.btn_signin:hover {
+	background-color: #0089EA;
+}
+
+.forgot_password{
+	text-decoration: none;
+	color: #0089ED;
+}
+
+.btn_register{
+	color: #0089ED;
+	width: 150px;
+	font-family: "Poppins",sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 24px;
+	letter-spacing: 0em;
+	text-align: center;
+	text-decoration: none;
+
+}
+
+.login_btn{
+	width: 90%;
+	margin-top: 24px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.login_right{
+	margin-left: 102px;
+}
+
+.login_footer{
+	width: 100vw; 
+    bottom: 0;
+    height: 45vh; 
+	padding-top: 350px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.Terms_Conditions{
+	margin-left: 64px;
+	font-size: 16px; 
+	font-weight: 300;
+	line-height: 20px; 
+	width: max-content;
+	text-decoration: none;
+	color: #757575;
+}
+
+.rememberMe{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 90%;
+	margin-top: 16px;
+}
+
+.row{
+	margin-right: 0;
+	margin-left: -0.75rem;
+}
+  
+.toggle-password{
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+

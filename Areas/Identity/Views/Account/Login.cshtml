@@ -4,92 +4,101 @@
 @model LoginViewModel
 @inject SignInManager<AppUser> SignInManager
 
+
 @{
     ViewData["Title"] = "Đăng nhập";
     Layout = null;
 }
 
 <partial name="SBAdmin/_Styles" />
+<head>
+    <link href="/css/login.css" type="text/css" rel="stylesheet" />
+   
+  <script type="text/javascript">
+  function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+    </script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-8">
+            <section>
+                <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
+                    <div class="login_header">
+                        <div class="login_logo">
+                            <img class="login_logo-logo" src="/img/logo.svg" alt="AIT Logo">
+                            <div class="login_logo-content">
+                                <h1 style="font-weight: 600; font-size: 34px; line-height: 51px;">Sign in to</h1>
+                                <h2 style="font-size: 24px; font-weight: 400;line-height: 36px;">AIT Company</h2>
+                                <h3 style="font-size: 16px; font-weight: 300;line-height: 19,5px; width: 250px;">
+                                    AIT Trading and Service Co., Ltd. does business
+                                    in the field of providing and distributing information technology products.
+                                </h3>
 
-<h1>@ViewData["Title"].</h1>
-<div class="row">
-    <div class="col-md-8">
-        <section>
-            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                <h4>Sử dụng tài khoản đã đăng ký để đăng nhập</h4>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="UserNameOrEmail" class="control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="UserNameOrEmail" class="form-control" />
-                        <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <label asp-for="RememberMe">
-                                <input asp-for="RememberMe" />
-                                @Html.DisplayNameFor(m => m.RememberMe)
-                            </label>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                    </div>
-                </div>
-                <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Chưa có tài khoản? Đăng ký</a>
-                </p>
-                <p>
-                    <a asp-action="ForgotPassword">Quyên mật khẩu?</a>
-                </p>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section>
-            <h4>Đăng nhập bằng tài khoản.</h4>
-            <hr />
-            @{
-                var schemes = await SignInManager.GetExternalAuthenticationSchemesAsync();
-                var loginProviders = schemes.ToList();
-                if (loginProviders.Count == 0)
-                {
-                    <div>
-                        <p>
-                            Ứng dụng chưa hỗ trợ đăng nhập từ tài khoản ngoài
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                        <div>
-                            <p>
-                                @foreach (var provider in loginProviders)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.Name account">@provider.Name</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+                        <div class="login_form">
+                            <div class="login_form-caption">
+                                <h2 style="font-size: 21px; font-weight: 400;line-height: 36px; width: 150px;">Welcome to <span style="color: #0089ED;">AIT</span></h2>
+                                <h1 style="font-weight: 600; font-size: 32px; line-height: 51px; width: 120px;">Sign in   </h1>
 
+                                <div class="login_form-login">
+                                    <div class="login_form-username">
+                                        <label style="color: black; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px;" asp-for="UserNameOrEmail"></label>
+                                        <div class="username-input">
+                                            <input asp-for="UserNameOrEmail"  placeholder="Enter your username here" />
+                                        </div>
+                                    </div>
+                                    <div class="login_form-password"></div>
+                                    <label style="color: black; font-size: 16px; font-style: normal;font-weight: 400;line-height: 24px;" asp-for="Password"></label>
+                                    <div class="password-input">
+                                        <input id="pass_log_id" asp-for="Password" placeholder="Enter your password here" />
+                                        <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password" onclick="myFunction()"></span>
+
+                                       
+                                    </div>
+                                </div>
+
+                                <div class="rememberMe">
+                                    <div class="checkbox">
+                                        <label asp-for="RememberMe">
+                                            <input asp-for="RememberMe" />
+                                            @Html.DisplayNameFor(m => m.RememberMe)
+                                        </label>
+                                    </div>
+                                    <a asp-action="ForgotPassword" class="forgot_password">Forgot Password </a>
+
+                                </div>
+                                <div class="login_btn">
+                                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"] class="btn_register">Create Account</a>
+                                    <button type="submit" class="btn_signin">Sign in</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="login_right">
+                            <img class="login_logo-img-right" src="/img/logo - Copy.svg" alt="AIT Logo">
+                        </div>
+
+                    </div>
+                    <div class="login_footer">
+                        <h2 style="font-size: 16px; font-weight: 300;line-height: 20px; width: max-content;">Copyright © 2021<span style="color: #0089ED;">AIT</span> All rights reserved.</h2>
+                        <a class="Terms_Conditions" href="#">Terms & Conditions</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+       
+</body>
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
+

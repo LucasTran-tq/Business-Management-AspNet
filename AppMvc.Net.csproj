@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\logo - Copy.svg" />
+    <Content Remove="wwwroot\img\logo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\login.css" />
+    <None Include="wwwroot\img\logo - Copy.svg" />
+    <None Include="wwwroot\img\logo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Bogus" Version="33.1.1" />
     <PackageReference Include="MailKit" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
