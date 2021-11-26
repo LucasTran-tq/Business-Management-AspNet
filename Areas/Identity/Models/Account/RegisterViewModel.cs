@@ -11,28 +11,28 @@ namespace App.Areas.Identity.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [EmailAddress(ErrorMessage = "Sai định dạng Email")]
+        [Required(ErrorMessage = "Must input {0}")]
+        [EmailAddress(ErrorMessage = "Email format wrong")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [StringLength(100, ErrorMessage = "{0} phải dài từ {2} đến {1} ký tự.", MinimumLength = 2)]
+        [Required(ErrorMessage = "Must input {0}")]
+        [StringLength(100, ErrorMessage = "{0} must be between {2} and {1} characters long.", MinimumLength = 2)]
         [DataType(DataType.Password)]
-        [Display(Name = "Mật khẩu")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Lặp lại mật khẩu")]
-        [Compare("Password", ErrorMessage = "Mật khẩu lặp lại không chính xác.")]
+        [Display(Name = "Re-Enter password")]
+        [Compare("Password", ErrorMessage = "Re-Enter password is incorrect.")]
         public string ConfirmPassword { get; set; }
 
 
         [DataType(DataType.Text)]
-        [Display(Name = "Tên tài khoản")]
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [StringLength(100, ErrorMessage = "{0} phải dài từ {2} đến {1} ký tự.", MinimumLength = 3)]
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Must input {0}")]
+        [StringLength(100, ErrorMessage = "{0} must be between {2} and {1} characters long.", MinimumLength = 3)]
         public string UserName { get; set; }
 
     }

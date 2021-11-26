@@ -7,85 +7,89 @@
 }
 
 <partial name="SBAdmin/_Styles" />
+<head>
+    <link href="/css/login.css" type="text/css" rel="stylesheet" />
+   
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-8">
+            <section>   
+                <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
 
-<h1>@ViewData["Title"].</h1>
+                    <div class="login_header">
+                        <div class="login_logo">
+                            <img class="login_logo-logo" src="/img/logo.svg" alt="AIT Logo">
+                            <div class="login_logo-content">
+                                <h1 style="font-weight: 600; font-size: 34px; line-height: 51px;">Register to</h1>
+                                <h2 style="font-size: 24px; font-weight: 400;line-height: 36px;">AIT Company</h2>
+                                <h3 style="font-size: 16px; font-weight: 300;line-height: 19,5px; width: 250px;">
+                                    AIT Trading and Service Co., Ltd. does business
+                                    in the field of providing and distributing information technology products.
+                                </h3>
 
-<div class="row">
-    <div class="col-md-8">
-        <section>   
-            <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                <h4>Tạo tài khoản mới trên website.</h4>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="UserName" class="col-md-10 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="UserName" class="form-control" />
-                        <span asp-validation-for="UserName" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="col-md-10 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="col-md-10 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ConfirmPassword" class="col-md-10 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="ConfirmPassword" class="form-control" />
-                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-primary">Đăng ký</button>
-                    </div>
-                </div>
-            </form>          
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section>
-            <h4>Đăng nhập bằng tài khoản.</h4>
-            <hr />
-            @{
-                var schemes = await SignInManager.GetExternalAuthenticationSchemesAsync();
-                var loginProviders = schemes.ToList();
-                if (loginProviders.Count == 0)
-                {
-                    <div>
-                        <p>
-                            Ứng dụng chưa hỗ trợ đăng nhập từ tài khoản ngoài
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                        <div>
-                            <p>
-                                @foreach (var provider in loginProviders)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.Name account">@provider.Name</button>
-                                }
-                            </p>
+                            </div>
                         </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+                        <div class="login_form">
+                        <div class="login_form-caption">
+                                <h2 style="font-size: 21px; font-weight: 400;line-height: 36px; width: 150px;">Welcome to <span style="color: #0089ED;">AIT</span></h2>
+                                <h1 style="font-weight: 600; font-size: 32px; line-height: 51px; width: 120px;">Register   </h1>
 
+                                <div class="login_form-login" style="display: flex; flex-direction: column; margin-top: 16px;"  >
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="UserName" class="col-md-10 control-label margin-bottom"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="UserName" class="form-control" />
+                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group margin-bottom16">
+                                    <label asp-for="Email" class="col-md-10 control-label margin-bottom"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group margin-bottom16">
+                                    <label asp-for="Password" class="col-md-10 control-label margin-bottom"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="Password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group margin-bottom16">
+                                    <label asp-for="ConfirmPassword" class="col-md-10 control-label margin-bottom"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="ConfirmPassword" class="form-control" />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group margin-bottom margin-bottom16">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" class="btn_signin" style="width: 100%;" >Sign in</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                                
+                            </div>
+                        </div>
+
+                        <div class="login_right">
+                            <img class="login_logo-img-right" src="/img/logo - Copy.svg" alt="AIT Logo">
+                        </div>
+
+                    </div>
+                    <div class="login_footer">
+                        <h2 style="font-size: 16px; font-weight: 300;line-height: 20px; width: max-content;">Copyright © 2021<span style="color: #0089ED;">AIT</span> All rights reserved.</h2>
+                        <a class="Terms_Conditions" href="#">Terms & Conditions</a>
+                    </div>
+                </form>          
+            </section>
+        </div>
+    </div>
+</body>
 
 
 @section Scripts {
