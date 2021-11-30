@@ -14,15 +14,21 @@
 <head>
     <link href="/css/login.css" type="text/css" rel="stylesheet" />
    
-  <script type="text/javascript">
-  function myFunction() {
-    var x = document.getElementById("myInput");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  }
+    <script type="text/javascript">
+        function myFunction() {
+        var x = document.getElementById("pass_log_id");
+        var togglePassword = 
+        document.querySelector('#toggle-password');
+        if (x.type === "password") {
+            x.type = "text";
+            togglePassword.classList.remove('fa-eye');
+            togglePassword.classList.add('fa-eye-slash');
+        } else {
+            x.type = "password";
+            togglePassword.classList.remove('fa-eye-slash');
+            togglePassword.classList.add('fa-eye');
+        }
+        }
     </script>
 </head>
 <body>
@@ -59,7 +65,7 @@
                                     <label style="color: black; font-size: 16px; font-style: normal;font-weight: 400;line-height: 24px;" asp-for="Password"></label>
                                     <div class="password-input">
                                         <input id="pass_log_id" asp-for="Password" placeholder="Enter your password here" />
-                                        <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password" onclick="myFunction()"></span>
+                                        <span id="toggle-password" class="fa fa-fw fa-eye field_icon toggle-password" onclick="myFunction()"></span>
 
                                        
                                     </div>
