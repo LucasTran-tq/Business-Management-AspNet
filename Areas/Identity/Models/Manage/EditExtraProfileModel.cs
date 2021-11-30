@@ -5,20 +5,20 @@ namespace App.Areas.Identity.Models.ManageViewModels
 {
   public class EditExtraProfileModel
   {
-      [Display(Name = "Tên tài khoản")]
+      [Display(Name = "Username")]
       public string UserName { get; set; }
 
-      [Display(Name = "Địa chỉ email")]
+      [Display(Name = "Email")]
       public string UserEmail { get; set; }
-      [Display(Name = "Số điện thoại")]
+      [Display(Name = "Phone number")]
       public string PhoneNumber { get; set; }
 
-      [Display(Name = "Địa chỉ")]
+      [Display(Name = "Address")]
       [StringLength(400)]
       public string HomeAdress { get; set; }
 
 
-      [Display(Name = "Ngày sinh")]
+      [Display(Name = "Date of birth")]
       public DateTime? BirthDate { get; set; }
   }
 }

@@ -6,14 +6,14 @@ namespace App.Areas.Identity.Models.RoleViewModels
 {
   public class EditClaimModel
   {
-    [Display(Name = "Kiểu (tên) claim")]
-    [Required(ErrorMessage = "Phải nhập {0}")]
-    [StringLength(256, MinimumLength = 3, ErrorMessage = "{0} phải dài {2} đến {1} ký tự")]
+    [Display(Name = "Type (name) claim")]
+    [Required(ErrorMessage = "Must enter {0}")]
+    [StringLength(256, MinimumLength = 3, ErrorMessage = "{0} must be {2} to {1} characters long")]
     public string ClaimType { get; set; }
 
-    [Display(Name = "Giá trị")]
-    [Required(ErrorMessage = "Phải nhập {0}")]
-    [StringLength(256, MinimumLength = 3, ErrorMessage = "{0} phải dài {2} đến {1} ký tự")]
+    [Display(Name = "Value")]
+    [Required(ErrorMessage = "Must enter {0}")]
+    [StringLength(256, MinimumLength = 3, ErrorMessage = "{0} must be {2} to {1} characters long")]
     public string ClaimValue { get; set; }
 
     public IdentityRole role { get; set; }

@@ -11,7 +11,7 @@ namespace App.Areas.Identity.Models.UserViewModels
   {
     public AppUser user { get; set; }
 
-    [DisplayName("Các role gán cho user")]
+    [DisplayName("Roles assigned to users")]
     public string[] RoleNames { get; set; }
 
     public List<IdentityRoleClaim<string>> claimsInRole { get; set; }
