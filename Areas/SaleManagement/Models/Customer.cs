@@ -14,14 +14,14 @@ namespace App.Areas.SaleManagement.Models
 
         [Required(ErrorMessage = "Must have customer name")]
         [Display(Name = "Customer name")]
-        [StringLength(20)]
-        public string CustomerName {set;get;}
+        [StringLength(160)]
+        public string CustomerName { set; get; }
 
 
         [Required(ErrorMessage = "Must have address")]
         [Display(Name = "Address")]
         [StringLength(50)]
-        public string Address{get;set;}
+        public string Address { get; set; }
 
 
         [Phone(ErrorMessage = "Must be phone format")]

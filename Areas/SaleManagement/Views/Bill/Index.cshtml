@@ -1,0 +1,53 @@
+@model IEnumerable<App.Areas.SaleManagement.Models.Bill>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MakeBillTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExportBillTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MakeBillTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExportBillTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BillId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BillId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BillId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppMvc.Net.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211203093909_AddCustomer")]
-    partial class AddCustomer
+    [Migration("20211203134040_AddCus_Bill")]
+    partial class AddCus_Bill
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -392,6 +392,34 @@ namespace AppMvc.Net.Migrations
                     b.ToTable("Salary");
                 });
 
+            modelBuilder.Entity("App.Areas.SaleManagement.Models.Bill", b =>
+                {
+                    b.Property<int>("BillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExportBillTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("MakeBillTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BillId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Bill");
+                });
+
             modelBuilder.Entity("App.Areas.SaleManagement.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -416,6 +444,64 @@ namespace AppMvc.Net.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("App.Areas.SaleManagement.Models.Price", b =>
+                {
+                    b.Property<int>("PriceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("PriceMoney")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PriceId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Price");
+                });
+
+            modelBuilder.Entity("App.Areas.SaleManagement.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("nvarchar(160)");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("ProductTypeId");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("App.Areas.SaleManagement.Models.ProductType", b =>
@@ -775,6 +861,55 @@ namespace AppMvc.Net.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("OvertimeSalary");
+                });
+
+            modelBuilder.Entity("App.Areas.SaleManagement.Models.Bill", b =>
+                {
+                    b.HasOne("App.Areas.SaleManagement.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Areas.EmployeeManagement.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("App.Areas.SaleManagement.Models.Price", b =>
+                {
+                    b.HasOne("App.Areas.SaleManagement.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("App.Areas.SaleManagement.Models.Product", b =>
+                {
+                    b.HasOne("App.Areas.SaleManagement.Models.ProductType", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Areas.SaleManagement.Models.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductType");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
