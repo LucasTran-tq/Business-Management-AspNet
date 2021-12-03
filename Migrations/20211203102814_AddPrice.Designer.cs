@@ -4,14 +4,16 @@ using App.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppMvc.Net.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211203102814_AddPrice")]
+    partial class AddPrice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -390,34 +392,6 @@ namespace AppMvc.Net.Migrations
                     b.ToTable("Salary");
                 });
 
-            modelBuilder.Entity("App.Areas.SaleManagement.Models.Bill", b =>
-                {
-                    b.Property<int>("BillId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ExportBillTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("MakeBillTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("BillId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Bill");
-                });
-
             modelBuilder.Entity("App.Areas.SaleManagement.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -442,31 +416,6 @@ namespace AppMvc.Net.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("App.Areas.SaleManagement.Models.DetailBill", b =>
-                {
-                    b.Property<int>("PriceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("float");
-
-                    b.Property<int>("BillId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PriceId");
-
-                    b.HasIndex("BillId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("DetailBill");
                 });
 
             modelBuilder.Entity("App.Areas.SaleManagement.Models.Price", b =>
@@ -884,44 +833,6 @@ namespace AppMvc.Net.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("OvertimeSalary");
-                });
-
-            modelBuilder.Entity("App.Areas.SaleManagement.Models.Bill", b =>
-                {
-                    b.HasOne("App.Areas.SaleManagement.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("App.Areas.EmployeeManagement.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("App.Areas.SaleManagement.Models.DetailBill", b =>
-                {
-                    b.HasOne("App.Areas.SaleManagement.Models.Bill", "Bill")
-                        .WithMany()
-                        .HasForeignKey("BillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("App.Areas.SaleManagement.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bill");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("App.Areas.SaleManagement.Models.Price", b =>
