@@ -57,6 +57,11 @@ namespace App.Models
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<BasicSalary> BasicSalaries { get; set; }
         public DbSet<Salary> Salaries { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Price> Prices { get; set; }
+        public DbSet<Bill> Bills { get; set; }
 
 
     }
