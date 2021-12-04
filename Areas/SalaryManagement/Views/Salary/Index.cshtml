@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div>
+    <label for="birthdaytime">Birthday (date and time):</label>
+    <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -16,20 +22,23 @@
                 @Html.DisplayNameFor(model => model.Employee)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.TotalSalary)
+            </th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.BasicSalary)
-            </th>
-            <th>
+                </th>
+                <th>
                 @Html.DisplayNameFor(model => model.AllowanceSalary)
-            </th>
+                </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.BonusSalary)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.OvertimeSalary)
             </th>
-            <th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.BonusLevel)
-            </th>
+                </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.NumberOfSession)
             </th>
@@ -40,38 +49,42 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BasicSalary.BasicSalaryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AllowanceSalary.AllowanceSalaryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BonusSalary.BonusSalaryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OvertimeSalary.OvertimeSalaryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BonusLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfSession)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SalaryDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SalaryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SalaryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SalaryId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalSalary) USD
+                </td>
+                @* <td>
+                    @Html.DisplayFor(modelItem => item.BasicSalary.BasicSalaryName)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.AllowanceSalary.AllowanceSalaryName)
+                    </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.BonusSalary.BonusSalaryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OvertimeSalary.OvertimeSalaryName)
+                </td>
+                @* <td>
+                    @Html.DisplayFor(modelItem => item.BonusLevel)
+                    </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfSession)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalaryDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SalaryId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.SalaryId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.SalaryId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
