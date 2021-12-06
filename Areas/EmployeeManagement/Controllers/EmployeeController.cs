@@ -25,6 +25,19 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Employees.ToListAsync());
+        }  
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string EmpSearch)
+        {
+            ViewData["GetEmployeeDetails"] = EmpSearch;
+
+            var empQuery = from emp in _context.Employees select emp;
+            if(!String.IsNullOrEmpty(EmpSearch))
+            {
+                empQuery = empQuery.Where(emp => emp.EmployeeName.Contains(EmpSearch));
+            }
+            return View(await empQuery.AsNoTracking().ToListAsync()); 
         }
 
         // GET: EmployeeManagement/Employee/Details/5
