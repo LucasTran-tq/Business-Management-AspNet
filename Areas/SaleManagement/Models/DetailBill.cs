@@ -9,7 +9,7 @@ namespace App.Areas.SaleManagement.Models
     public class DetailBill
     {
         [Key]
-        public int PriceId { set; get; }
+        public int DetailBillId { set; get; }
 
 
         public int ProductId { set; get; }

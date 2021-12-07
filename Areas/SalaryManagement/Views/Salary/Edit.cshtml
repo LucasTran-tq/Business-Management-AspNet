@@ -4,6 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 <h1>Edit</h1>
 
 <h4>Salary</h4>
@@ -13,19 +15,27 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="SalaryId" />
+
             <div class="form-group">
                 <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                <select id="EmployeeId" asp-for="EmployeeId" class="form-control"
+                    asp-items="ViewBag.EmployeeId"></select>
                 <span asp-validation-for="EmployeeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BasicSalaryId" class="control-label"></label>
-                <select asp-for="BasicSalaryId" class="form-control" asp-items="ViewBag.BasicSalaryId"></select>
+                @* <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId"></select> *@
+                @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class ="form-control" asp-items='@(new
+                    SelectList(string.Empty, "BasicSalaryId", "BasicSalaryName"))'></select> *@
+                <select id="BasicSalaryId" asp-for="BasicSalaryId" class="form-control"></select>
                 <span asp-validation-for="BasicSalaryId" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="AllowanceSalaryId" class="control-label"></label>
-                <select asp-for="AllowanceSalaryId" class="form-control" asp-items="ViewBag.AllowanceSalaryId"></select>
+                @* <select asp-for="AllowanceSalaryId" class="form-control"
+                    asp-items="ViewBag.AllowanceSalaryId"></select> *@
+                <select id="AllowanceSalaryId" asp-for="AllowanceSalaryId" class="form-control"></select>
                 <span asp-validation-for="AllowanceSalaryId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,11 +48,7 @@
                 <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId"></select>
                 <span asp-validation-for="OvertimeSalaryId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="BonusLevel" class="control-label"></label>
-                <input asp-for="BonusLevel" class="form-control" />
-                <span asp-validation-for="BonusLevel" class="text-danger"></span>
-            </div>
+        
             <div class="form-group">
                 <label asp-for="NumberOfSession" class="control-label"></label>
                 <input asp-for="NumberOfSession" class="form-control" />
@@ -64,3 +70,67 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetBasicSalaryByEmpId();
+        GetAllowanceSalaryByEmpId();
+    })
+
+    $("#EmployeeId").change(function () {
+        GetBasicSalaryByEmpId();
+        GetAllowanceSalaryByEmpId();
+    });
+
+
+    var GetBasicSalaryByEmpId = function () {
+        $.ajax({
+            url: '@Url.Action("GetBasicSalaryByEmpId","Salary")',
+            type: 'GET',
+            data: {
+                EmployeeId: $('#EmployeeId').val(),
+            },
+            success: function (data) {
+                console.log(`data: ${JSON.stringify(data)}`)
+
+                $('#BasicSalaryId').find('option').remove()
+                $(data).each(
+                    function (index, item) {
+
+                        console.log(`in create: ${item.basicSalaryId} --> ${item.basicSalaryName}`)
+                        $('#BasicSalaryId').append('<option value="' + item.basicSalaryId + '">' + item.basicSalaryName + '</option>')
+                    });
+
+            },
+            error: function () {
+            }
+        });
+    }
+
+
+    var GetAllowanceSalaryByEmpId = function () {
+        $.ajax({
+            url: '@Url.Action("GetAllowanceSalaryByEmpId","Salary")',
+            type: 'GET',
+            data: {
+                EmployeeId: $('#EmployeeId').val(),
+            },
+            success: function (data) {
+                console.log(`data: ${JSON.stringify(data)}`)
+                $('#AllowanceSalaryId').find('option').remove()
+                $(data).each(
+                    function (index, item) {
+
+                        console.log(`in create: ${item.allowanceSalaryId} --> ${item.allowanceSalaryName}`)
+                        $('#AllowanceSalaryId').append('<option value="' + item.allowanceSalaryId + '">' + item.allowanceSalaryName + '</option>')
+                    });
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+
+
+</script>

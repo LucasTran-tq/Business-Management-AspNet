@@ -22,31 +22,39 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BasicSalary.BasicSalaryName)
+             : 
+            @Html.DisplayFor(model => model.BasicSalary.Money) USD
         </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AllowanceSalary)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AllowanceSalary.AllowanceSalaryName)
+            : 
+            @Html.DisplayFor(model => model.AllowanceSalary.Allowance) USD
         </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BonusSalary)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BonusSalary.BonusSalaryName)
+            :
+            @Html.DisplayFor(model => model.BonusSalary.PrizeMoney) USD
         </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.OvertimeSalary)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.OvertimeSalary.OvertimeSalaryName)
+             : 
+            @Html.DisplayFor(model => model.OvertimeSalary.moneyPerSession) USD
         </dd class>
-        <dt class = "col-sm-2">
+        @* <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BonusLevel)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BonusLevel)
-        </dd>
+        </dd> *@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NumberOfSession)
         </dt>
@@ -58,6 +66,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SalaryDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalSalary)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalSalary) USD
         </dd>
     </dl>
     
