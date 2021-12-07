@@ -12,7 +12,7 @@
     <div class="profile_background">
         <div class="profile_title">
             <h1>Profile</h1>
-            <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary sm">Edit</a>
+            <a asp-action="Edit" asp-route-id="@Model.employee.EmployeeId" class="btn btn-primary sm">Edit</a>
         </div>
         <div class="contain_profile">
             <div class="basic_information">
@@ -24,34 +24,34 @@
                     <div class="information-group">
                          <dl class="col offset-1">
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.EmployeeName)
+                                @Html.DisplayNameFor(model => model.employee.EmployeeName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.EmployeeName)
+                                @Html.DisplayFor(model => model.employee.EmployeeName)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.DOB)
+                                @Html.DisplayNameFor(model => model.employee.DOB)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.DOB)
+                                @Html.DisplayFor(model => model.employee.DOB)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.Sex)
+                                @Html.DisplayNameFor(model => model.employee.Sex)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.Sex)
+                                @Html.DisplayFor(model => model.employee.Sex)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.PlaceOfBirth)
+                                @Html.DisplayNameFor(model => model.employee.PlaceOfBirth)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.PlaceOfBirth)
+                                @Html.DisplayFor(model => model.employee.PlaceOfBirth)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.Address)
+                                @Html.DisplayNameFor(model => model.employee.Address)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.Address)
+                                @Html.DisplayFor(model => model.employee.Address)
                             </dd>
                         </dl>
                     </div>
@@ -66,68 +66,68 @@
                     <div class="information-group1">
                         <dl class="col offset-1">
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.EmployeeName)
+                                @Html.DisplayNameFor(model => model.employee.EmployeeName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.EmployeeName)
+                                @Html.DisplayFor(model => model.employee.EmployeeName)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.DOB)
+                                @Html.DisplayNameFor(model => model.employee.DOB)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.DOB)
+                                @Html.DisplayFor(model => model.employee.DOB)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.Sex)
+                                @Html.DisplayNameFor(model => model.employee.Sex)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.Sex)
+                                @Html.DisplayFor(model => model.employee.Sex)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.PlaceOfBirth)
+                                @Html.DisplayNameFor(model => model.employee.PlaceOfBirth)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.PlaceOfBirth)
+                                @Html.DisplayFor(model => model.employee.PlaceOfBirth)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.Address)
+                                @Html.DisplayNameFor(model => model.employee.Address)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.Address)
+                                @Html.DisplayFor(model => model.employee.Address)
                             </dd>
                         </dl>
                     </div>
                      <div class="information-group2">
-                        <dl class="col offset-1">
+                         <dl class="col offset-1">
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.EmployeeName)
+                                @Html.DisplayNameFor(model => model.employee.EmployeeName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.EmployeeName)
+                                @Html.DisplayFor(model => model.employee.EmployeeName)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.DOB)
+                                @Html.DisplayNameFor(model => model.employee.DOB)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.DOB)
+                                @Html.DisplayFor(model => model.employee.DOB)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.Sex)
+                                @Html.DisplayNameFor(model => model.employee.Sex)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.Sex)
+                                @Html.DisplayFor(model => model.employee.Sex)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.PlaceOfBirth)
+                                @Html.DisplayNameFor(model => model.employee.PlaceOfBirth)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.PlaceOfBirth)
+                                @Html.DisplayFor(model => model.employee.PlaceOfBirth)
                             </dd>
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.Address)
+                                @Html.DisplayNameFor(model => model.employee.Address)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.Address)
+                                @Html.DisplayFor(model => model.employee.Address)
                             </dd>
                         </dl>
                     </div>
@@ -135,7 +135,7 @@
             </div>    
         </div>  
     </div>
-   
+    
 </div>
 <div class="offset-1 content-information">
     <a asp-action="Index">
