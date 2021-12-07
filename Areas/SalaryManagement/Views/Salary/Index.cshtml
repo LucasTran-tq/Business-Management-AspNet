@@ -1,7 +1,9 @@
 @model IEnumerable<App.Areas.SalaryManagement.Models.Salary>
 
+
 @{
     ViewData["Title"] = "Index";
+    
 }
 
 <h1>Index</h1>
@@ -9,6 +11,24 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form 
+asp-action="Index" method="post"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input type="search" class="form-control bg-gray-200 border-0 small" placeholder="Search for..."
+            aria-label="Search" aria-describedby="basic-addon2" value='@ViewData["GetSalaryHistoryOfEmployee"]'
+            name="EmpSearch">
+        <input type="date" class="form-control bg-gray-200 border-0 small" aria-describedby="basic-addon2"
+            value='@ViewData["GetSalaryTable"]' name="StartTimeSalary">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
 
 <table class="table">
     <thead>

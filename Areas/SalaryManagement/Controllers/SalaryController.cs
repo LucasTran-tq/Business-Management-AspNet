@@ -22,6 +22,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
+        
         // GET: SalaryManagement/Salary
         public async Task<IActionResult> Index()
         {
@@ -34,6 +35,48 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                 .OrderByDescending(s => s.SalaryDate);
             return View(await appDbContext.ToListAsync());
         }
+
+      
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // [Route("admin/salary-management/salary/Index/EmpSearch={EmpSearch}&StartTimeSalary={StartTimeSalary}")]
+        public async Task<IActionResult> Index(string EmpSearch, DateTime StartTimeSalary)
+        {
+
+            ViewData["GetSalaryHistoryOfEmployee"] = EmpSearch;
+            ViewData["GetSalaryTable"] = StartTimeSalary;
+
+            var empQuery = from s in _context.Salaries
+                                .Include(s => s.AllowanceSalary)
+                                .Include(s => s.BasicSalary)
+                                .Include(s => s.BonusSalary)
+                                .Include(s => s.Employee)
+                                .Include(s => s.OvertimeSalary)
+                                .OrderByDescending(s => s.SalaryDate)
+                           select s;
+
+            //  EmpName = !null and startTime = null
+            if(!String.IsNullOrEmpty(EmpSearch) && StartTimeSalary == DateTime.MinValue){
+                empQuery = empQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch));
+            }
+            // EmpName = null and startTime = !null
+            else if (String.IsNullOrEmpty(EmpSearch) && StartTimeSalary != DateTime.MinValue)
+            {
+                empQuery = empQuery.Where(emp => emp.SalaryDate.Year.Equals(StartTimeSalary.Year) 
+                && emp.SalaryDate.Month.Equals(StartTimeSalary.Month)); 
+            }
+            // EmpName = !null and startTime = !null
+            else if (!String.IsNullOrEmpty(EmpSearch) && StartTimeSalary != DateTime.MinValue){
+                empQuery = empQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch) && emp.SalaryDate.Year.Equals(StartTimeSalary.Year) 
+                && emp.SalaryDate.Month.Equals(StartTimeSalary.Month)); 
+            }
+            // EmpName = null and startTime = null
+
+            return View(await empQuery.AsNoTracking().ToListAsync());
+        }
+
+        
 
         // GET: SalaryManagement/Salary/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -57,6 +100,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 
             return View(salary);
         }
+
 
 
         // GET: SalaryManagement/Salary/Create
@@ -120,6 +164,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(salary);
         }
 
+        
         // GET: SalaryManagement/Salary/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -141,6 +186,8 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(salary);
         }
 
+
+        
         // POST: SalaryManagement/Salary/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -203,6 +250,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(salary);
         }
 
+    
         // GET: SalaryManagement/Salary/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -226,6 +274,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(salary);
         }
 
+
         // POST: SalaryManagement/Salary/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -242,6 +291,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return _context.Salaries.Any(e => e.SalaryId == id);
         }
 
+        
         public JsonResult GetBasicSalaryByEmpId(int EmployeeId)
         {
 
