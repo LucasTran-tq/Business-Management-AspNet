@@ -10,7 +10,13 @@ namespace App.Areas.SalaryManagement.Models
     {
         [Key]
         public int SalaryId {set;get;}
-        
+
+
+        [Required(ErrorMessage = "Must have Total Salary")]
+        [Display(Name = "Total Salary")]
+        public double TotalSalary {set;get;}  
+
+
         public int EmployeeId{set;get;}
 
          public int BasicSalaryId {set;get;}
@@ -37,9 +43,9 @@ namespace App.Areas.SalaryManagement.Models
         public OvertimeSalary OvertimeSalary{set;get;}
 
 
-        [Required(ErrorMessage = "Must have Bonus Level")]
-        [Display(Name = "Bonus Level")]
-        public int BonusLevel {set;get;}
+        // [Required(ErrorMessage = "Must have Bonus Level")]
+        // [Display(Name = "Bonus Level")]
+        // public int BonusLevel {set;get;}
 
 
         [Required(ErrorMessage = "Must have Number of session")]

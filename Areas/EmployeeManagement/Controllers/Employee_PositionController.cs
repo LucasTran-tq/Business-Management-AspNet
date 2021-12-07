@@ -28,6 +28,24 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             return View(await appDbContext.ToListAsync());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(string EmpSearch)
+        {
+            ViewData["GetEmployeePosition"] = EmpSearch;
+
+            var emp_posQuery = from emp_pos in _context.Employee_Positions
+                                        .Include(e => e.Employee)
+                                        .Include(e => e.Position)
+                                        .OrderByDescending(emp_pos => emp_pos.StartTime)
+                                        select emp_pos;
+            
+            if(!String.IsNullOrEmpty(EmpSearch))
+            {
+                emp_posQuery = emp_posQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch));
+            }
+            return View(await emp_posQuery.AsNoTracking().ToListAsync()); 
+        }
+
         // GET: EmployeeManagement/Employee_Position/Details/5
         public async Task<IActionResult> Details(int? id)
         {
