@@ -28,6 +28,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         }
 
         // GET: EmployeeManagement/Employee/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,7 +43,26 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 return NotFound();
             }
 
-            return View(employee);
+            IQueryable<Employee_Skill> skills = from emp_skill in _context.Employee_Skills
+                            .Include(e => e.Employee)
+                            .Include(e => e.Skill)
+                            .OrderByDescending(emp_skill => emp_skill.EvaluationDate) 
+                            select emp_skill;
+            skills = skills.Where(emp => emp.Employee.EmployeeId == id);
+
+            IQueryable<Employee_Position> positions = from emp_pos in _context.Employee_Positions
+                            .Include(e => e.Employee)
+                            .Include(e => e.Position)
+                            .OrderByDescending(emp_pos => emp_pos.StartTime) 
+                            select emp_pos;
+            positions = positions.Where(emp => emp.Employee.EmployeeId == id);
+
+            Employee_Info employee_Info = new Employee_Info();
+            employee_Info.employee = employee; 
+            employee_Info.employee_skills = skills.ToList();
+            employee_Info.employee_positions = positions.ToList();
+
+            return View(employee_Info);
         }
 
         // GET: EmployeeManagement/Employee/Create
