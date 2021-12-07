@@ -1,4 +1,5 @@
-@model App.Areas.EmployeeManagement.Models.Employee
+@model App.Areas.EmployeeManagement.Models.Employee_Info
+@* @model1 App.Areas.EmployeeManagement.Models.Employee_Skill *@
 
 @{
     ViewData["Title"] = "Details";
@@ -11,38 +12,129 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmployeeName)
+            @Html.DisplayNameFor(model => model.employee.EmployeeName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmployeeName)
+            @Html.DisplayFor(model => model.employee.EmployeeName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DOB)
+            @Html.DisplayNameFor(model => model.employee.DOB)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DOB)
+            @Html.DisplayFor(model => model.employee.DOB)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sex)
+            @Html.DisplayNameFor(model => model.employee.Sex)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sex)
+            @Html.DisplayFor(model => model.employee.Sex)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlaceOfBirth)
+            @Html.DisplayNameFor(model => model.employee.PlaceOfBirth)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlaceOfBirth)
+            @Html.DisplayFor(model => model.employee.PlaceOfBirth)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.employee.Address)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
+            @Html.DisplayFor(model => model.employee.Address)
         </dd>
     </dl>
+
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.EmployeeId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @* <a asp-action="Edit" asp-route-id="@Model.EmployeeId">Edit</a> |
+    <a asp-action="Index">Back to List</a> *@
 </div>
+
+<h1>Position</h1>
+
+ <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_positions[0].Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_positions[0].Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_positions[0].StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_positions[0].EndTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.employee_positions) {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position.PositionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            @* <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td> *@
+        </tr>
+}
+    </tbody>
+</table>
+
+<h1>Skill</h1>
+
+ <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_skills[0].Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_skills[0].Skill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_skills[0].Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_skills[0].EvaluationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.employee_skills) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skill.SkillName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EvaluationDate)
+            </td>
+            @* <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td> *@
+        </tr>
+}
+    </tbody>
+</table>

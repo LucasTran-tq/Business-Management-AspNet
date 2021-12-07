@@ -32,6 +32,23 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             return View(await appDbContext.ToListAsync());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(string EmpSearch)
+        {
+            ViewData["GetEmployeeDetails"] = EmpSearch;
+
+            var empQuery = from emp_skill in _context.Employee_Skills
+                            .Include(e => e.Employee)
+                            .Include(e => e.Skill)
+                            .OrderByDescending(emp_skill => emp_skill.EvaluationDate) 
+                            select emp_skill;
+            if(!String.IsNullOrEmpty(EmpSearch))
+            {
+                empQuery = empQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch));
+            }
+            return View(await empQuery.AsNoTracking().ToListAsync()); 
+        }
+
         // GET: EmployeeManagement/Employee_Skill/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -43,7 +43,6 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // [Route("admin/salary-management/salary/Index/EmpSearch={EmpSearch}&StartTimeSalary={StartTimeSalary}")]
         public async Task<IActionResult> Index(string EmpSearch, DateTime StartTimeSalary)
         {
-
             ViewData["GetSalaryHistoryOfEmployee"] = EmpSearch;
             ViewData["GetSalaryTable"] = StartTimeSalary;
 
