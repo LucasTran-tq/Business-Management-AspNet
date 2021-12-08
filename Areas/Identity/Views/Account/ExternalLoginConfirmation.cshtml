@@ -1,19 +1,19 @@
 ﻿@model ExternalLoginConfirmationViewModel
 @{
-    ViewData["Title"] = "Đăng ký";
+    ViewData["Title"] = "Register";
 }
 
 <h1>@ViewData["Title"].</h1>
-<h3>Thực hiện liên kết với tài khoản @ViewData["ProviderDisplayName"].</h3>
+<h3>Make an account link @ViewData["ProviderDisplayName"].</h3>
 
 <form asp-controller="Account" asp-action="ExternalLoginConfirmation" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-    <h4>Thông tin liên kết</h4>
+    <h4>Link Information</h4>
     <hr />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <p class="text-info">
-        Bạn đã xác thực liên kết với <strong>@ViewData["ProviderDisplayName"]</strong>.
-        Hãy nhập địa chỉ email để liên kết hoặc tạo tài khoản.
+        You have authenticated the association with <strong>@ViewData["ProviderDisplayName"]</strong>.
+        Enter your email address to link or create an account.
     </p>
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Đăng ký</button>
+            <button type="submit" class="btn btn-default">Register</button>
         </div>
     </div>
 </form>
