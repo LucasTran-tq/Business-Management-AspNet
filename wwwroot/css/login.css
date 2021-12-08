@@ -86,7 +86,7 @@ table {
 	font-style: normal;
 	letter-spacing: 0em;
 	text-align: left;
-	height: 548px;
+	height: 500px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -96,31 +96,21 @@ table {
 	color: black;
 }
 
-.login_form-login{
-	margin-top: 48px;
-}
-
 .username-input,
 .password-input {
 	width: 90%;
 	border-radius: 8px;
 	border: 1px solid #a7a8b0;
-	padding: 15px;
 	margin-top: 13px;
 	display: flex;
 	align-items: center;
 	color: #a7a8b0;
 }
 
-.login_form-password{
-	margin-top: 48px;
-}
-
 .username-input input,
 .password-input input{
 	padding: 0 15px;
 	outline: none;
-	border: none;
 	line-height: normal;
 	width: 100%;
     display: block;
@@ -134,7 +124,7 @@ table {
 	color: #ffffff;
 	display: block;
 	height: 50px;
-	width: 200px;
+	width: 150px;
 	font-family: "Poppins",sans-serif;
 	font-size: 24px;
 	font-style: normal;
@@ -171,11 +161,13 @@ table {
 }
 
 .login_btn{
-	width: 90%;
+	width: 78%;
 	margin-top: 24px;
 	display: inline-flex;
 	align-items: center;
 	justify-content: space-between;
+	margin-top: 16px;
+	margin-left: 12px;
 }
 
 .login_right{
@@ -206,8 +198,9 @@ table {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 90%;
+	width: 78%;
 	margin-top: 16px;
+	margin-left: 12px;
 }
 
 .row{
@@ -217,6 +210,10 @@ table {
   
 .toggle-password{
 	cursor: pointer;
+	float: right;
+	margin-top: -28px;
+	margin-right: 8px;
+	color: #757575;
 }
 
 .margin-bottom{
@@ -227,6 +224,14 @@ table {
 	margin-bottom: 16px;
 }
 
+
+.margin-top{
+	margin-top: 32px;
+}
+
+.margin-top-48{
+	margin-top: 48px;
+}
 
 
 

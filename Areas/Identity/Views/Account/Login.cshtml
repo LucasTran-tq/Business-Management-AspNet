@@ -54,24 +54,25 @@
                                 <h2 style="font-size: 21px; font-weight: 400;line-height: 36px; width: 150px;">Welcome to <span style="color: #0089ED;">AIT</span></h2>
                                 <h1 style="font-weight: 600; font-size: 32px; line-height: 51px; width: 120px;">Sign in   </h1>
 
-                                <div class="login_form-login">
-                                    <div class="login_form-username">
-                                        <label style="color: black; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px;" asp-for="UserNameOrEmail"></label>
-                                        <div class="username-input">
-                                            <input asp-for="UserNameOrEmail"  placeholder="Enter your username here" />
+                                <div class="login_form-login margin-top-48">
+                                    <div class="form-group ">
+                                        <label asp-for="UserNameOrEmail" class="col-md-10 control-label margin-bottom"></label>
+                                        <div class="col-md-10">
+                                            <input asp-for="UserNameOrEmail" class="form-control"  placeholder="Enter your username here" />
+                                            <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="login_form-password"></div>
-                                    <label style="color: black; font-size: 16px; font-style: normal;font-weight: 400;line-height: 24px;" asp-for="Password"></label>
-                                    <div class="password-input">
-                                        <input id="pass_log_id" asp-for="Password" placeholder="Enter your password here" />
-                                        <span id="toggle-password" class="fa fa-fw fa-eye field_icon toggle-password" onclick="myFunction()"></span>
-
-                                       
+                                  
+                                  <div class="form-group margin-top">
+                                        <label asp-for="Password" class="col-md-10 control-label margin-bottom"></label>
+                                        <div class="col-md-10">
+                                            <input id="pass_log_id" asp-for="Password" class="form-control"  placeholder="Enter your password here" />
+                                            <span id="toggle-password" class="fa fa-fw fa-eye field_icon toggle-password" onclick="myFunction()"></span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="rememberMe">
+                                <div class="rememberMe margin-top">
                                     <div class="checkbox">
                                         <label asp-for="RememberMe">
                                             <input asp-for="RememberMe" />
@@ -81,7 +82,7 @@
                                     <a asp-action="ForgotPassword" class="forgot_password">Forgot Password </a>
 
                                 </div>
-                                <div class="login_btn">
+                                <div class="login_btn margin-top-48">
                                     <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"] class="btn_register">Create Account</a>
                                     <button type="submit" class="btn_signin">Sign in</button>
                                 </div>
