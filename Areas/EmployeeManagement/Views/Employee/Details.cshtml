@@ -7,7 +7,7 @@
 
 <link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
-
+<partial name="SBAdmin/_Styles" />
 <div>
     <div class="profile_background">
         <div class="profile_title">
@@ -66,70 +66,21 @@
                     <div class="information-group1">
                         <dl class="col offset-1">
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.EmployeeName)
+                                @Html.DisplayNameFor(model => model.employee.Employee_Skills[0].Skill.SkillName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.EmployeeName)
+                                @Html.DisplayFor(model => model.employee.Employee_Skills[0].Skill.SkillName)
                             </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.DOB)
+                          <dt class = "row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.employee_positions[0].Position.PositionName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.DOB)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Sex)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Sex)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.PlaceOfBirth)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.PlaceOfBirth)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Address)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Address)
+                                @Html.DisplayFor(model => model.employee_positions[0].Position.PositionName)
                             </dd>
                         </dl>
                     </div>
                      <div class="information-group2">
-                         <dl class="col offset-1">
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.EmployeeName)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.EmployeeName)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.DOB)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.DOB)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Sex)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Sex)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.PlaceOfBirth)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.PlaceOfBirth)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Address)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Address)
-                            </dd>
-                        </dl>
+                        
                     </div>
                 </div>
             </div>    
