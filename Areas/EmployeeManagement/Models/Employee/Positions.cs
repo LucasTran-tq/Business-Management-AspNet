@@ -11,7 +11,7 @@ namespace App.Areas.EmployeeManagement.Models
         public int PositionId { set; get; }
 
         [Required(ErrorMessage = "Must have position name")]
-        [Display(Name = "position name")]
+        [Display(Name = "Position")]
         [StringLength(160)]
         public string PositionName {set;get;}
 

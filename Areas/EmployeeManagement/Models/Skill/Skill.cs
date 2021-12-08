@@ -11,7 +11,7 @@ namespace App.Areas.EmployeeManagement.Models
         public int SkillId { set; get; }
 
         [Required(ErrorMessage = "Must have skill name")]
-        [Display(Name = "Skill name")]
+        [Display(Name = "Skill")]
         [StringLength(160)]
         public string SkillName {set;get;}
 
