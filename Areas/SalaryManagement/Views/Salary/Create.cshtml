@@ -88,13 +88,13 @@
                 EmployeeId: $('#EmployeeId').val(),
             },
             success: function (data) {
-                console.log(`data: ${JSON.stringify(data)}`)
+                @* console.log(`data: ${JSON.stringify(data)}`) *@
 
                 $('#BasicSalaryId').find('option').remove()
                 $(data).each(
                     function (index, item) {
 
-                        console.log(`in create: ${item.basicSalaryId} --> ${item.basicSalaryName}`)
+                        @* console.log(`in create: ${item.basicSalaryId} --> ${item.basicSalaryName}`) *@
                         $('#BasicSalaryId').append('<option value="' + item.basicSalaryId + '">' + item.basicSalaryName + '</option>')
                     });
 
@@ -113,12 +113,12 @@
                 EmployeeId: $('#EmployeeId').val(),
             },
             success: function (data) {
-                console.log(`data: ${JSON.stringify(data)}`)
+                @* console.log(`data: ${JSON.stringify(data)}`) *@
                 $('#AllowanceSalaryId').find('option').remove()
                 $(data).each(
                     function (index, item) {
 
-                        console.log(`in create: ${item.allowanceSalaryId} --> ${item.allowanceSalaryName}`)
+                        @* console.log(`in create: ${item.allowanceSalaryId} --> ${item.allowanceSalaryName}`) *@
                         $('#AllowanceSalaryId').append('<option value="' + item.allowanceSalaryId + '">' + item.allowanceSalaryName + '</option>')
                     });
             },

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Areas.SalaryManagement.Models;
 using App.Models;
+using Newtonsoft.Json.Linq;
 
 namespace AppMvc.Areas.SalaryManagement.Controllers
 {
@@ -15,6 +16,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 
     public class SalaryController : Controller
     {
+        private const int V = 0;
         private readonly AppDbContext _context;
 
         public SalaryController(AppDbContext context)
@@ -22,7 +24,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
-        
+
         // GET: SalaryManagement/Salary
         public async Task<IActionResult> Index()
         {
@@ -36,8 +38,8 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(await appDbContext.ToListAsync());
         }
 
-      
-        
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         // [Route("admin/salary-management/salary/Index/EmpSearch={EmpSearch}&StartTimeSalary={StartTimeSalary}")]
@@ -56,26 +58,28 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                            select s;
 
             //  EmpName = !null and startTime = null
-            if(!String.IsNullOrEmpty(EmpSearch) && StartTimeSalary == DateTime.MinValue){
+            if (!String.IsNullOrEmpty(EmpSearch) && StartTimeSalary == DateTime.MinValue)
+            {
                 empQuery = empQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch));
             }
             // EmpName = null and startTime = !null
             else if (String.IsNullOrEmpty(EmpSearch) && StartTimeSalary != DateTime.MinValue)
             {
-                empQuery = empQuery.Where(emp => emp.SalaryDate.Year.Equals(StartTimeSalary.Year) 
-                && emp.SalaryDate.Month.Equals(StartTimeSalary.Month)); 
+                empQuery = empQuery.Where(emp => emp.SalaryDate.Year.Equals(StartTimeSalary.Year)
+                && emp.SalaryDate.Month.Equals(StartTimeSalary.Month));
             }
             // EmpName = !null and startTime = !null
-            else if (!String.IsNullOrEmpty(EmpSearch) && StartTimeSalary != DateTime.MinValue){
-                empQuery = empQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch) && emp.SalaryDate.Year.Equals(StartTimeSalary.Year) 
-                && emp.SalaryDate.Month.Equals(StartTimeSalary.Month)); 
+            else if (!String.IsNullOrEmpty(EmpSearch) && StartTimeSalary != DateTime.MinValue)
+            {
+                empQuery = empQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch) && emp.SalaryDate.Year.Equals(StartTimeSalary.Year)
+                && emp.SalaryDate.Month.Equals(StartTimeSalary.Month));
             }
             // EmpName = null and startTime = null
 
             return View(await empQuery.AsNoTracking().ToListAsync());
         }
 
-        
+
 
         // GET: SalaryManagement/Salary/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -163,7 +167,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(salary);
         }
 
-        
+
         // GET: SalaryManagement/Salary/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -186,7 +190,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         }
 
 
-        
+
         // POST: SalaryManagement/Salary/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -249,7 +253,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(salary);
         }
 
-    
+
         // GET: SalaryManagement/Salary/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -285,12 +289,19 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        // GET: SalaryManagement/Salary/ShowChart
+        public IActionResult ShowChart()
+        {
+            return View();
+        }
+
         private bool SalaryExists(int id)
         {
             return _context.Salaries.Any(e => e.SalaryId == id);
         }
 
-        
+
         public JsonResult GetBasicSalaryByEmpId(int EmployeeId)
         {
 
@@ -332,5 +343,110 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 
             return Json(list);
         }
+
+        public JsonResult GetReportByYear(int year)
+        {
+            if (year == 0)
+            {
+                DateTime localDate = DateTime.Now;
+                year = localDate.Year;
+            }
+            var salaryQuery = from salary in _context.Salaries select salary;
+            salaryQuery = salaryQuery.Where(emp => emp.SalaryDate.Year.Equals(year));
+
+            double month1 = 0.0;
+            double month2 = 0.0;
+            double month3 = 0.0;
+            double month4 = 0.0;
+            double month5 = 0.0;
+            double month6 = 0.0;
+            double month7 = 0.0;
+            double month8 = 0.0;
+            double month9 = 0.0;
+            double month10 = 0.0;
+            double month11 = 0.0;
+            double month12 = 0.0;
+
+            foreach (var item in salaryQuery)
+            {
+                switch (item.SalaryDate.Month)
+                {
+                    case 1:
+                        month1 += item.TotalSalary;
+                        break;
+                    case 2:
+                        month2 += item.TotalSalary;
+                        break;
+                    case 3:
+                        month3 += item.TotalSalary;
+                        break;
+                    case 4:
+                        month4 += item.TotalSalary;
+                        break;
+                    case 5:
+                        month5 += item.TotalSalary;
+                        break;
+                    case 6:
+                        month6 += item.TotalSalary;
+                        break;
+                    case 7:
+                        month7 += item.TotalSalary;
+                        break;
+                    case 8:
+                        month8 += item.TotalSalary;
+                        break;
+                    case 9:
+                        month9 += item.TotalSalary;
+                        break;
+                    case 10:
+                        month10 += item.TotalSalary;
+                        break;
+                    case 11:
+                        month11 += item.TotalSalary;
+                        break;
+                    case 12:
+                        month12 += item.TotalSalary;
+                        break;
+                }
+            }
+
+            var listTotalSalaryMonths = new System.Collections.ArrayList();
+            listTotalSalaryMonths.Add(month1);
+            listTotalSalaryMonths.Add(month2);
+            listTotalSalaryMonths.Add(month3);
+            listTotalSalaryMonths.Add(month4);
+            listTotalSalaryMonths.Add(month5);
+            listTotalSalaryMonths.Add(month6);
+            listTotalSalaryMonths.Add(month7);
+            listTotalSalaryMonths.Add(month8);
+            listTotalSalaryMonths.Add(month9);
+            listTotalSalaryMonths.Add(month10);
+            listTotalSalaryMonths.Add(month11);
+            listTotalSalaryMonths.Add(month12);
+
+        
+
+            // Give a json object to FE
+            ChartClass chartClass = new ChartClass(year, listTotalSalaryMonths);
+            
+
+            return Json(chartClass);
+        }
     }
+}
+
+
+public class ChartClass
+{
+    
+    public ChartClass(int year, System.Collections.ArrayList listTotalSalaryMonths1)
+    {
+        this.year = year;
+        this.listTotalSalaryMonths = listTotalSalaryMonths1;
+    }
+
+    public int year { get; set; }
+    public System.Collections.ArrayList listTotalSalaryMonths { get; set; }
+
+   
 }

@@ -12,7 +12,9 @@
     <title>@ViewData["Title"] - Dashboard</title>
 
     <partial name="SBAdmin/_Styles" />
+
     
+
 </head>
 
 <body id="page-top">
@@ -69,12 +71,13 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                  
-                     <form asp-area="Identity" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm">
-                 
-                            <button type="submit" class="btn btn-primary">Log out</button>
-                     
-                </form>
+
+                    <form asp-area="Identity" asp-controller="Account" asp-action="LogOff" method="post"
+                        id="logoutForm">
+
+                        <button type="submit" class="btn btn-primary">Log out</button>
+
+                    </form>
                 </div>
             </div>
         </div>
