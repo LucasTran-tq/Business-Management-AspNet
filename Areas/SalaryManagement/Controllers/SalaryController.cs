@@ -296,12 +296,105 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View();
         }
 
+        // GET: SalaryManagement/Salary/ShowChartForEmployee
+        public IActionResult ShowChartForEmployee()
+        {
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName");
+            return View();
+        }
+
+        // get data for Chart to show total salary of employee
+        public JsonResult GetReportSalaryForEmpByYear(string EmpID, int year)
+        {
+
+            int empID = Int32.Parse(EmpID);
+         
+            var salaryQuery = _context.Salaries
+                                    .Where(s => s.EmployeeId.Equals(empID) && s.SalaryDate.Year.Equals(year))
+                                    .ToList();
+            
+            double month1 = 0.0;
+            double month2 = 0.0;
+            double month3 = 0.0;
+            double month4 = 0.0;
+            double month5 = 0.0;
+            double month6 = 0.0;
+            double month7 = 0.0;
+            double month8 = 0.0;
+            double month9 = 0.0;
+            double month10 = 0.0;
+            double month11 = 0.0;
+            double month12 = 0.0;
+
+            foreach (var item in salaryQuery)
+            {
+                switch (item.SalaryDate.Month)
+                {
+                    case 1:
+                        month1 += item.TotalSalary;
+                        break;
+                    case 2:
+                        month2 += item.TotalSalary;
+                        break;
+                    case 3:
+                        month3 += item.TotalSalary;
+                        break;
+                    case 4:
+                        month4 += item.TotalSalary;
+                        break;
+                    case 5:
+                        month5 += item.TotalSalary;
+                        break;
+                    case 6:
+                        month6 += item.TotalSalary;
+                        break;
+                    case 7:
+                        month7 += item.TotalSalary;
+                        break;
+                    case 8:
+                        month8 += item.TotalSalary;
+                        break;
+                    case 9:
+                        month9 += item.TotalSalary;
+                        break;
+                    case 10:
+                        month10 += item.TotalSalary;
+                        break;
+                    case 11:
+                        month11 += item.TotalSalary;
+                        break;
+                    case 12:
+                        month12 += item.TotalSalary;
+                        break;
+                }
+            }
+
+            var listTotalSalaryMonths = new System.Collections.ArrayList();
+            listTotalSalaryMonths.Add(month1);
+            listTotalSalaryMonths.Add(month2);
+            listTotalSalaryMonths.Add(month3);
+            listTotalSalaryMonths.Add(month4);
+            listTotalSalaryMonths.Add(month5);
+            listTotalSalaryMonths.Add(month6);
+            listTotalSalaryMonths.Add(month7);
+            listTotalSalaryMonths.Add(month8);
+            listTotalSalaryMonths.Add(month9);
+            listTotalSalaryMonths.Add(month10);
+            listTotalSalaryMonths.Add(month11);
+            listTotalSalaryMonths.Add(month12);
+
+
+            return Json(listTotalSalaryMonths);
+        }
+
+
         private bool SalaryExists(int id)
         {
             return _context.Salaries.Any(e => e.SalaryId == id);
         }
 
 
+        // get data for Create Salary
         public JsonResult GetBasicSalaryByEmpId(int EmployeeId)
         {
 
@@ -323,6 +416,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return Json(list);
         }
 
+        // get data for Create Salary
         public JsonResult GetAllowanceSalaryByEmpId(int EmployeeId)
         {
 
@@ -344,6 +438,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return Json(list);
         }
 
+        // get data for Chart to show total salary of company
         public JsonResult GetReportByYear(int year)
         {
             if (year == 0)
@@ -424,21 +519,23 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             listTotalSalaryMonths.Add(month11);
             listTotalSalaryMonths.Add(month12);
 
-        
+
 
             // Give a json object to FE
             ChartClass chartClass = new ChartClass(year, listTotalSalaryMonths);
-            
+
 
             return Json(chartClass);
         }
+
+
     }
 }
 
 
 public class ChartClass
 {
-    
+
     public ChartClass(int year, System.Collections.ArrayList listTotalSalaryMonths1)
     {
         this.year = year;
@@ -448,5 +545,5 @@ public class ChartClass
     public int year { get; set; }
     public System.Collections.ArrayList listTotalSalaryMonths { get; set; }
 
-   
+
 }
