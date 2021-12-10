@@ -4,10 +4,9 @@
     ViewData["Title"] = "Employee list";
 }
 
-<link href="/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
-<link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
 
-<h1>@ViewData["Title"]</h1>
+
+<h1 class="mx-5">@ViewData["Title"]</h1>
 <!-- Page level plugins -->
 
 
@@ -23,51 +22,26 @@
         <div class="table-responsive">
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="dataTable_length">
-                            <label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                </select> entries
-                            </label>
-                        </div>
-                    </div>
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="search" class="form-control bg-gray-200 border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2" value='@ViewData["GetEmployeeDetails"]'
-                                name="EmpSearch" >
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="row">
                     <div class="col-sm-12">
                         <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
-                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                <tr role="row">
+                                    <th>
                                         @Html.DisplayNameFor(model => model.EmployeeName)
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+                                    <th>
                                         @Html.DisplayNameFor(model => model.DOB)
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+                                    <th>
                                         @Html.DisplayNameFor(model => model.Sex)
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+                                    <th>
                                         @Html.DisplayNameFor(model => model.PlaceOfBirth)
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+                                    <th>
                                         @Html.DisplayNameFor(model => model.Address)
                                     </th>
-                                    <th style="width: 150px;"></th>
+                                    <th style="width: 150px; color: #FFFFFF"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,25 +84,6 @@
                         </table>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                    </div>
-                    <div class="col-sm-12 col-md-7">
-                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                            <ul class="pagination">
-                                <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
-                                <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -150,3 +105,4 @@
 
 <!-- Page level custom scripts -->
 <script src="/js/demo/datatables-demo.js"></script>
+<link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
