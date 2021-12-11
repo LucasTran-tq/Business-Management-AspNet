@@ -55,6 +55,12 @@
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
                                         @Html.DisplayNameFor(model => model.EmployeeName)
                                     </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                        @Html.DisplayNameFor(model => model.Department)
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                        @Html.DisplayNameFor(model => model.Level)
+                                    </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
                                         @Html.DisplayNameFor(model => model.DOB)
                                     </th>
@@ -76,6 +82,12 @@
                                     <tr>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.EmployeeName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Level.LevelName)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.DOB)
@@ -100,6 +112,8 @@
                             <tfoot>
                                 <tr>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.EmployeeName)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Department)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Level)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.DOB)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Sex)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.PlaceOfBirth)</th>

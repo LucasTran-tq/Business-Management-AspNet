@@ -57,7 +57,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BonusSalaryId,BonusLevel,BonusSalaryName,PrizeMoney,StartTime,EndTime")] BonusSalary bonusSalary)
+        public async Task<IActionResult> Create([Bind("BonusSalaryId,BonusSalaryName,PrizeMoney,StartTime,EndTime")] BonusSalary bonusSalary)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BonusSalaryId,BonusLevel,BonusSalaryName,PrizeMoney,StartTime,EndTime")] BonusSalary bonusSalary)
+        public async Task<IActionResult> Edit(int id, [Bind("BonusSalaryId,BonusSalaryName,PrizeMoney,StartTime,EndTime")] BonusSalary bonusSalary)
         {
             if (id != bonusSalary.BonusSalaryId)
             {

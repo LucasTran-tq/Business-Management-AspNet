@@ -22,22 +22,29 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         }
 
         // GET: EmployeeManagement/Employee
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View(await _context.Employees.ToListAsync());
-        }  
+            var appDbContext = _context.Employees
+                           .Include(s => s.Department)
+                           .Include(s => s.Level);
+
+            return View(await appDbContext.ToListAsync());
+        }
 
         [HttpGet]
         public async Task<IActionResult> Index(string EmpSearch)
         {
             ViewData["GetEmployeeDetails"] = EmpSearch;
 
-            var empQuery = from emp in _context.Employees select emp;
-            if(!String.IsNullOrEmpty(EmpSearch))
+            var empQuery = from emp in _context.Employees
+                        .Include(s => s.Department)
+                        .Include(s => s.Level)
+                        select emp;
+            if (!String.IsNullOrEmpty(EmpSearch))
             {
                 empQuery = empQuery.Where(emp => emp.EmployeeName.Contains(EmpSearch));
             }
-            return View(await empQuery.AsNoTracking().ToListAsync()); 
+            return View(await empQuery.AsNoTracking().ToListAsync());
         }
 
         // GET: EmployeeManagement/Employee/Details/5
@@ -50,6 +57,8 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             }
 
             var employee = await _context.Employees
+                .Include(s => s.Department)
+                .Include(s => s.Level)
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
             if (employee == null)
             {
@@ -59,19 +68,19 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             IQueryable<Employee_Skill> skills = from emp_skill in _context.Employee_Skills
                             .Include(e => e.Employee)
                             .Include(e => e.Skill)
-                            .OrderByDescending(emp_skill => emp_skill.EvaluationDate) 
-                            select emp_skill;
+                            .OrderByDescending(emp_skill => emp_skill.EvaluationDate)
+                                                select emp_skill;
             skills = skills.Where(emp => emp.Employee.EmployeeId == id);
 
             IQueryable<Employee_Position> positions = from emp_pos in _context.Employee_Positions
                             .Include(e => e.Employee)
                             .Include(e => e.Position)
-                            .OrderByDescending(emp_pos => emp_pos.StartTime) 
-                            select emp_pos;
+                            .OrderByDescending(emp_pos => emp_pos.StartTime)
+                                                      select emp_pos;
             positions = positions.Where(emp => emp.Employee.EmployeeId == id);
 
             Employee_Info employee_Info = new Employee_Info();
-            employee_Info.employee = employee; 
+            employee_Info.employee = employee;
             employee_Info.employee_skills = skills.ToList();
             employee_Info.employee_positions = positions.ToList();
 
@@ -81,6 +90,9 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         // GET: EmployeeManagement/Employee/Create
         public IActionResult Create()
         {
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
+            ViewData["LevelId"] = new SelectList(_context.Levels, "LevelId", "LevelName");
+
             return View();
         }
 
@@ -89,7 +101,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,EmployeeName,DOB,Sex,PlaceOfBirth,Address")] Employee employee)
+        public async Task<IActionResult> Create([Bind("EmployeeId,EmployeeName,DepartmentId,LevelId,DOB,Sex,PlaceOfBirth,Address")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +109,8 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
+            ViewData["LevelId"] = new SelectList(_context.Levels, "LevelId", "LevelName");
             return View(employee);
         }
 
@@ -113,6 +127,8 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             {
                 return NotFound();
             }
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
+            ViewData["LevelId"] = new SelectList(_context.Levels, "LevelId", "LevelName");
             return View(employee);
         }
 
@@ -121,7 +137,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,EmployeeName,DOB,Sex,PlaceOfBirth,Address")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,EmployeeName,DepartmentId,LevelId,DOB,Sex,PlaceOfBirth,Address")] Employee employee)
         {
             if (id != employee.EmployeeId)
             {
@@ -148,6 +164,8 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
+            ViewData["LevelId"] = new SelectList(_context.Levels, "LevelId", "LevelName");
             return View(employee);
         }
 
@@ -160,6 +178,8 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             }
 
             var employee = await _context.Employees
+                .Include(s => s.Department)
+                .Include(s => s.Level)
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
             if (employee == null)
             {

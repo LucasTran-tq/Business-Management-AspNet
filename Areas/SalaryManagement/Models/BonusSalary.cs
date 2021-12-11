@@ -11,9 +11,9 @@ namespace App.Areas.SalaryManagement.Models
         public int BonusSalaryId { set; get; }
 
 
-        [Required(ErrorMessage = "Must have Bonus Level")]
-        [Display(Name = "Bonus Level")]
-        public int BonusLevel {set;get;}
+        // [Required(ErrorMessage = "Must have Bonus Level")]
+        // [Display(Name = "Bonus Level")]
+        // public int BonusLevel {set;get;}
 
 
         [Required(ErrorMessage = "Must have Bonus Salary Name")]
