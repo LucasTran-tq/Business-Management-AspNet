@@ -78,18 +78,19 @@
                     <div class="information-group1">
                         <dl class="col offset-1">
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Employee_Skills[0].Skill.SkillName)
+                                @Html.DisplayNameFor(model => model.employee.Employee_Skills.First().Skill.SkillName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Employee_Skills[0].Skill.SkillName)
+                                @Html.DisplayFor(model => model.employee.Employee_Skills.First().Skill.SkillName)
                             </dd>
                           <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee_positions[0].Position.PositionName)
+                                @Html.DisplayNameFor(model => model.employee_positions.First().Position.PositionName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee_positions[0].Position.PositionName)
+                                @Html.DisplayFor(model => model.employee_positions.First().Position.PositionName)
                             </dd>
                         </dl>
+                        
                     </div>
                      <div class="information-group2">
                         
