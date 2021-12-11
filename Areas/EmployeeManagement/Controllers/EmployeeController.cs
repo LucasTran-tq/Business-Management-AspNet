@@ -21,6 +21,12 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
+
         // GET: EmployeeManagement/Employee
         public async Task<IActionResult> IndexAsync()
         {
@@ -39,7 +45,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             var empQuery = from emp in _context.Employees
                         .Include(s => s.Department)
                         .Include(s => s.Level)
-                        select emp;
+                           select emp;
             if (!String.IsNullOrEmpty(EmpSearch))
             {
                 empQuery = empQuery.Where(emp => emp.EmployeeName.Contains(EmpSearch));
@@ -107,6 +113,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             {
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
@@ -197,6 +204,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             var employee = await _context.Employees.FindAsync(id);
             _context.Employees.Remove(employee);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

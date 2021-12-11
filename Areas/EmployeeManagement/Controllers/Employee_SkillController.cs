@@ -21,6 +21,11 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
         // GET: EmployeeManagement/Employee_Skill
         public async Task<IActionResult> Index()
         {
@@ -40,13 +45,13 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             var empQuery = from emp_skill in _context.Employee_Skills
                             .Include(e => e.Employee)
                             .Include(e => e.Skill)
-                            .OrderByDescending(emp_skill => emp_skill.EvaluationDate) 
-                            select emp_skill;
-            if(!String.IsNullOrEmpty(EmpSearch))
+                            .OrderByDescending(emp_skill => emp_skill.EvaluationDate)
+                           select emp_skill;
+            if (!String.IsNullOrEmpty(EmpSearch))
             {
                 empQuery = empQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch));
             }
-            return View(await empQuery.AsNoTracking().ToListAsync()); 
+            return View(await empQuery.AsNoTracking().ToListAsync());
         }
 
         // GET: EmployeeManagement/Employee_Skill/Details/5
@@ -88,6 +93,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             {
                 _context.Add(employee_Skill);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", employee_Skill.EmployeeId);
@@ -178,6 +184,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             var employee_Skill = await _context.Employee_Skills.FindAsync(id);
             _context.Employee_Skills.Remove(employee_Skill);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

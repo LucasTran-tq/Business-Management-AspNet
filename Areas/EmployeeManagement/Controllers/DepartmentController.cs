@@ -22,6 +22,11 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
         // GET: EmployeeManagement/Department
         public async Task<IActionResult> Index()
         {
@@ -63,6 +68,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             {
                 _context.Add(department);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(department);
@@ -145,6 +151,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             var department = await _context.Departments.FindAsync(id);
             _context.Departments.Remove(department);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 
