@@ -1,18 +1,13 @@
 @model IEnumerable<App.Areas.EmployeeManagement.Models.Department>
 
-@{
-    ViewData["Title"] = "Department list";
-}
-
 <link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
-<h1 class="mx-5">@ViewData["Title"]</h1>
 
 <partial name="_AlertCreateMessage" />
 <partial name="_AlertDeleteMessage" />
 
 <div class="card shadow mx-5 mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Employee list</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Department list</h6>
         <p>
             <a asp-action="Create" class="btn btn-primary float-right mt-n4">Create New</a>
         </p>
@@ -25,10 +20,10 @@
                        <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                    <th>
                                         @Html.DisplayNameFor(model => model.DepartmentName)
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+                                    <th>
                                         @Html.DisplayNameFor(model => model.PhoneNumber)
                                     </th>
                                     <th style="width: 150px;color: rgb(255, 255, 255);"></th>
