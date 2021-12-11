@@ -22,6 +22,11 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
         // GET: SalaryManagement/OvertimeSalary
         public async Task<IActionResult> Index()
         {
@@ -63,6 +68,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             {
                 _context.Add(overtimeSalary);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(overtimeSalary);
@@ -145,6 +151,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var overtimeSalary = await _context.OvertimeSalaries.FindAsync(id);
             _context.OvertimeSalaries.Remove(overtimeSalary);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

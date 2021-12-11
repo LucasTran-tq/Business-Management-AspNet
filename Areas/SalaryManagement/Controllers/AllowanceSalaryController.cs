@@ -21,6 +21,11 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
         // GET: SalaryManagement/AllowanceSalary
         public async Task<IActionResult> Index()
         {
@@ -65,6 +70,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             {
                 _context.Add(allowanceSalary);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PositionId"] = new SelectList(_context.Positions, "PositionId", "PositionName", allowanceSalary.PositionId);
@@ -151,6 +157,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var allowanceSalary = await _context.AllowanceSalaries.FindAsync(id);
             _context.AllowanceSalaries.Remove(allowanceSalary);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

@@ -36,17 +36,18 @@ namespace App.Areas.EmployeeManagement.Models
 
         public string Address{get;set;}
         
-        // public Address Address { set; get; }
 
         public List<Employee_Skill> Employee_Skills { get; set; }
 
-        // // [Required]
-        // [Display(Name = "Tác giả")]
-        // public string AuthorId { set; get; }
-        // [ForeignKey("AuthorId")]
-        // [Display(Name = "Tác giả")]
-        // public AppUser Author { set; get; }
 
+        public int DepartmentId { set; get; }
+        [ForeignKey("DepartmentId")]
+        public Department Department{set;get;}
+
+        
+        public int LevelId { set; get; }
+        [ForeignKey("LevelId")]
+        public Level Level{set;get;}
 
     }
 

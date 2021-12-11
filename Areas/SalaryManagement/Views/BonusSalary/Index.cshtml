@@ -6,15 +6,18 @@
 
 <h1>Index</h1>
 
+<partial name="_AlertCreateMessage" />
+<partial name="_AlertDeleteMessage" />
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.BonusLevel)
-            </th>
+            </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.BonusSalaryName)
             </th>
@@ -33,9 +36,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            @* <td>
                 @Html.DisplayFor(modelItem => item.BonusLevel)
-            </td>
+            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.BonusSalaryName)
             </td>

@@ -22,6 +22,11 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
         // GET: SalaryManagement/BonusSalary
         public async Task<IActionResult> Index()
         {
@@ -57,12 +62,13 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BonusSalaryId,BonusLevel,BonusSalaryName,PrizeMoney,StartTime,EndTime")] BonusSalary bonusSalary)
+        public async Task<IActionResult> Create([Bind("BonusSalaryId,BonusSalaryName,PrizeMoney,StartTime,EndTime")] BonusSalary bonusSalary)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(bonusSalary);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(bonusSalary);
@@ -89,7 +95,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BonusSalaryId,BonusLevel,BonusSalaryName,PrizeMoney,StartTime,EndTime")] BonusSalary bonusSalary)
+        public async Task<IActionResult> Edit(int id, [Bind("BonusSalaryId,BonusSalaryName,PrizeMoney,StartTime,EndTime")] BonusSalary bonusSalary)
         {
             if (id != bonusSalary.BonusSalaryId)
             {
@@ -145,6 +151,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var bonusSalary = await _context.BonusSalaries.FindAsync(id);
             _context.BonusSalaries.Remove(bonusSalary);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

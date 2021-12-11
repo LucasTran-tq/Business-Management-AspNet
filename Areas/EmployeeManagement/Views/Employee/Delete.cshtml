@@ -27,6 +27,18 @@
                         @Html.DisplayFor(model => model.EmployeeName)
                     </dd>
                     <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.Department.DepartmentName)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.Department.DepartmentName)
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.Level.LevelName)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.Level.LevelName)
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
                         @Html.DisplayNameFor(model => model.DOB)
                     </dt>
                     <dd class = "row-sm-10 content-information">

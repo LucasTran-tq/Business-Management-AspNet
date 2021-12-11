@@ -22,6 +22,11 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
         // GET: SalaryManagement/BasicSalary
         public async Task<IActionResult> Index()
         {
@@ -66,6 +71,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             {
                 _context.Add(basicSalary);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ContractTypeId"] = new SelectList(_context.ContractTypes, "ContractTypeId", "ContractTypeName", basicSalary.ContractTypeId);
@@ -152,6 +158,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var basicSalary = await _context.BasicSalaries.FindAsync(id);
             _context.BasicSalaries.Remove(basicSalary);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

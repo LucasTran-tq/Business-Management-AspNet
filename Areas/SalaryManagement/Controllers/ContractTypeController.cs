@@ -21,6 +21,10 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
         // GET: SalaryManagement/ContractType
         public async Task<IActionResult> Index()
         {
@@ -62,6 +66,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             {
                 _context.Add(contractType);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(contractType);
@@ -144,6 +149,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var contractType = await _context.ContractTypes.FindAsync(id);
             _context.ContractTypes.Remove(contractType);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

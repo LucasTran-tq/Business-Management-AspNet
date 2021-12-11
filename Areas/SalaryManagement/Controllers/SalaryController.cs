@@ -24,7 +24,10 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
-
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
         // GET: SalaryManagement/Salary
         public async Task<IActionResult> Index()
         {
@@ -157,6 +160,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 
                 _context.Add(salary);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             // ViewData["AllowanceSalaryId"] = new SelectList(_context.AllowanceSalaries, "AllowanceSalaryId", "AllowanceSalaryName", salary.AllowanceSalaryId);
@@ -286,6 +290,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var salary = await _context.Salaries.FindAsync(id);
             _context.Salaries.Remove(salary);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 
@@ -308,11 +313,11 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         {
 
             int empID = Int32.Parse(EmpID);
-         
+
             var salaryQuery = _context.Salaries
                                     .Where(s => s.EmployeeId.Equals(empID) && s.SalaryDate.Year.Equals(year))
                                     .ToList();
-            
+
             double month1 = 0.0;
             double month2 = 0.0;
             double month3 = 0.0;

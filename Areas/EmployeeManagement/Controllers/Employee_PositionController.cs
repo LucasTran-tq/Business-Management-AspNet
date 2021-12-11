@@ -21,6 +21,11 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
         // GET: EmployeeManagement/Employee_Position
         public async Task<IActionResult> Index()
         {
@@ -37,13 +42,13 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                                         .Include(e => e.Employee)
                                         .Include(e => e.Position)
                                         .OrderByDescending(emp_pos => emp_pos.StartTime)
-                                        select emp_pos;
-            
-            if(!String.IsNullOrEmpty(EmpSearch))
+                               select emp_pos;
+
+            if (!String.IsNullOrEmpty(EmpSearch))
             {
                 emp_posQuery = emp_posQuery.Where(emp => emp.Employee.EmployeeName.Contains(EmpSearch));
             }
-            return View(await emp_posQuery.AsNoTracking().ToListAsync()); 
+            return View(await emp_posQuery.AsNoTracking().ToListAsync());
         }
 
         // GET: EmployeeManagement/Employee_Position/Details/5
@@ -85,6 +90,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             {
                 _context.Add(employee_Position);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", employee_Position.EmployeeId);
@@ -175,6 +181,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             var employee_Position = await _context.Employee_Positions.FindAsync(id);
             _context.Employee_Positions.Remove(employee_Position);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 
