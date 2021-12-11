@@ -22,6 +22,11 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+
         // GET: SalaryManagement/BonusSalary
         public async Task<IActionResult> Index()
         {
@@ -63,6 +68,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             {
                 _context.Add(bonusSalary);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(bonusSalary);
@@ -145,6 +151,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var bonusSalary = await _context.BonusSalaries.FindAsync(id);
             _context.BonusSalaries.Remove(bonusSalary);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 
