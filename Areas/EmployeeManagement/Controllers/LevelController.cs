@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Areas.EmployeeManagement.Models;
 using App.Models;
+using Microsoft.AspNetCore.Authorization;
+using App.Data;
 
 namespace AppMvc.Areas.EmployeeManagement.Controllers
 {
     [Area("EmployeeManagement")]
     [Route("admin/employee-management/level/[action]/{id?}")]
+    [Authorize(Roles = RoleName.Administrator +  "," + RoleName.HR)]
     public class LevelController : Controller
     {
         private readonly AppDbContext _context;
