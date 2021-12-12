@@ -128,11 +128,49 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 
             Console.WriteLine("month: {0}, year: {1}", localDate.Month, localDate.Year);
 
-            var basicQuery = from bs in _context.BasicSalaries
-                                 // where bs.StartTime.Year <= localDate.Year 
-                                 // && bs.EndTime.Year >= localDate.Year
-                                 // && bs.StartTime.Month <= localDate.Month && bs.EndTime.Month >= localDate.Month
-                             select bs;
+            // basic 
+            // var basQuery = from bs in _context.BasicSalaries
+            //                  where bs.StartTime.Year <= localDate.Year
+            //                  && bs.EndTime.Year >= localDate.Year
+            //                  && bs.StartTime.Month <= localDate.Month && bs.EndTime.Month >= localDate.Month
+            //                  select bs;
+
+            List<BasicSalary> basicSalary = _context.BasicSalaries.ToList();
+            List<ContractType> contractType = _context.ContractTypes.ToList();
+            List<Contract> contract = _context.Contracts.ToList();
+
+            // basic
+            var basicQuery = (from basic in basicSalary
+                        // join ctype in contractType on basic.ContractTypeId equals ctype.ContractTypeId
+                        join con in contract on basic.ContractTypeId equals con.ContractTypeId
+                        where con.EmployeeId == empId
+                        // && basic.StartTime.Year <= localDate.Year && basic.EndTime.Year >= localDate.Year
+                        // && basic.StartTime.Month <= localDate.Month && basic.EndTime.Month >= localDate.Month
+                        select new
+                        {
+                            BasicSalaryId = basic.BasicSalaryId,
+                            BasicSalaryName = basic.BasicSalaryName,
+                        }).ToList();
+
+
+            // allowance
+            // List<BasicSalary> basicSalary = _context.BasicSalaries.ToList();
+            // List<ContractType> contractType = _context.ContractTypes.ToList();
+            // List<Contract> contract = _context.Contracts.ToList();
+
+            var allowanceQuery = (from allowance in _context.AllowanceSalaries
+                        join position in _context.Positions on allowance.PositionId equals position.PositionId
+                        join emp_pos in _context.Employee_Positions on position.PositionId equals emp_pos.PositionId
+                        where emp_pos.EmployeeId == empId
+                        && allowance.StartTime.Year <= localDate.Year && allowance.EndTime.Year >= localDate.Year
+                        && allowance.StartTime.Month <= localDate.Month && allowance.EndTime.Month >= localDate.Month
+
+
+                        select new
+                        {
+                            AllowanceSalaryId = allowance.AllowanceSalaryId,
+                            AllowanceSalaryName = allowance.AllowanceSalaryName,
+                        }).ToList();
 
             foreach (var item in basicQuery)
             {
@@ -140,14 +178,17 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 
             }
 
-            var allowanceQuery = from allow in _context.BasicSalaries
-                                 where allow.StartTime.Year <= localDate.Year && allow.EndTime.Year >= localDate.Year
-                                 && allow.StartTime.Month <= localDate.Month && allow.EndTime.Month >= localDate.Month
-                                 select allow;
+            Console.WriteLine("Custome allowance list");
+
+            foreach (var item in allowanceQuery)
+            {
+                Console.WriteLine("id: {0}, name: {1}", item.AllowanceSalaryId, item.AllowanceSalaryName);
+
+            }
 
             ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName");
-            ViewData["BasicSalaryId"] = new SelectList(basicQuery, "BasicSalaryId", "BasicSalaryName");
-            ViewData["AllowanceSalaryId"] = new SelectList(allowanceQuery, "AllowanceSalaryId", "AllowanceSalaryName");
+            ViewData["BasicSalaryId"] = new SelectList(_context.BasicSalaries, "BasicSalaryId", "BasicSalaryName");
+            ViewData["AllowanceSalaryId"] = new SelectList(_context.AllowanceSalaries, "AllowanceSalaryId", "AllowanceSalaryName");
             ViewData["BonusSalaryId"] = new SelectList(_context.BonusSalaries, "BonusSalaryId", "BonusSalaryName");
             ViewData["OvertimeSalaryId"] = new SelectList(_context.OvertimeSalaries, "OvertimeSalaryId", "OvertimeSalaryName");
             return View();
