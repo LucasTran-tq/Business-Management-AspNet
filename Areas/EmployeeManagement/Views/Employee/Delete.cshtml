@@ -1,14 +1,9 @@
 @model App.Areas.EmployeeManagement.Models.Employee
 
-@{
-    ViewData["Title"] = "Delete";
-}
-
 <link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
 <partial name="SBAdmin/_Styles" />
 
-<h1 class="mx-5">Delete</h1>
 
 <h3 class="mx-5">Are you sure you want to delete this Employee?</h3>
  <form asp-action="Delete" >
@@ -63,6 +58,9 @@
                         @Html.DisplayFor(model => model.Address)
                     </dd>
                 </dl>
+            </div>
+            <div class="information-group2">
+                
             </div>
         </div>
     </div>

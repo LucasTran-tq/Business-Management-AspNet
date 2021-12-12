@@ -1,12 +1,12 @@
 @model App.Areas.EmployeeManagement.Models.Level
 
-@{
-    ViewData["Title"] = "Delete";
-}
 
-<h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="mx-5">Are you sure you want to delete this Employee Position?</h3>
+<form asp-action="Delete">
+   <input type="hidden" asp-for="LevelId" />
+    <input type="submit" value="Delete" class="btn btn-danger mx-5" />
+</form>
 <div>
     <h4>Level</h4>
     <hr />
@@ -19,9 +19,4 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="LevelId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
 </div>

@@ -1,18 +1,15 @@
 @model App.Areas.EmployeeManagement.Models.Position
 
-@{
-    ViewData["Title"] = "Edit";
-}
 
-<h1>Edit</h1>
 
-<h4>Position</h4>
-<hr />
+
+
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PositionId" />
+           <input type="hidden" asp-for="PositionId" />
             <div class="form-group">
                 <label asp-for="PositionName" class="control-label"></label>
                 <input asp-for="PositionName" class="form-control" />
@@ -25,7 +22,10 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mx-5 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
 </div>
 

@@ -1,45 +1,52 @@
 @model App.Areas.EmployeeManagement.Models.Employee_Skill
 
-@{
-    ViewData["Title"] = "Create";
-}
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
-<h1>Create</h1>
+<partial name="SBAdmin/_Styles" />
 
-<h4>Employee_Skill</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="mx-5">
+    <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                @* <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select> *@
-                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+            <div class="information-title mx-5 mt-3">
+                <p>Create Employee Skill</p>
             </div>
-            <div class="form-group">
-                <label asp-for="SkillId" class="control-label"></label>
-                <select asp-for="SkillId" class="form-control" asp-items="ViewBag.SkillId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Level" class="control-label"></label>
-                <input asp-for="Level" class="form-control" />
-                <span asp-validation-for="Level" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EvaluationDate" class="control-label"></label>
-                <input asp-for="EvaluationDate" class="form-control" type="date" id="date" name="date" />
-                <span asp-validation-for="EvaluationDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <hr>
+            <div class="information-group">
+                 <div class="information-group1  col">
+                    <div class="form-group">
+                        <label asp-for="EmployeeId" class="control-label"></label>
+                        @* <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select> *@
+                        <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SkillId" class="control-label"></label>
+                        <select asp-for="SkillId" class="form-control" asp-items="ViewBag.SkillId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Level" class="control-label"></label>
+                        <input asp-for="Level" class="form-control" />
+                        <span asp-validation-for="Level" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EvaluationDate" class="control-label"></label>
+                        <input asp-for="EvaluationDate" class="form-control" type="date" id="date" name="date" />
+                        <span asp-validation-for="EvaluationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5 mt-4 float-right">
+                        <input type="submit" value="Create" class="btn btn-primary sm " />
+                    </div>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mx-5 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
 </div>
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script>
