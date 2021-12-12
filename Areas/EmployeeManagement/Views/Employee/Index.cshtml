@@ -1,12 +1,5 @@
 @model IEnumerable<App.Areas.EmployeeManagement.Models.Employee>
 
-@{
-    ViewData["Title"] = "Employee list";
-}
-
-
-
-<h1 class="mx-5">@ViewData["Title"]</h1>
 <!-- Page level plugins -->
 
 <partial name="_AlertCreateMessage" />
@@ -34,14 +27,14 @@
                                         @Html.DisplayNameFor(model => model.Department)
                                     </th>
                                     <th>
+                                        @Html.DisplayNameFor(model => model.Sex)
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.Level)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.DOB)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Sex)
-                                    </th>
+                                    </th>  
                                     <th style="width: 150px; color: #FFFFFF"></th>
                                 </tr>
                             </thead>
@@ -55,14 +48,14 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Department.DepartmentName)
                                         </td>
+                                         <td>
+                                            @Html.DisplayFor(modelItem => item.Sex)
+                                        </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Level.LevelName)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.DOB)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Sex)
                                         </td>
                                         <td>
                                             <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |

@@ -14,15 +14,15 @@
             <h1>Profile</h1>
             <a asp-action="Edit" asp-route-id="@Model.employee.EmployeeId" class="btn btn-primary sm ">Edit</a>
         </div>
-        <div class="contain_profile">
+        <div class="contain_profile  mb-5">
             <div class="basic_information">
-                <div class="information-title offset-1">
+                <div class="information-title mx-5">
                     <p>Employee info</p>
                 </div>
                 <hr>
                 <div class="basic_information-group">
                     <div class="information-group">
-                         <dl class="col offset-1">
+                         <dl class="col mx-5">
                             <dt class = "row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee.EmployeeName)
                             </dt>
@@ -70,26 +70,27 @@
                 </div>
             </div>
             <div class="detail_information">
-                <div class="information-title offset-1">
+                <div class="information-title mx-5">
                     <p>Employee profile detail</p>
                 </div>
                 <hr>
                 <div class="information-group">
                     <div class="information-group1">
-                        <dl class="col offset-1">
+                        <dl class="col mx-5">
                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Employee_Skills[0].Skill.SkillName)
+                                @Html.DisplayNameFor(model => model.employee.Employee_Skills.First().Skill.SkillName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Employee_Skills[0].Skill.SkillName)
+                                @Html.DisplayFor(model => model.employee.Employee_Skills.First().Skill.SkillName)
                             </dd>
                           <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee_positions[0].Position.PositionName)
+                                @Html.DisplayNameFor(model => model.employee_positions.First().Position.PositionName)
                             </dt>
                             <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee_positions[0].Position.PositionName)
+                                @Html.DisplayFor(model => model.employee_positions.First().Position.PositionName)
                             </dd>
                         </dl>
+                        
                     </div>
                      <div class="information-group2">
                         
@@ -100,7 +101,7 @@
     </div>
     
 </div>
-<div class="offset-1 content-information">
+<div class="mx-5 content-information">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back
@@ -109,7 +110,7 @@
 
 <h1>Position</h1>
 
- <table class="table">
+ <table class="table mb-5">
     <thead>
         <tr>
             <th>

@@ -9,16 +9,14 @@
 <partial name="SBAdmin/_Styles" />
 
 <div class="row">
-    <div class="col-md-10 bg-white offset-1 rounded shadow-lg">
+    <div class="col-md-10 bg-white mx-5 rounded shadow-lg">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EmployeeId" />
-            <div class="information-title offset-1">
-                <p>Edit Information</p>
-            </div>
+            <div class="information-title mx-5"><p>Edit Information</p></div>
             <hr>
             <div class="information-group">
-                <div class="information-group1 offset-1 col">
+                <div class="information-group1 mx-5 col">
                     <div class="form-group">
                         <label asp-for="EmployeeName" class="control-label title-text"></label>
                         <input asp-for="EmployeeName" class="form-control" />
@@ -72,7 +70,7 @@
     </div>
 </div>
 
-<div class="offset-1 content-information mt-5">
+<div class="mx-5 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

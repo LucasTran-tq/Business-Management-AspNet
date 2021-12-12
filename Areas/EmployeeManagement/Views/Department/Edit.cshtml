@@ -4,29 +4,29 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 class="offset-1">Edit</h1>
+<h1 class="mx-5">Edit</h1>
 
 <link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
 <partial name="SBAdmin/_Styles" />
 
 <div class="row">
-    <div class="col-md-6 bg-white offset-1 rounded shadow-lg">
+    <div class="col-md-6 bg-white mx-5 rounded shadow-lg">
        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DepartmentId" />
-            <div class="information-title offset-1"><p>Edit Information</p></div>
-            <div class="form-group offset-1 float-right mt-n5">
+            <div class="information-title mx-5"><p>Edit Information</p></div>
+            <div class="form-group mx-5 float-right mt-n5">
                     <input type="submit" value="Save" class="btn btn-primary" />
                 </div>
             <hr>
             <div class="information-group row">
-                <div class="form-group offset-1">
+                <div class="form-group mx-5">
                     <label asp-for="DepartmentName" class="control-label"></label>
                     <input asp-for="DepartmentName" class="form-control" />
                     <span asp-validation-for="DepartmentName" class="text-danger"></span>
                 </div>
-                <div class="form-group offset-1">
+                <div class="form-group mx-5">
                     <label asp-for="PhoneNumber" class="control-label"></label>
                     <input asp-for="PhoneNumber" class="form-control" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<div class="offset-1 content-information mt-5">
+<div class="mx-5 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

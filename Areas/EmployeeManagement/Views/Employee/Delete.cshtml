@@ -8,18 +8,18 @@
 
 <partial name="SBAdmin/_Styles" />
 
-<h1 class="offset-1">Delete</h1>
+<h1 class="mx-5">Delete</h1>
 
-<h3 class="offset-1">Are you sure you want to delete this Employee?</h3>
+<h3 class="mx-5">Are you sure you want to delete this Employee?</h3>
  <form asp-action="Delete" >
         <input type="hidden" asp-for="EmployeeId" />
-        <input type="submit" value="Delete" class="btn btn-danger offset-1" />
+        <input type="submit" value="Delete" class="btn btn-danger mx-5" />
     </form>
-<div class="offset-1">
+<div class="mx-5">
     <div class="col-md-10 bg-white rounded shadow-lg">
         <div class="information-group mt-3">
             <div class="information-group1">
-                <dl class="col offset-1">
+                <dl class="col mx-5">
                     <dt class = "row-sm-2 title-text">
                         @Html.DisplayNameFor(model => model.EmployeeName)
                     </dt>
@@ -67,7 +67,7 @@
         </div>
     </div>
 </div>
-<div class="offset-1 content-information mt-5">
+<div class="mx-5 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

@@ -8,36 +8,36 @@
 
 <partial name="SBAdmin/_Styles" />
 <div class="row">
-    <div class="col-md-10 bg-white offset-1 rounded shadow-lg">
+    <div class="col-md-10 bg-white mx-5 rounded shadow-lg">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="information-title offset-1">
+            <div class="information-title mx-5">
                 <p>Create Employee</p>
             </div>
             <hr>
             <div class="information-group">
                 <div class="information-group1  col">
-                    <div class="form-group offset-1">
+                    <div class="form-group mx-5">
                         <label asp-for="EmployeeName" class="control-label title-text"></label>
                         <input asp-for="EmployeeName" class="form-control" />
                         <span asp-validation-for="EmployeeName" class="text-danger"></span>
                     </div>
-                    <div class="form-group offset-1">
+                    <div class="form-group mx-5">
                         <label asp-for="DepartmentId" class="control-label title-text"></label>
                         <select id="DepartmentId" asp-for="DepartmentId" class="form-control"
                             asp-items="ViewBag.DepartmentId"></select>
                     </div>
-                    <div class="form-group offset-1">
+                    <div class="form-group mx-5">
                         <label asp-for="LevelId" class="control-label title-text"></label>
                         <select id="LevelId" asp-for="LevelId" class="form-control"
                             asp-items="ViewBag.LevelId"></select>
                     </div>
-                    <div class="form-group offset-1">
+                    <div class="form-group mx-5">
                         <label asp-for="DOB" class="control-label title-text"></label>
                         <input asp-for="DOB" class="form-control" />
                         <span asp-validation-for="DOB" class="text-danger"></span>
                     </div>
-                    <div class="form-group offset-1">
+                    <div class="form-group mx-5">
                         <label asp-for="Sex" class="control-label title-text"></label>
                         @* <input asp-for="Sex" class="form-control" /> *@
                         @* Male
@@ -51,12 +51,12 @@
                         </div>
                         <span asp-validation-for="Sex" class="text-danger"></span>
                     </div>
-                    <div class="form-group offset-1">
+                    <div class="form-group mx-5">
                         <label asp-for="PlaceOfBirth" class="control-label title-text"></label>
                         <input asp-for="PlaceOfBirth" class="form-control" />
                         <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
                     </div>
-                    <div class="form-group offset-1">
+                    <div class="form-group mx-5">
                         <label asp-for="Address" class="control-label title-text"></label>
                         <input asp-for="Address" class="form-control" />
                         <span asp-validation-for="Address" class="text-danger"></span>
@@ -74,7 +74,7 @@
     </div>
 </div>
 
-<div class="offset-1 content-information mt-5">
+<div class="mx-5 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back
