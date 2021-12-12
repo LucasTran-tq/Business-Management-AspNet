@@ -9,11 +9,14 @@ using Bogus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace App.Areas.Database.Controllers
 {
     [Area("Database")]
     [Route("/database-manage/[action]")]
+    [Authorize(Roles = RoleName.Administrator)]
     public class DbManageController : Controller
     {
         private readonly AppDbContext _dbContext;

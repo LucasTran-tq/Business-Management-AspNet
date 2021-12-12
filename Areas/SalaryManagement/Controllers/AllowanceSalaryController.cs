@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Areas.SalaryManagement.Models;
 using App.Models;
+using Microsoft.AspNetCore.Authorization;
+using App.Data;
 
 namespace AppMvc.Areas.SalaryManagement.Controllers
 {
     [Area("SalaryManagement")]
     [Route("admin/salary-management/allowance-salary/[action]/{id?}")]
+    [Authorize(Roles = RoleName.Administrator +  "," + RoleName.Accountant)]
     public class AllowanceSalaryController : Controller
     {
         private readonly AppDbContext _context;

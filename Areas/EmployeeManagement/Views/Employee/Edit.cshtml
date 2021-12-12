@@ -39,7 +39,12 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Sex" class="control-label title-text"></label>
-                        <input asp-for="Sex" class="form-control" />
+                        @* <input asp-for="Sex" class="form-control" /> *@
+                        <div>
+                            Male @Html.RadioButton("Sex", "Male")
+                            Female @Html.RadioButton("Sex", "Female")
+                            Other @Html.RadioButton("Sex", "Other")
+                        </div>
                         <span asp-validation-for="Sex" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -52,15 +57,15 @@
                         <input asp-for="Address" class="form-control" />
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
-                    
+
                 </div>
                 <div class="information-group2">
-                
+
                 </div>
             </div>
             <div class="form-group float-right">
-                        <input type="submit" value="Save" class="btn btn-primary sm" />
-                    </div>
+                <input type="submit" value="Save" class="btn btn-primary sm" />
+            </div>
         </form>
     </div>
 </div>

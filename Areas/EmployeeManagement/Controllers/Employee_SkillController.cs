@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Areas.EmployeeManagement.Models;
 using App.Models;
+using Microsoft.AspNetCore.Authorization;
+using App.Data;
 
 namespace AppMvc.Areas.EmployeeManagement.Controllers
 {
     [Area("EmployeeManagement")]
     [Route("admin/employee-management/employee_skill/[action]/{id?}")]
+    [Authorize(Roles = RoleName.Administrator +  "," + RoleName.HR)]
     public class Employee_SkillController : Controller
     {
         private readonly AppDbContext _context;
@@ -75,9 +78,25 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         }
 
         // GET: EmployeeManagement/Employee_Skill/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName");
+            Console.WriteLine("i can get it: " + id);
+
+            var ide = id;
+            // ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName");
+            var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(ide)
+                            select emp;
+
+            // var empQuery = _context.Employees;
+            foreach (var item in empQuery)
+            {
+                Console.WriteLine("empQ: {0}   {1}", item.EmployeeId, item.EmployeeName );
+            }
+
+            
+
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName");
             ViewData["SkillId"] = new SelectList(_context.Skills, "SkillId", "SkillName");
             return View();
         }
@@ -87,7 +106,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,EmployeeId,SkillId,Level,EvaluationDate")] Employee_Skill employee_Skill)
+        public async Task<IActionResult> Create(int id, [Bind("id,EmployeeId,SkillId,Level,EvaluationDate")] Employee_Skill employee_Skill)
         {
             if (ModelState.IsValid)
             {

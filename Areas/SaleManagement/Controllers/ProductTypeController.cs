@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Areas.SaleManagement.Models;
 using App.Models;
+using Microsoft.AspNetCore.Authorization;
+using App.Data;
 
 namespace AppMvc.Areas.SaleManagement.Controllers
 {
     [Area("SaleManagement")]
     [Route("admin/sale-management/product-type/[action]/{id?}")]
+    [Authorize(Roles = RoleName.Administrator +  "," + RoleName.Sale)]
     public class ProductTypeController : Controller
     {
         private readonly AppDbContext _context;
