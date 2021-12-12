@@ -4,29 +4,29 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 class="offset-1">Create</h1>
+<h1 class="mx-5">Create</h1>
 
 <link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
 <partial name="SBAdmin/_Styles" />
-<div class="offset-1">
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="information-title offset-1"><p>Create Department</p></div>
+            <div class="information-title mx-5"><p>Create Department</p></div>
             <hr>
             <div class="information-group">
-                <div class="form-group offset-1">
+                <div class="form-group mx-5">
                     <label asp-for="DepartmentName" class="control-label"></label>
                     <input asp-for="DepartmentName" class="form-control" />
                     <span asp-validation-for="DepartmentName" class="text-danger"></span>
                 </div>
-                <div class="form-group offset-1">
+                <div class="form-group mx-5">
                     <label asp-for="PhoneNumber" class="control-label"></label>
                     <input asp-for="PhoneNumber" class="form-control" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
-                <div class="form-group offset-1 mt-4">
+                <div class="form-group mx-5 mt-4">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </div>
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="offset-1 content-information mt-5">
+<div class="mx-5 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back
