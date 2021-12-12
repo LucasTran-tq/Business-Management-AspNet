@@ -75,9 +75,13 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         }
 
         // GET: EmployeeManagement/Employee_Position/Create
-        public IActionResult Create()
+        public IActionResult Create(int? empId)
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName");
+            var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(empId)
+                            select emp;
+
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName");
             ViewData["PositionId"] = new SelectList(_context.Positions, "PositionId", "PositionName");
             return View();
         }

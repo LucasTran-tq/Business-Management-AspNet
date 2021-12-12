@@ -15,7 +15,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 {
     [Area("SalaryManagement")]
     [Route("admin/salary-management/salary/[action]/{id?}")]
-    [Authorize(Roles = RoleName.Administrator +  "," + RoleName.Accountant)]
+    [Authorize(Roles = RoleName.Administrator + "," + RoleName.Accountant)]
 
     public class SalaryController : Controller
     {
@@ -113,17 +113,42 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 
 
         // GET: SalaryManagement/Salary/Create
-        public IActionResult Create()
+        public IActionResult Create(int? empId)
         {
-            // var basicSalary = (from b in _context.BasicSalaries
-            //                        where b.BasicSalaryId == salary.BasicSalaryId
-            //                        select b.Money)
-            // GetBasicSalaryByEmpId(1);
+            var empQuery = from emp in _context.Employees
+                           where emp.EmployeeId.Equals(empId)
+                           select emp;
 
-            // ViewData["AllowanceSalaryId"] = new SelectList(_context.AllowanceSalaries, "AllowanceSalaryId", "AllowanceSalaryName");
-            // ViewData["BasicSalaryId"] = new SelectList(_context.BasicSalaries, "BasicSalaryId", "BasicSalaryName");
+            // basic 
+            // allowance
+            // bonus in time
+            // overtime
+
+            DateTime localDate = DateTime.Now;
+
+            Console.WriteLine("month: {0}, year: {1}", localDate.Month, localDate.Year);
+
+            var basicQuery = from bs in _context.BasicSalaries
+                                 // where bs.StartTime.Year <= localDate.Year 
+                                 // && bs.EndTime.Year >= localDate.Year
+                                 // && bs.StartTime.Month <= localDate.Month && bs.EndTime.Month >= localDate.Month
+                             select bs;
+
+            foreach (var item in basicQuery)
+            {
+                Console.WriteLine("id: {0}, name: {1}", item.BasicSalaryId, item.BasicSalaryName);
+
+            }
+
+            var allowanceQuery = from allow in _context.BasicSalaries
+                                 where allow.StartTime.Year <= localDate.Year && allow.EndTime.Year >= localDate.Year
+                                 && allow.StartTime.Month <= localDate.Month && allow.EndTime.Month >= localDate.Month
+                                 select allow;
+
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName");
+            ViewData["BasicSalaryId"] = new SelectList(basicQuery, "BasicSalaryId", "BasicSalaryName");
+            ViewData["AllowanceSalaryId"] = new SelectList(allowanceQuery, "AllowanceSalaryId", "AllowanceSalaryName");
             ViewData["BonusSalaryId"] = new SelectList(_context.BonusSalaries, "BonusSalaryId", "BonusSalaryName");
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName");
             ViewData["OvertimeSalaryId"] = new SelectList(_context.OvertimeSalaries, "OvertimeSalaryId", "OvertimeSalaryName");
             return View();
         }

@@ -21,18 +21,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="BasicSalaryId" class="control-label"></label>
-                @* <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId"></select> *@
+                <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId"></select>
                 @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class ="form-control" asp-items='@(new
                     SelectList(string.Empty, "BasicSalaryId", "BasicSalaryName"))'></select> *@
-                <select id="BasicSalaryId" asp-for="BasicSalaryId" class="form-control"></select>
+                @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class="form-control"></select> *@
 
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="AllowanceSalaryId" class="control-label"></label>
-                @* <select asp-for="AllowanceSalaryId" class="form-control"
-                    asp-items="ViewBag.AllowanceSalaryId"></select> *@
+                <select asp-for="AllowanceSalaryId" class="form-control"
+                    asp-items="ViewBag.AllowanceSalaryId"></select>
                 <select id="AllowanceSalaryId" asp-for="AllowanceSalaryId" class="form-control"></select>
-            </div>
+            </div> *@
             <div class="form-group">
                 <label asp-for="BonusSalaryId" class="control-label"></label>
                 <select asp-for="BonusSalaryId" class="form-control" asp-items="ViewBag.BonusSalaryId"></select>
@@ -41,11 +41,7 @@
                 <label asp-for="OvertimeSalaryId" class="control-label"></label>
                 <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId"></select>
             </div>
-            @* <div class="form-group">
-                <label asp-for="BonusLevel" class="control-label"></label>
-                <input asp-for="BonusLevel" class="form-control" />
-                <span asp-validation-for="BonusLevel" class="text-danger"></span>
-                </div> *@
+            
             <div class="form-group">
                 <label asp-for="NumberOfSession" class="control-label"></label>
                 <input asp-for="NumberOfSession" class="form-control" />
@@ -68,7 +64,7 @@
 </div>
 
 
-<script type="text/javascript">
+@* <script type="text/javascript">
     $(document).ready(function () {
         GetBasicSalaryByEmpId();
         GetAllowanceSalaryByEmpId();
@@ -88,13 +84,13 @@
                 EmployeeId: $('#EmployeeId').val(),
             },
             success: function (data) {
-                @* console.log(`data: ${JSON.stringify(data)}`) *@
+
 
                 $('#BasicSalaryId').find('option').remove()
                 $(data).each(
                     function (index, item) {
 
-                        @* console.log(`in create: ${item.basicSalaryId} --> ${item.basicSalaryName}`) *@
+
                         $('#BasicSalaryId').append('<option value="' + item.basicSalaryId + '">' + item.basicSalaryName + '</option>')
                     });
 
@@ -113,12 +109,11 @@
                 EmployeeId: $('#EmployeeId').val(),
             },
             success: function (data) {
-                @* console.log(`data: ${JSON.stringify(data)}`) *@
+                
                 $('#AllowanceSalaryId').find('option').remove()
                 $(data).each(
                     function (index, item) {
 
-                        @* console.log(`in create: ${item.allowanceSalaryId} --> ${item.allowanceSalaryName}`) *@
                         $('#AllowanceSalaryId').append('<option value="' + item.allowanceSalaryId + '">' + item.allowanceSalaryName + '</option>')
                     });
             },
@@ -130,4 +125,4 @@
 
 
 
-</script>
+</script> *@
