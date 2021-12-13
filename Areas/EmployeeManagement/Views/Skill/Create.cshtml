@@ -1,15 +1,12 @@
 @model App.Areas.EmployeeManagement.Models.Skill
 
-@{
-    ViewData["Title"] = "Create";
-}
 
-<h1>Create</h1>
 
-<h4>Skill</h4>
-<hr />
+
+
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -24,7 +21,10 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mx-5 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
 </div>
 
