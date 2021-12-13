@@ -14,7 +14,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
 {
     [Area("EmployeeManagement")]
     [Route("admin/employee-management/employee/[action]/{id?}")]
-    [Authorize(Roles = RoleName.Administrator +  "," + RoleName.HR)]
+    [Authorize(Roles = RoleName.Administrator + "," + RoleName.HR)]
     public class EmployeeController : Controller
     {
         private readonly AppDbContext _context;
@@ -112,10 +112,34 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EmployeeId,EmployeeName,DepartmentId,LevelId,DOB,Sex,PlaceOfBirth,Address")] Employee employee)
         {
+            DateTime localDate = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
+
+                // set default skill and position to employee
+                Employee_Skill employee_Skill = new Employee_Skill
+                {
+                    EmployeeId = employee.EmployeeId,
+                    SkillId = 1,
+                    Level = "1",
+                    EvaluationDate = localDate
+                };
+
+                Employee_Position employee_Position = new Employee_Position
+                {
+                    EmployeeId = employee.EmployeeId,
+                    PositionId = 2,
+                    StartTime = localDate,
+                    EndTime = localDate,
+                };
+
+                _context.Add(employee_Skill);
+                _context.Add(employee_Position);
+                await _context.SaveChangesAsync();
+
                 StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
