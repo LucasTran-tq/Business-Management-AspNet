@@ -72,16 +72,20 @@
             <span>Human Resources</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
+            <div class="bg-blue-secondary py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Human resources</h6>
                 <a class="collapse-item" asp-action="Index" asp-controller="Department"
-                    asp-area="EmployeeManagement">Department</a>
+                    asp-area="EmployeeManagement">
+                    <i class="fas fa-fw fa-building mr-1"></i>Department</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Skill"
-                    asp-area="EmployeeManagement">Skill</a>
+                    asp-area="EmployeeManagement">
+                    <i class="fas fa-fw fa-bezier-curve mr-1"></i>Skill</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Level"
-                    asp-area="EmployeeManagement">Level</a>
+                    asp-area="EmployeeManagement">
+                    <i class="fas fa-fw fa-level-up-alt mr-1"></i>Level</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Position"
-                    asp-area="EmployeeManagement">Position</a>
+                    asp-area="EmployeeManagement">
+                    <i class="fas fa-fw  fa-crosshairs mr-1"></i>Position</a>
             </div>
         </div>
     </li>
@@ -94,14 +98,17 @@
             <span>Employee</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Employee:</h6>
+            <div class="bg-blue-secondary py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Employee</h6>
                 <a class="collapse-item" asp-action="Index" asp-controller="Employee"
-                    asp-area="EmployeeManagement">Employee</a>
+                    asp-area="EmployeeManagement">
+                    <i class="fas fa-fw fa-user mr-1"></i>Employee</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Employee_Skill"
-                    asp-area="EmployeeManagement">Employee Skill</a>
+                    asp-area="EmployeeManagement">
+                    <i class="fas fa-fw fa-walking mr-1"></i>Employee Skill</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Employee_Position"
-                    asp-area="EmployeeManagement">Employee Position</a>
+                    asp-area="EmployeeManagement">
+                    <i class="fas fa-fw fa-people-arrows mr-1"></i>Employee Position</a>
 
             </div>
         </div>
@@ -123,28 +130,37 @@
             <span>Salary</span>
         </a>
         <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
+            <div class="bg-blue-secondary py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Salary</h6>
                 <a class="collapse-item" asp-action="Index" asp-controller="BasicSalary"
-                    asp-area="SalaryManagement">Basic Salary</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-file-invoice-dollar mr-1"></i>Basic Salary</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="AllowanceSalary"
-                    asp-area="SalaryManagement">Allowance Salary</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-hand-holding-usd mr-1"></i>Allowance Salary</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="BonusSalary"
-                    asp-area="SalaryManagement">Bonus Salary</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-plus mr-1"></i>Bonus Salary</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="OvertimeSalary"
-                    asp-area="SalaryManagement">Overtime Salary</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-user-clock mr-1"></i>Overtime Salary</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Salary"
-                    asp-area="SalaryManagement">Salary</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-wallet mr-1"></i>Salary</a>
                 <h6 class="collapse-header">Contract</h6>
                 <a class="collapse-item" asp-action="Index" asp-controller="ContractType"
-                    asp-area="SalaryManagement">Contract type</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-file-medical mr-1"></i>Contract type</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Contract"
-                    asp-area="SalaryManagement">Contract</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-file-signature mr-1"></i>Contract</a>
                 <h6 class="collapse-header">Chart</h6>
                 <a class="collapse-item" asp-action="ShowChart" asp-controller="Salary"
-                    asp-area="SalaryManagement">Salary Chart</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-coins mr-1"></i>Salary Chart</a>
                 <a class="collapse-item" asp-action="ShowChartForEmployee" asp-controller="Salary"
-                    asp-area="SalaryManagement">Employee's Salary Chart</a>
+                    asp-area="SalaryManagement">
+                    <i class="fas fa-fw fa-money-check-alt mr-1"></i>Employee's Salary Chart</a>
             </div>
         </div>
     </li>
@@ -165,19 +181,23 @@
             <span>Sale</span>
         </a>
         <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
+            <div class="bg-blue-secondary py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sale</h6>
                 <a class="collapse-item" asp-action="Index" asp-controller="Customer"
-                    asp-area="SaleManagement">Customer</a>
+                    asp-area="SaleManagement">
+                    <i class="fas fa-fw fa-user-tag mr-1"></i>Customer</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Supplier"
-                    asp-area="SaleManagement">Supplier</a>
+                    asp-area="SaleManagement">
+                    <i class="fas fa-fw fa-hands-helping mr-1"></i>Supplier</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="ProductType"
-                    asp-area="SaleManagement">Product type</a>
+                    asp-area="SaleManagement">
+                    <i class="fas fa-fw fa-boxes mr-1"></i>Product type</a>
                 <a class="collapse-item" asp-action="Index" asp-controller="Product"
-                    asp-area="SaleManagement">Product</a>
-                <a class="collapse-item" asp-action="Index" asp-controller="Price" asp-area="SaleManagement">Price</a>
-                <a class="collapse-item" asp-action="Index" asp-controller="Bill" asp-area="SaleManagement">Bill</a>
-                <a class="collapse-item" asp-action="Index" asp-controller="DetailBill" asp-area="SaleManagement">Detail
+                    asp-area="SaleManagement">
+                    <i class="fas fa-fw fa-box mr-1"></i>Product</a>
+                <a class="collapse-item" asp-action="Index" asp-controller="Price" asp-area="SaleManagement"><i class="fas fa-fw fa-dollar-sign mr-1"></i>Price</a>
+                <a class="collapse-item" asp-action="Index" asp-controller="Bill" asp-area="SaleManagement"><i class="fas fa-fw fa-money-bill mr-1"></i>Bill</a>
+                <a class="collapse-item" asp-action="Index" asp-controller="DetailBill" asp-area="SaleManagement"><i class="fas fa-fw fa-id-card mr-1"></i>Detail
                     bill</a>
 
             </div>
