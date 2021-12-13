@@ -9,7 +9,9 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EmployeeId" />
-            <div class="information-title mx-5"><p>Edit Information</p></div>
+            <div class="information-title mx-5">
+                <p>Edit Information</p>
+            </div>
             <hr>
             <div class="information-group">
                 <div class="information-group1 mx-5 col">
@@ -53,7 +55,6 @@
                         <input asp-for="Address" class="form-control" />
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
-
                 </div>
                 <div class="information-group2">
 
@@ -73,3 +74,9 @@
     </a>
 </div>
 
+<a asp-action="Create" asp-route-empId="@Model.EmployeeId" asp-controller="Employee_Skill">Create
+    Skill</a>
+<a asp-action="Create" asp-route-empId="@Model.EmployeeId" asp-controller="Employee_Position">Create
+    Position</a>
+<a href="/admin/salary-management/contract/Create?empId=@Model.EmployeeId">Create Contract</a>
+<a href="/admin/salary-management/salary/Create?empId=@Model.EmployeeId">Create Salary</a>
