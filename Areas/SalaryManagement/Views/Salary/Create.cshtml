@@ -14,11 +14,11 @@
             <div class="form-group">
                 <label asp-for="EmployeeId" class="control-label"></label>
                 <select id="EmployeeId" asp-for="EmployeeId" class="form-control"
-                    asp-items="ViewBag.EmployeeId" disabled></select>
+                    asp-items="ViewBag.EmployeeId" ></select>
             </div>
             <div class="form-group">
                 <label asp-for="BasicSalaryId" class="control-label"></label>
-                <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId" disabled></select>
+                <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId"></select>
                 @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class ="form-control" asp-items='@(new
                     SelectList(string.Empty, "BasicSalaryId", "BasicSalaryName"))'></select> *@
                 @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class="form-control"></select> *@
@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label asp-for="AllowanceSalaryId" class="control-label"></label>
                 <select asp-for="AllowanceSalaryId" class="form-control"
-                    asp-items="ViewBag.AllowanceSalaryId" disabled></select>
+                    asp-items="ViewBag.AllowanceSalaryId"></select>
                 @* <select id="AllowanceSalaryId" asp-for="AllowanceSalaryId" class="form-control"></select> *@
             </div>
             <div class="form-group">
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="OvertimeSalaryId" class="control-label"></label>
-                <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId" disabled></select>
+                <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId"></select>
             </div>
             
             <div class="form-group">
