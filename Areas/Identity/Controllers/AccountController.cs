@@ -59,7 +59,7 @@ namespace App.Areas.Identity.Controllers
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             // returnUrl ??= Url.Content("~/");
-            returnUrl ??= Url.Content("~/admin/employee-management/department/index");
+            returnUrl ??= Url.Content("~/admin/salary-management/salary/ShowChart");
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {

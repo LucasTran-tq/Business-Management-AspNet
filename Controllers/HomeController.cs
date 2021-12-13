@@ -26,7 +26,7 @@ namespace App.Controllers
         {
             if (SignInManager.IsSignedIn(User))
             {
-                return Redirect("admin/employee-management/department/index");
+                return Redirect("admin/salary-management/salary/ShowChart");
             }
             else
             {
