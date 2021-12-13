@@ -57,10 +57,14 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         }
 
         // GET: SalaryManagement/Contract/Create
-        public IActionResult Create()
+        public IActionResult Create(int? empId)
         {
+            var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(empId)
+                            select emp;
+
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName");
             ViewData["ContractTypeId"] = new SelectList(_context.ContractTypes, "ContractTypeId", "ContractTypeName");
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName");
             return View();
         }
 
