@@ -1,70 +1,93 @@
 @model IEnumerable<App.Areas.EmployeeManagement.Models.Employee_Skill>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Index</h1>
+<link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
 
 <partial name="_AlertCreateMessage" />
 <partial name="_AlertDeleteMessage" />
 
-@* <p>
-    <a asp-action="Create">Create New</a>
-</p> *@
-
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-    <div class="input-group">
-        <input type="search" class="form-control bg-gray-200 border-0 small" placeholder="Search for..."
-            aria-label="Search" aria-describedby="basic-addon2" value='@ViewData["GetEmployeeDetails"]'
-            name="EmpSearch" >
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
+<div class="card shadow mx-5 mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Employee Skill list</h6>
+        <p>
+            <a asp-action="Create" class="btn btn-primary float-right mt-n4">Create New</a>
+        </p>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                       <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Employee)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Skill)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Level)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.EvaluationDate)
+                                    </th>
+                                    <th style="width: 150px;color: rgb(255, 255, 255);"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        @foreach (var item in Model) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Skill.SkillName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Level)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EvaluationDate)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                                        @* <a asp-action="Details" asp-route-id="@item.id">Details</a> | *@
+                                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Employee.EmployeeName)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Skill.SkillName)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Level)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.EvaluationDate)</th>
+                                    <th rowspan="1" colspan="1"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</form>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Employee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Skill)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Level)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EvaluationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Skill.SkillName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Level)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EvaluationDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/js/demo/datatables-demo.js"></script>
