@@ -17,11 +17,11 @@
             <div class="form-group">
                 <label asp-for="EmployeeId" class="control-label"></label>
                 <select id="EmployeeId" asp-for="EmployeeId" class="form-control"
-                    asp-items="ViewBag.EmployeeId"></select>
+                    asp-items="ViewBag.EmployeeId" disabled></select>
             </div>
             <div class="form-group">
                 <label asp-for="BasicSalaryId" class="control-label"></label>
-                <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId"></select>
+                <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId" disabled></select>
                 @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class ="form-control" asp-items='@(new
                     SelectList(string.Empty, "BasicSalaryId", "BasicSalaryName"))'></select> *@
                 @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class="form-control"></select> *@
@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label asp-for="AllowanceSalaryId" class="control-label"></label>
                 <select asp-for="AllowanceSalaryId" class="form-control"
-                    asp-items="ViewBag.AllowanceSalaryId"></select>
+                    asp-items="ViewBag.AllowanceSalaryId" disabled></select>
                 @* <select id="AllowanceSalaryId" asp-for="AllowanceSalaryId" class="form-control"></select> *@
             </div>
             <div class="form-group">
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="OvertimeSalaryId" class="control-label"></label>
-                <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId"></select>
+                <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId" disabled></select>
             </div>
             
             <div class="form-group">
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SalaryDate" class="control-label"></label>
-                <input asp-for="SalaryDate" class="form-control" />
+                <input asp-for="SalaryDate" class="form-control" id="date"/>
                 <span asp-validation-for="SalaryDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -62,6 +62,12 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script>
+  $('#date').val(new Date().toJSON().slice(0,10));
+
+</script>
 
 
 @* <script type="text/javascript">
