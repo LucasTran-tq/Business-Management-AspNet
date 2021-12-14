@@ -14,54 +14,39 @@
         <div class="contain_profile  mb-5">
             <div class="basic_information">
                 <div class="information-title mx-5">
-                    <p>Employee info</p>
+                    <p>Employee profile basic</p>
                 </div>
                 <hr>
                 <div class="basic_information-group">
                     <div class="information-group">
-                         <dl class="col mx-5">
-                            <dt class = "row-sm-2 title-text">
+                        <dl class="col mx-5">
+                            <dt class="row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee.EmployeeName)
                             </dt>
-                            <dd class = "row-sm-10 content-information">
+                            <dd class="row-sm-10 content-information">
                                 @Html.DisplayFor(model => model.employee.EmployeeName)
                             </dd>
-                             <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Department.DepartmentName)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Department.DepartmentName)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Level.LevelName)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Level.LevelName)
-                            </dd>
-                            <dt class = "row-sm-2 title-text">
+
+                            <dt class="row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee.DOB)
                             </dt>
-                            <dd class = "row-sm-10 content-information">
+                            <dd class="row-sm-10 content-information">
                                 @Html.DisplayFor(model => model.employee.DOB)
                             </dd>
-                            <dt class = "row-sm-2 title-text">
+                            <dt class="row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee.Sex)
                             </dt>
-                            <dd class = "row-sm-10 content-information">
+                            <dd class="row-sm-10 content-information">
                                 @Html.DisplayFor(model => model.employee.Sex)
                             </dd>
-                            <dt class = "row-sm-2 title-text">
+                            <dt class="row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee.PlaceOfBirth)
                             </dt>
-                            <dd class = "row-sm-10 content-information">
+                            <dd class="row-sm-10 content-information">
                                 @Html.DisplayFor(model => model.employee.PlaceOfBirth)
                             </dd>
-                            <dt class = "row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Address)
-                            </dt>
-                            <dd class = "row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Address)
-                            </dd>
+
+
                         </dl>
                     </div>
                 </div>
@@ -74,36 +59,52 @@
                 <div class="information-group">
                     <div class="information-group1">
                         <dl class="col mx-5">
-                            <dt class = "row-sm-2 title-text">
+                            <dt class="row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee.Employee_Skills.First().Skill.SkillName)
                             </dt>
-                            <dd class = "row-sm-10 content-information">
+                            <dd class="row-sm-10 content-information">
                                 @Html.DisplayFor(model => model.employee.Employee_Skills.First().Skill.SkillName)
                             </dd>
-                          <dt class = "row-sm-2 title-text">
+                            <dt class="row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee_positions.First().Position.PositionName)
                             </dt>
-                            <dd class = "row-sm-10 content-information">
+                            <dd class="row-sm-10 content-information">
                                 @Html.DisplayFor(model => model.employee_positions.First().Position.PositionName)
                             </dd>
-                            <dt class = "row-sm-2 title-text">
+                            <dt class="row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee.ImageByte)
                             </dt>
-                            <dd class = "row-sm-10 content-information">
-                                 <img src="@(Model.employee.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.employee.ImageByte)))"
-                                        id="imagePreview" alt="DefaultAvatar" style="max-width: 200px; max-height: 200px">
+                            <dd class="row-sm-10 content-information">
+                                <img src="@(Model.employee.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.employee.ImageByte)))"
+                                    id="imagePreview" alt="DefaultAvatar" style="max-width: 200px; max-height: 200px">
+                            </dd>
+                            <dt class="row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.employee.Address)
+                            </dt>
+                            <dd class="row-sm-10 content-information">
+                                @Html.DisplayFor(model => model.employee.Address)
                             </dd>
                         </dl>
-                        
                     </div>
-                     <div class="information-group2">
-                        
+                    <div class="information-group2">
+                        <dt class="row-sm-2 title-text">
+                            @Html.DisplayNameFor(model => model.employee.Department.DepartmentName)
+                        </dt>
+                        <dd class="row-sm-10 content-information">
+                            @Html.DisplayFor(model => model.employee.Department.DepartmentName)
+                        </dd>
+                        <dt class="row-sm-2 title-text">
+                            @Html.DisplayNameFor(model => model.employee.Level.LevelName)
+                        </dt>
+                        <dd class="row-sm-10 content-information">
+                            @Html.DisplayFor(model => model.employee.Level.LevelName)
+                        </dd>
                     </div>
                 </div>
-            </div>    
-        </div>  
+            </div>
+        </div>
     </div>
-    
+
 </div>
 <div class="mx-5 content-information">
     <a asp-action="Index">
@@ -114,7 +115,7 @@
 
 <h1>Position</h1>
 
- <table class="table mb-5">
+<table class="table mb-5">
     <thead>
         <tr>
             <th>
@@ -133,33 +134,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.employee_positions) {
-        <tr>
-             <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position.PositionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            @* <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td> *@
-        </tr>
-}
+        @foreach (var item in Model.employee_positions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position.PositionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                @* <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td> *@
+            </tr>
+        }
     </tbody>
 </table>
 
 <h1>Skill</h1>
 
- <table class="table">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -178,26 +180,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.employee_skills) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Skill.SkillName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Level)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EvaluationDate)
-            </td>
-            @* <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td> *@
-        </tr>
-}
+        @foreach (var item in Model.employee_skills)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Skill.SkillName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EvaluationDate)
+                </td>
+                @* <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td> *@
+            </tr>
+        }
     </tbody>
 </table>
