@@ -86,6 +86,13 @@
                             <dd class = "row-sm-10 content-information">
                                 @Html.DisplayFor(model => model.employee_positions.First().Position.PositionName)
                             </dd>
+                            <dt class = "row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.employee.ImageByte)
+                            </dt>
+                            <dd class = "row-sm-10 content-information">
+                                 <img src="@(Model.employee.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.employee.ImageByte)))"
+                                        id="imagePreview" alt="DefaultAvatar" style="max-width: 200px; max-height: 200px">
+                            </dd>
                         </dl>
                         
                     </div>
