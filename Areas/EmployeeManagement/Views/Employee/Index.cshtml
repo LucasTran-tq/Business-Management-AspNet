@@ -17,9 +17,13 @@
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
                     <div class="col-sm-12">
-                        <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" width="100%" cellspacing="0">
+                        <table class="table table-bordered dataTable" id="dataTable" role="grid"
+                            aria-describedby="dataTable_info" width="100%" cellspacing="0">
                             <thead>
                                 <tr role="row">
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ImageByte)
+                                    </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.EmployeeName)
                                     </th>
@@ -34,7 +38,7 @@
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.DOB)
-                                    </th>  
+                                    </th>
                                     <th style="width: 150px; color: #FFFFFF"></th>
                                 </tr>
                             </thead>
@@ -43,12 +47,16 @@
                                 {
                                     <tr>
                                         <td>
+                                            <img src="@(item.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(item.ImageByte)))"
+                                            alt="DefaultAvatar" style="max-width: 50px; max-height: 50px">
+                                        </td>
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.EmployeeName)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Department.DepartmentName)
                                         </td>
-                                         <td>
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.Sex)
                                         </td>
                                         <td>
@@ -67,6 +75,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.ImageByte)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.EmployeeName)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Department)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Level)</th>

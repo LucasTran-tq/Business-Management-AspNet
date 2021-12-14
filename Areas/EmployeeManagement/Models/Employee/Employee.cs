@@ -49,6 +49,8 @@ namespace App.Areas.EmployeeManagement.Models
         [ForeignKey("LevelId")]
         public Level Level{set;get;}
 
+        [Display(Name = "Avatar")]
+        public byte[] ImageByte {get;set;}
     }
 
 }

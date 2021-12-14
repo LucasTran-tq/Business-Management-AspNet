@@ -9,6 +9,8 @@ using App.Areas.EmployeeManagement.Models;
 using App.Models;
 using Microsoft.AspNetCore.Authorization;
 using App.Data;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace AppMvc.Areas.EmployeeManagement.Controllers
 {
@@ -110,9 +112,26 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,EmployeeName,DepartmentId,LevelId,DOB,Sex,PlaceOfBirth,Address")] Employee employee)
+        public async Task<IActionResult> Create([Bind("EmployeeId,EmployeeName,DepartmentId,LevelId,DOB,Sex,PlaceOfBirth,Address")] Employee employee, List<IFormFile> ImageByte)
         {
             DateTime localDate = DateTime.Now;
+
+
+            // upload image and save in database by byte type
+            if (ImageByte.Count == 1)
+            {
+                foreach (var item in ImageByte)
+                {
+                    if (item.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            employee.ImageByte = stream.ToArray();
+                        }
+                    }
+                }
+            }
 
             if (ModelState.IsValid)
             {
@@ -171,12 +190,53 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,EmployeeName,DepartmentId,LevelId,DOB,Sex,PlaceOfBirth,Address")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,EmployeeName,DepartmentId,LevelId,DOB,Sex,PlaceOfBirth,Address")] Employee employee, List<IFormFile> ImageByte)
         {
             if (id != employee.EmployeeId)
             {
                 return NotFound();
             }
+
+            // set old image when user dont edit image
+            if (ImageByte.Count == 0)
+            {
+                var oldImage = (from emp in _context.Employees
+                                where emp.EmployeeId.Equals(id)
+                                select emp.ImageByte).ToList();
+
+                // database dont have image
+                if (oldImage.Count == 0)
+                {
+                    employee.ImageByte = null;
+                }
+
+                // database have image
+                else
+                {
+                    foreach (var item in oldImage)
+                    {
+                        employee.ImageByte = item;
+                    }
+                }
+            }
+
+            // upload image and save in database by byte type
+            else if (ImageByte.Count == 1)
+            {
+                foreach (var item in ImageByte)
+                {
+                    if (item.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            employee.ImageByte = stream.ToArray();
+                        }
+                    }
+                }
+            }
+
+
 
             if (ModelState.IsValid)
             {

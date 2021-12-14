@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-10 bg-white mx-5 rounded shadow-lg">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EmployeeId" />
             <div class="information-title mx-5">
@@ -55,6 +55,17 @@
                         <input asp-for="Address" class="form-control" />
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="ImageByte" class="control-label  title-text "></label>
+                        <img src="@(Model.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.ImageByte)))"
+                            id="imagePreview" alt="DefaultAvatar" style="max-width: 200px; max-height: 200px">
+                        <input asp-for="ImageByte" class="form-control" type="file"
+                            onchange="return ShowImagePreview(this)" id="fileupload" hidden />
+                        <label for="fileupload">
+                            Upload image
+                        </label>
+                        <span asp-validation-for="ImageByte" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="information-group2">
 
@@ -80,3 +91,28 @@
     Position</a>
 <a href="/admin/salary-management/contract/Create?empId=@Model.EmployeeId">Create Contract</a>
 <a href="/admin/salary-management/salary/Create?empId=@Model.EmployeeId">Create Salary</a>
+
+
+
+<script>
+    function ShowImagePreview(input) {
+        debugger;
+        if (input.files && input.files[0]) {
+            var fname = input.files[0].name;
+            var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+            if (!re.exec(fname)) {
+                alert("Image not supported!");
+                $("#fileupload").val("");
+
+                return false;
+            }
+            else {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').prop('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+</script>
