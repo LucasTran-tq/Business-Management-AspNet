@@ -10,6 +10,7 @@ using App.Models;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Authorization;
 using App.Data;
+using App.Areas.EmployeeManagement.Models;
 
 namespace AppMvc.Areas.SalaryManagement.Controllers
 {
@@ -126,7 +127,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                            where emp.EmployeeId.Equals(empId)
                            select emp;
 
-            
+
             List<BasicSalary> basicSalary = _context.BasicSalaries.ToList();
             List<ContractType> contractType = _context.ContractTypes.ToList();
             List<Contract> contract = _context.Contracts.ToList();
@@ -161,12 +162,12 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var overtimeSalary = from ove in _context.OvertimeSalaries
                                  where ove.StartTime.Year <= localDate.Year && ove.EndTime.Year >= localDate.Year
                                     && ove.StartTime.Month <= localDate.Month && ove.EndTime.Month >= localDate.Month
-                                select ove;
+                                 select ove;
 
             var bonusSalary = from bonus in _context.BonusSalaries
-                                 where bonus.StartTime.Year <= localDate.Year && bonus.EndTime.Year >= localDate.Year
-                                    && bonus.StartTime.Month <= localDate.Month && bonus.EndTime.Month >= localDate.Month
-                                select bonus;
+                              where bonus.StartTime.Year <= localDate.Year && bonus.EndTime.Year >= localDate.Year
+                                 && bonus.StartTime.Month <= localDate.Month && bonus.EndTime.Month >= localDate.Month
+                              select bonus;
 
 
             ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName");
@@ -498,6 +499,8 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
         // get data for Chart to show total salary of company
         public JsonResult GetReportByYear(int year)
         {
+
+            // Get report by year
             if (year == 0)
             {
                 DateTime localDate = DateTime.Now;
@@ -577,12 +580,79 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             listTotalSalaryMonths.Add(month12);
 
 
+            // get report to compare another department by year
+            var listReportDepartmentByYear = GetReportDepartmentByYear(year);
+
 
             // Give a json object to FE
-            ChartClass chartClass = new ChartClass(year, listTotalSalaryMonths);
+            ChartClass chartClass = new ChartClass(year, listTotalSalaryMonths, listReportDepartmentByYear);
 
 
             return Json(chartClass);
+        }
+
+        public List<double> GetReportDepartmentByYear(int year)
+        {
+
+            double hrTotalSalary = 0;
+            double accountingTotalSalary = 0;
+            double saleTotalSalary = 0;
+            double totalSalaryAllYear = 0;
+
+            List<Salary> salaries = _context.Salaries.ToList();
+            List<Employee> employees = _context.Employees.ToList();
+
+            var listHR = (from hrSalary in salaries
+                          join emp in employees on hrSalary.EmployeeId equals emp.EmployeeId
+                          where emp.DepartmentId == 2 && hrSalary.SalaryDate.Year.Equals(year)
+                          select new
+                          {
+                              TotalSalary = hrSalary.TotalSalary
+                          }).ToList();
+
+            var listAccounting = (from hrSalary in salaries
+                                  join emp in employees on hrSalary.EmployeeId equals emp.EmployeeId
+                                  where emp.DepartmentId == 1 && hrSalary.SalaryDate.Year.Equals(year)
+                                  select new
+                                  {
+                                      TotalSalary = hrSalary.TotalSalary
+                                  }).ToList();
+
+            var listSale = (from hrSalary in salaries
+                            join emp in employees on hrSalary.EmployeeId equals emp.EmployeeId
+                            where emp.DepartmentId == 3 && hrSalary.SalaryDate.Year.Equals(year)
+                            select new
+                            {
+                                TotalSalary = hrSalary.TotalSalary
+                            }).ToList();
+
+
+            foreach (var item in listHR)
+            {
+                hrTotalSalary += item.TotalSalary;
+            }
+            foreach (var item in listAccounting)
+            {
+                accountingTotalSalary += item.TotalSalary;
+            }
+            foreach (var item in listSale)
+            {
+                saleTotalSalary += item.TotalSalary;
+            }
+
+            totalSalaryAllYear = hrTotalSalary + accountingTotalSalary + saleTotalSalary;
+            hrTotalSalary = Math.Round(hrTotalSalary / totalSalaryAllYear * 100, 1, MidpointRounding.ToEven);
+            accountingTotalSalary = Math.Round(accountingTotalSalary / totalSalaryAllYear * 100, 1, MidpointRounding.ToEven);
+            saleTotalSalary = Math.Round(saleTotalSalary / totalSalaryAllYear * 100, 1, MidpointRounding.ToEven);
+
+
+            List<double> listData = new List<double>();
+            listData.Add(hrTotalSalary);
+            listData.Add(accountingTotalSalary);
+            listData.Add(saleTotalSalary);
+
+
+            return listData;
         }
 
 
@@ -593,14 +663,18 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 public class ChartClass
 {
 
-    public ChartClass(int year, System.Collections.ArrayList listTotalSalaryMonths1)
+    public ChartClass(int year, System.Collections.ArrayList listTotalSalaryMonths1,
+                List<double> listReportDepartmentByYear)
     {
         this.year = year;
         this.listTotalSalaryMonths = listTotalSalaryMonths1;
+        this.listReportDepartmentByYear = listReportDepartmentByYear;
     }
 
     public int year { get; set; }
     public System.Collections.ArrayList listTotalSalaryMonths { get; set; }
+    public List<double> listReportDepartmentByYear { get; set; }
+
 
 
 }
