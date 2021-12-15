@@ -7,70 +7,72 @@
    <input type="hidden" asp-for="SalaryId" />
     <input type="submit" value="Delete" class="btn btn-danger mx-5" />
 </form>
-<div>
-    <h4>Salary</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+
+<div class="mx-5">
+    <div class="col-md-6 bg-white rounded shadow-lg">
+        <div class="information-group mt-3">
+            <div class="information-group1">
+                <dl class="col">
+                    <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.Employee)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.Employee.EmployeeName)
         </dd class>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.BasicSalary)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.BasicSalary.BasicSalaryName)
              : 
             @Html.DisplayFor(model => model.BasicSalary.Money) USD
         </dd class>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.AllowanceSalary)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.AllowanceSalary.AllowanceSalaryName)
             : 
             @Html.DisplayFor(model => model.AllowanceSalary.Allowance) USD
         </dd class>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.BonusSalary)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.BonusSalary.BonusSalaryName)
             :
             @Html.DisplayFor(model => model.BonusSalary.PrizeMoney) USD
         </dd class>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.OvertimeSalary)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.OvertimeSalary.OvertimeSalaryName)
              : 
             @Html.DisplayFor(model => model.OvertimeSalary.moneyPerSession) USD
         </dd class>
-        @* <dt class = "col-sm-2">
+        @* <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.BonusLevel)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.BonusLevel)
         </dd> *@
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.NumberOfSession)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.NumberOfSession)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.SalaryDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.SalaryDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.TotalSalary)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.TotalSalary) USD
         </dd>
     </dl>
