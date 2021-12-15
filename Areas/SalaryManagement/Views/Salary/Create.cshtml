@@ -4,59 +4,68 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
+
+<partial name="SBAdmin/_Styles" />
 
 
-
-<div class="row">
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                <select id="EmployeeId" asp-for="EmployeeId" class="form-control"
-                    asp-items="ViewBag.EmployeeId" ></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="BasicSalaryId" class="control-label"></label>
-                <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId"></select>
-                @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class ="form-control" asp-items='@(new
-                    SelectList(string.Empty, "BasicSalaryId", "BasicSalaryName"))'></select> *@
-                @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class="form-control"></select> *@
+             <div class="information-title mx-5 mt-3">
+                <p>Create</p>
+        
+            <hr></div>
+                <div class="information-group">
+                    <div class="information-group1  col">
+                <div class="form-group mx-5">
+                    <label asp-for="EmployeeId" class="control-label"></label>
+                    <select id="EmployeeId" asp-for="EmployeeId" class="form-control"
+                        asp-items="ViewBag.EmployeeId" ></select>
+                </div>
+                <div class="form-group mx-5">
+                    <label asp-for="BasicSalaryId" class="control-label"></label>
+                    <select asp-for="BasicSalaryId" class ="form-control" asp-items="ViewBag.BasicSalaryId"></select>
+                    @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class ="form-control" asp-items='@(new
+                        SelectList(string.Empty, "BasicSalaryId", "BasicSalaryName"))'></select> *@
+                    @* <select id="BasicSalaryId" asp-for="BasicSalaryId" class="form-control"></select> *@
 
-            </div>
-            <div class="form-group">
-                <label asp-for="AllowanceSalaryId" class="control-label"></label>
-                <select asp-for="AllowanceSalaryId" class="form-control"
-                    asp-items="ViewBag.AllowanceSalaryId"></select>
-                @* <select id="AllowanceSalaryId" asp-for="AllowanceSalaryId" class="form-control"></select> *@
-            </div>
-            <div class="form-group">
-                <label asp-for="BonusSalaryId" class="control-label"></label>
-                <select asp-for="BonusSalaryId" class="form-control" asp-items="ViewBag.BonusSalaryId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="OvertimeSalaryId" class="control-label"></label>
-                <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId"></select>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="NumberOfSession" class="control-label"></label>
-                <input asp-for="NumberOfSession" class="form-control" />
-                <span asp-validation-for="NumberOfSession" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SalaryDate" class="control-label"></label>
-                <input asp-for="SalaryDate" class="form-control" id="date"/>
-                <span asp-validation-for="SalaryDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                <div class="form-group mx-5">
+                    <label asp-for="AllowanceSalaryId" class="control-label"></label>
+                    <select asp-for="AllowanceSalaryId" class="form-control"
+                        asp-items="ViewBag.AllowanceSalaryId"></select>
+                    @* <select id="AllowanceSalaryId" asp-for="AllowanceSalaryId" class="form-control"></select> *@
+                </div>
+                <div class="form-group mx-5">
+                    <label asp-for="BonusSalaryId" class="control-label"></label>
+                    <select asp-for="BonusSalaryId" class="form-control" asp-items="ViewBag.BonusSalaryId"></select>
+                </div>
+                <div class="form-group mx-5">
+                    <label asp-for="OvertimeSalaryId" class="control-label"></label>
+                    <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId"></select>
+                </div>
+                
+                <div class="form-group mx-5">
+                    <label asp-for="NumberOfSession" class="control-label"></label>
+                    <input asp-for="NumberOfSession" class="form-control" />
+                    <span asp-validation-for="NumberOfSession" class="text-danger"></span>
+                </div>
+                <div class="form-group mx-5">
+                    <label asp-for="SalaryDate" class="control-label"></label>
+                    <input asp-for="SalaryDate" class="form-control" id="date"/>
+                    <span asp-validation-for="SalaryDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mx-5 mt-4 float-right">
+                    <input type="submit" value="Create" class="btn btn-primary sm " />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

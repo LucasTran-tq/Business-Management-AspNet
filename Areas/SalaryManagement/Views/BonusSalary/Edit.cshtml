@@ -5,44 +5,42 @@
 
 
 
-<div class="row">
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BonusSalaryId" />
-            @* <div class="form-group">
+            @* <div class="form-group mx-5">
                 <label asp-for="BonusLevel" class="control-label"></label>
                 <input asp-for="BonusLevel" class="form-control" />
                 <span asp-validation-for="BonusLevel" class="text-danger"></span>
             </div> *@
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="BonusSalaryName" class="control-label"></label>
                 <input asp-for="BonusSalaryName" class="form-control" />
                 <span asp-validation-for="BonusSalaryName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="PrizeMoney" class="control-label"></label>
                 <input asp-for="PrizeMoney" class="form-control" />
                 <span asp-validation-for="PrizeMoney" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="StartTime" class="control-label"></label>
                 <input asp-for="StartTime" class="form-control" />
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="EndTime" class="control-label"></label>
                 <input asp-for="EndTime" class="form-control" />
                 <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            
         </form>
     </div>
 </div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

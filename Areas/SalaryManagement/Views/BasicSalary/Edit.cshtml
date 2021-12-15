@@ -5,44 +5,42 @@
 
 
 
-<div class="row">
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BasicSalaryId" />
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="ContractTypeId" class="control-label"></label>
                 <select asp-for="ContractTypeId" class="form-control" asp-items="ViewBag.ContractTypeId"></select>
                 <span asp-validation-for="ContractTypeId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="BasicSalaryName" class="control-label"></label>
                 <input asp-for="BasicSalaryName" class="form-control" />
                 <span asp-validation-for="BasicSalaryName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="Money" class="control-label"></label>
                 <input asp-for="Money" class="form-control" />
                 <span asp-validation-for="Money" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="StartTime" class="control-label"></label>
                 <input asp-for="StartTime" class="form-control" />
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="EndTime" class="control-label"></label>
                 <input asp-for="EndTime" class="form-control" />
                 <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            
         </form>
     </div>
 </div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

@@ -1,27 +1,36 @@
 @model App.Areas.SaleManagement.Models.ProductType
 
 
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
+
+<partial name="SBAdmin/_Styles" />
 
 
 
-
-<div class="row">
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProductTypeName" class="control-label"></label>
-                <input asp-for="ProductTypeName" class="form-control" />
-                <span asp-validation-for="ProductTypeName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+             <div class="information-title mx-5 mt-3">
+                <p>Create</p>
+        
+            <hr></div>
+                <div class="information-group">
+                    <div class="information-group1  col">
+                <div class="form-group mx-5">
+                    <label asp-for="ProductTypeName" class="control-label"></label>
+                    <input asp-for="ProductTypeName" class="form-control" />
+                    <span asp-validation-for="ProductTypeName" class="text-danger"></span>
+                </div>
+                <div class="form-group mx-5 mt-4 float-right">
+                    <input type="submit" value="Create" class="btn btn-primary sm " />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

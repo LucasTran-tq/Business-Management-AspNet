@@ -5,39 +5,45 @@
 
 
 
-<div class="row">
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BillId" />
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
-                <span asp-validation-for="EmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MakeBillTime" class="control-label"></label>
-                <input asp-for="MakeBillTime" class="form-control" />
-                <span asp-validation-for="MakeBillTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExportBillTime" class="control-label"></label>
-                <input asp-for="ExportBillTime" class="form-control" />
-                <span asp-validation-for="ExportBillTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="information-title mx-5"><p>Edit Bill</p></div>
+            <div class="form-group mx-5 float-right mt-n5">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            <hr>
+            <div class="information-group row">
+                <div class="information-group1">
+                    <div class="form-group mx-5">
+                        <label asp-for="EmployeeId" class="control-label"></label>
+                        <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="CustomerId" class="control-label"></label>
+                        <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                        <span asp-validation-for="CustomerId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="MakeBillTime" class="control-label"></label>
+                        <input asp-for="MakeBillTime" class="form-control" />
+                        <span asp-validation-for="MakeBillTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="ExportBillTime" class="control-label"></label>
+                        <input asp-for="ExportBillTime" class="form-control" />
+                        <span asp-validation-for="ExportBillTime" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

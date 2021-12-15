@@ -1,47 +1,45 @@
 @model App.Areas.SaleManagement.Models.Bill
 
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
-<div class="row">
+<partial name="SBAdmin/_Styles" />
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
-        
-
-
-
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="EmployeeId" class="control-label"></label>
                 <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="CustomerId" class="control-label"></label>
                 <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="MakeBillTime" class="control-label"></label>
                 <input asp-for="MakeBillTime" class="form-control" />
                 <span asp-validation-for="MakeBillTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="ExportBillTime" class="control-label"></label>
                 <input asp-for="ExportBillTime" class="form-control" />
                 <span asp-validation-for="ExportBillTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group mx-5 mt-4 float-right">
+                <input type="submit" value="Create" class="btn btn-primary sm " />
             </div>
         </form>
     </div>
-     <div class="col-md-6 bg-white rounded shadow-lg">
+
+    <div class="col-md-6 bg-white rounded shadow-lg">
         <partial name="_CreateShare.cshtml" />
     </div>
-
 </div>
-   <div class="col">
-        <partial name="_IndexShare.cshtml" />
-    </div>
+<div class="col">
+    <partial name="_IndexShare.cshtml" />
+</div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

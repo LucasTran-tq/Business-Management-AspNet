@@ -7,17 +7,20 @@
    <input type="hidden" asp-for="ContractTypeId"/>
     <input type="submit" value="Delete" class="btn btn-danger mx-5" />
 </form>
-<div>
-    <h4>ContractType</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+
+<div class="mx-5">
+    <div class="col-md-6 bg-white rounded shadow-lg">
+        <div class="information-group mt-3">
+            <div class="information-group1">
+                <dl class="col">
+                    <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.ContractTypeName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.ContractTypeName)
         </dd>
     </dl>
-    
-
+            </div>
+        </div>
+    </div>
 </div>

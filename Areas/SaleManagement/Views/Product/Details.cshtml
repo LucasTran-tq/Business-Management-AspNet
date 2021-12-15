@@ -1,42 +1,58 @@
 @model App.Areas.SaleManagement.Models.Product
 
-@{
-    ViewData["Title"] = "Details";
-}
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
-<h1>Details</h1>
+<partial name="SBAdmin/_Styles" />
 
 <div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+    <div class="profile_background">
+        <div class="profile_title">
+            <h1>AllowanceSalary</h1>
+            <a asp-action="Edit" asp-route-id="@Model.ProductId" class="btn btn-primary sm ">Edit</a>
+        </div>
+        <div class="contain_profile  mb-5">
+            <div class="basic_information">
+                <div class="information-title mx-5">
+                    <p>Employee profile basic</p>
+                </div>
+                <hr>
+                <div class="basic_information-group">
+                    <div class="information-group">
+                        <dl class="col mx-5">
+                    <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.ProductName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.ProductName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.Supplier)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.Supplier.SupplierName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.ProductType)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.ProductType.ProductTypeName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.Unit)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.Unit)
         </dd>
-    </dl>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
 </div>
