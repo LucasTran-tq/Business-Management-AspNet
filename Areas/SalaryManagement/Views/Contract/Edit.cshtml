@@ -1,43 +1,49 @@
 @model App.Areas.SalaryManagement.Models.Contract
 
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
+<partial name="SBAdmin/_Styles" />
 
-
-
-
-<div class="row">
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
-                <span asp-validation-for="EmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContractTypeId" class="control-label"></label>
-                <select asp-for="ContractTypeId" class="form-control" asp-items="ViewBag.ContractTypeId"></select>
-                <span asp-validation-for="ContractTypeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
-                <span asp-validation-for="StartTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
-                <span asp-validation-for="EndTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="information-title mx-5"><p>Edit Information</p></div>
+            <div class="form-group mx-5 float-right mt-n5">
                 <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <hr>
+            <div class="information-group row">
+                <div class="form-group mx-5">
+                    <label asp-for="EmployeeId" class="control-label"></label>
+                    <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+                <div class="form-group mx-5">
+                    <label asp-for="ContractTypeId" class="control-label"></label>
+                    <select asp-for="ContractTypeId" class="form-control" asp-items="ViewBag.ContractTypeId"></select>
+                    <span asp-validation-for="ContractTypeId" class="text-danger"></span>
+                </div>
+                <div class="form-group mx-5">
+                    <label asp-for="StartTime" class="control-label"></label>
+                    <input asp-for="StartTime" class="form-control" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                </div>
+                <div class="form-group mx-5">
+                    <label asp-for="EndTime" class="control-label"></label>
+                    <input asp-for="EndTime" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
+                <div class="form-group mx-5">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

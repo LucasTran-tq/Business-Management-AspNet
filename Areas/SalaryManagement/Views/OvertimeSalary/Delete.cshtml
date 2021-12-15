@@ -7,32 +7,34 @@
    <input type="hidden" asp-for="OvertimeSalaryId" />
     <input type="submit" value="Delete" class="btn btn-danger mx-5" />
 </form>
-<div>
-    <h4>OvertimeSalary</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+
+<div class="mx-5">
+    <div class="col-md-6 bg-white rounded shadow-lg">
+        <div class="information-group mt-3">
+            <div class="information-group1">
+                <dl class="col">
+                    <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.OvertimeSalaryName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.OvertimeSalaryName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.moneyPerSession)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.moneyPerSession)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.StartTime)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.StartTime)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.EndTime)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.EndTime)
         </dd>
     </dl>

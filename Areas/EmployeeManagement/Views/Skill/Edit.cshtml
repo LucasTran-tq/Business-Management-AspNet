@@ -1,28 +1,36 @@
 @model App.Areas.EmployeeManagement.Models.Skill
 
 
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
+<partial name="SBAdmin/_Styles" />
 
 
 
 <div class="row">
-    <div class="col-md-6 bg-white rounded shadow-lg">
+    <div class="col-md-6 mx-5 bg-white rounded shadow-lg">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="SkillId" />
-            <div class="form-group">
-                <label asp-for="SkillName" class="control-label"></label>
-                <input asp-for="SkillName" class="form-control" />
-                <span asp-validation-for="SkillName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+             <div class="information-title mx-5"><p>Edit </p></div>
+            <div class="form-group mx-5 float-right mt-n5">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            <hr>
+             <div class="information-group row">
+                <div class="information-group1">
+                    <div class="form-group mx-5">
+                        <label asp-for="SkillName" class="control-label"></label>
+                        <input asp-for="SkillName" class="form-control" />
+                        <span asp-validation-for="SkillName" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

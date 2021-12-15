@@ -161,7 +161,7 @@ table {
 }
 
 .login_btn{
-	width: 78%;
+	width: 83%;
 	margin-top: 24px;
 	display: inline-flex;
 	align-items: center;
@@ -198,7 +198,7 @@ table {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 78%;
+	width: 83%;
 	margin-top: 16px;
 	margin-left: 12px;
 }
@@ -212,7 +212,6 @@ table {
 	cursor: pointer;
 	float: right;
 	margin-top: -28px;
-	margin-right: 8px;
 	color: #757575;
 }
 

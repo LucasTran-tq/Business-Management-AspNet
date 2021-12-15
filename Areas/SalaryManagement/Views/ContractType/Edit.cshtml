@@ -5,24 +5,22 @@
 
 
 
-<div class="row">
+<div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ContractTypeId" />
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label asp-for="ContractTypeName" class="control-label"></label>
                 <input asp-for="ContractTypeName" class="form-control" />
                 <span asp-validation-for="ContractTypeName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            
         </form>
     </div>
 </div>
 
-<div class="mx-5 content-information mt-5">
+<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back

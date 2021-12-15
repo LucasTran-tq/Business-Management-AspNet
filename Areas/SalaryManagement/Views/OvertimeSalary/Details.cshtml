@@ -1,42 +1,58 @@
 @model App.Areas.SalaryManagement.Models.OvertimeSalary
 
-@{
-    ViewData["Title"] = "Details";
-}
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
-<h1>Details</h1>
+<partial name="SBAdmin/_Styles" />
 
 <div>
-    <h4>OvertimeSalary</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OvertimeSalaryName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OvertimeSalaryName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.moneyPerSession)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.moneyPerSession)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-    </dl>
+    <div class="profile_background">
+        <div class="profile_title">
+            <h1>OvertimeSalary</h1>
+            <a asp-action="Edit" asp-route-id="@Model.OvertimeSalaryId" class="btn btn-primary sm ">Edit</a>
+        </div>
+        <div class="contain_profile  mb-5">
+            <div class="basic_information">
+                <div class="information-title mx-5">
+                    <p>Employee profile basic</p>
+                </div>
+                <hr>
+                <div class="basic_information-group">
+                    <div class="information-group">
+                        <dl class="col mx-5">
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.OvertimeSalaryName)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.OvertimeSalaryName)
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.moneyPerSession)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.moneyPerSession)
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.StartTime)
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.EndTime)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.EndTime)
+                    </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.OvertimeSalaryId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
 </div>

@@ -1,36 +1,75 @@
 @model IEnumerable<App.Areas.SalaryManagement.Models.ContractType>
 
 
-
+<link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
 
 
 <partial name="_AlertCreateMessage" />
 <partial name="_AlertDeleteMessage" />
 
-<p>
-    <a asp-action="Create" class="btn btn-primary sm">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ContractTypeName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContractTypeName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ContractTypeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ContractTypeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ContractTypeId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="card shadow mx-5 mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Employee Skill list</h6>
+        <p>
+            <a asp-action="Create" class="btn btn-primary float-right mt-n4">Create</a>
+        </p>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                       <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" width="100%" cellspacing="0">
+                             <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ContractTypeName)
+                                    </th>
+                                    <th style="width: 150px;color: rgb(255, 255, 255);"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model) {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ContractTypeName)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ContractTypeId">Edit</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ContractTypeId">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.ContractTypeName)</th>
+                                    <th rowspan="1" colspan="1"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/js/demo/datatables-demo.js"></script>
+>>>>>>> db7357a253f755f5fc1b2f5f4794b23df7f2c001

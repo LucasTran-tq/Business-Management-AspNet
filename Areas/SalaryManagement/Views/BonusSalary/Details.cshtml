@@ -1,48 +1,55 @@
 @model App.Areas.SalaryManagement.Models.BonusSalary
 
-@{
-    ViewData["Title"] = "Details";
-}
-
-<h1>Details</h1>
-
+=
 <div>
     <h4>BonusSalary</h4>
     <hr />
     <dl class="row">
-        @* <dt class = "col-sm-2">
+        @* <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.BonusLevel)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.BonusLevel)
         </dd> *@
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.BonusSalaryName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.BonusSalaryName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.PrizeMoney)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.PrizeMoney)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.StartTime)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.StartTime)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.EndTime)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "row-sm-10 content-information">
             @Html.DisplayFor(model => model.EndTime)
         </dd>
-    </dl>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.BonusSalaryId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>|<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
 </div>

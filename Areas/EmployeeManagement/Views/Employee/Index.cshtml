@@ -7,9 +7,9 @@
 
 <div class="card shadow mx-5 mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Employee list</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Employee</h6>
         <p>
-            <a asp-action="Create" class="btn btn-primary float-right mt-n4">Create New</a>
+            <a asp-action="Create" class="btn btn-primary float-right mt-n4">Create</a>
         </p>
     </div>
     <div class="card-body">
@@ -21,9 +21,6 @@
                             aria-describedby="dataTable_info" width="100%" cellspacing="0">
                             <thead>
                                 <tr role="row">
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.ImageByte)
-                                    </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.EmployeeName)
                                     </th>
@@ -46,11 +43,10 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                      
                                         <td>
                                             <img src="@(item.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(item.ImageByte)))"
-                                            alt="DefaultAvatar" style="max-width: 50px; max-height: 50px">
-                                        </td>
-                                        <td>
+                                            alt="DefaultAvatar" style="max-width: 50px; max-height: 50px;  border-radius: 50% !important;">
                                             @Html.DisplayFor(modelItem => item.EmployeeName)
                                         </td>
                                         <td>
