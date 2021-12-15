@@ -16,7 +16,7 @@ namespace App.Areas.Database.Controllers
 {
     [Area("Database")]
     [Route("/database-manage/[action]")]
-    [Authorize(Roles = RoleName.Administrator)]
+    // [Authorize(Roles = RoleName.Administrator)]
     public class DbManageController : Controller
     {
         private readonly AppDbContext _dbContext;
