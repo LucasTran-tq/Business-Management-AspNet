@@ -105,7 +105,12 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", employee_Skill.EmployeeId);
+
+             var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(employee_Skill.EmployeeId)
+                            select emp;
+
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName", employee_Skill.EmployeeId);
             ViewData["SkillId"] = new SelectList(_context.Skills, "SkillId", "SkillName", employee_Skill.SkillId);
             return View(employee_Skill);
         }
@@ -123,7 +128,12 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", employee_Skill.EmployeeId);
+
+            var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(employee_Skill.EmployeeId)
+                            select emp;
+
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName", employee_Skill.EmployeeId);
             ViewData["SkillId"] = new SelectList(_context.Skills, "SkillId", "SkillName", employee_Skill.SkillId);
             return View(employee_Skill);
         }
@@ -160,7 +170,12 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", employee_Skill.EmployeeId);
+
+            var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(employee_Skill.EmployeeId)
+                            select emp;
+
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName", employee_Skill.EmployeeId);
             ViewData["SkillId"] = new SelectList(_context.Skills, "SkillId", "SkillName", employee_Skill.SkillId);
             return View(employee_Skill);
         }

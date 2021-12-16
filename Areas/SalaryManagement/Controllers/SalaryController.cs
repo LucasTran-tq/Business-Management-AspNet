@@ -126,7 +126,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var empQuery = from emp in _context.Employees
                            where emp.EmployeeId.Equals(empId)
                            select emp;
-
+            
 
             List<BasicSalary> basicSalary = _context.BasicSalaries.ToList();
             List<ContractType> contractType = _context.ContractTypes.ToList();
@@ -137,7 +137,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                               join con in contract on basic.ContractTypeId equals con.ContractTypeId
                               where con.EmployeeId == empId
                               && basic.StartTime.Year <= localDate.Year && basic.EndTime.Year >= localDate.Year
-                              && basic.StartTime.Month <= localDate.Month && basic.EndTime.Month >= localDate.Month
+                            //   && basic.StartTime.Month <= localDate.Month && basic.EndTime.Month >= localDate.Month
                               select new
                               {
                                   BasicSalaryId = basic.BasicSalaryId,

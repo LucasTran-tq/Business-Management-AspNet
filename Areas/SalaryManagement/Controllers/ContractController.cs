@@ -82,8 +82,13 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                 StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
+
+            var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(contract.EmployeeId)
+                            select emp;
+                            
             ViewData["ContractTypeId"] = new SelectList(_context.ContractTypes, "ContractTypeId", "ContractTypeName", contract.ContractTypeId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", contract.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName", contract.EmployeeId);
             return View(contract);
         }
 
@@ -100,8 +105,13 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             {
                 return NotFound();
             }
+
+            var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(contract.EmployeeId)
+                            select emp;
+
             ViewData["ContractTypeId"] = new SelectList(_context.ContractTypes, "ContractTypeId", "ContractTypeName", contract.ContractTypeId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", contract.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName", contract.EmployeeId);
             return View(contract);
         }
 
@@ -137,8 +147,13 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            var empQuery = from emp in _context.Employees
+                            where emp.EmployeeId.Equals(contract.EmployeeId)
+                            select emp;
+
             ViewData["ContractTypeId"] = new SelectList(_context.ContractTypes, "ContractTypeId", "ContractTypeName", contract.ContractTypeId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", contract.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName", contract.EmployeeId);
             return View(contract);
         }
 
