@@ -1,4 +1,4 @@
-@model App.Areas.SaleManagement.Models.Bill
+@model App.Areas.SaleManagement.Models.Bill_Info
 
 <link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
@@ -7,41 +7,41 @@
 <div>
     <div class="profile_background">
         <div class="profile_title">
-            <h1>AllowanceSalary</h1>
-            <a asp-action="Edit" asp-route-id="@Model.BillId" class="btn btn-primary sm ">Edit</a>
+            <h1>Bill</h1>
+            <a asp-action="Edit" asp-route-id="@Model.bill.BillId" class="btn btn-primary sm ">Edit</a>
         </div>
         <div class="contain_profile  mb-5">
             <div class="basic_information">
                 <div class="information-title mx-5">
-                    <p>Employee profile basic</p>
+                    <p>Bill information</p>
                 </div>
                 <hr>
                 <div class="basic_information-group">
                     <div class="information-group">
                         <dl class="col mx-5">
                     <dt class = "row-sm-2 title-text">
-            @Html.DisplayNameFor(model => model.Employee)
+            @Html.DisplayNameFor(model => model.bill.Employee)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.Employee.EmployeeName)
+            @Html.DisplayFor(model => model.bill.Employee.EmployeeName)
         </dd>
         <dt class = "row-sm-2 title-text">
-            @Html.DisplayNameFor(model => model.Customer)
+            @Html.DisplayNameFor(model => model.bill.Customer)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.Customer.CustomerName)
+            @Html.DisplayFor(model => model.bill.Customer.CustomerName)
         </dd>
         <dt class = "row-sm-2 title-text">
-            @Html.DisplayNameFor(model => model.MakeBillTime)
+            @Html.DisplayNameFor(model => model.bill.MakeBillTime)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.MakeBillTime)
+            @Html.DisplayFor(model => model.bill.MakeBillTime)
         </dd>
         <dt class = "row-sm-2 title-text">
-            @Html.DisplayNameFor(model => model.ExportBillTime)
+            @Html.DisplayNameFor(model => model.bill.ExportBillTime)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.ExportBillTime)
+            @Html.DisplayFor(model => model.bill.ExportBillTime)
         </dd>
                         </dl>
                     </div>
@@ -50,6 +50,46 @@
         </div>
     </div>
 </div>
+
+<h1>Bill detail</h1>
+
+ <table class="table mb-5">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.detailBills[0].Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.detailBills[0].Bill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.detailBills[0].Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.detailBills) {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bill.BillId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            @* <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td> *@
+        </tr>
+}
+    </tbody>
+</table>
+
 <div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
