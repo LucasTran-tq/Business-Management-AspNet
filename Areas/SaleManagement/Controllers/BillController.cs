@@ -48,7 +48,16 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                 return NotFound();
             }
 
-            return View(bill);
+            IQueryable<DetailBill> detailBills = from bill_detail in _context.DetailBills
+                            .Include(d => d.Bill)
+                            .Include(d => d.Product)
+                            .OrderByDescending(emp_skill => emp_skill.DetailBillId)
+                                            select bill_detail;
+            detailBills = detailBills.Where(emp => emp.BillId == id);
+            Bill_Info bill_info = new Bill_Info();
+            bill_info.bill = bill;
+            bill_info.detailBills = detailBills.ToList(); 
+            return View(bill_info);
         }
 
         // GET: SaleManagement/Bill/Create
@@ -70,7 +79,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             {
                 _context.Add(bill);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Edit", new { id = bill.BillId });
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerName", bill.CustomerId);
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", bill.EmployeeId);
@@ -92,7 +101,25 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerName", bill.CustomerId);
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", bill.EmployeeId);
-            return View(bill);
+            
+            IQueryable<DetailBill> detailBills = from bill_detail in _context.DetailBills
+                            .Include(d => d.Bill)
+                            .Include(d => d.Product)
+                            .OrderByDescending(emp_skill => emp_skill.DetailBillId)
+                                            select bill_detail;
+            detailBills = detailBills.Where(emp => emp.BillId == id);
+            
+            Bill_Info bill_info = new Bill_Info();
+            bill_info.bill = bill;
+            bill_info.detailBills = detailBills.ToList();
+
+            var billSel = (from b in _context.Bills
+                           where b.BillId.Equals(id)
+                           select b).ToList();
+
+            ViewData["BillId"] = new SelectList(billSel, "BillId", "BillId");
+            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductName");
+            return View(bill_info);
         }
 
         // POST: SaleManagement/Bill/Edit/5
@@ -130,6 +157,32 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerName", bill.CustomerId);
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", bill.EmployeeId);
             return View(bill);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateDetailBill(DetailBill detail)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(detail);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Edit", new { id = detail.BillId });
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteDetailBill(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var detailBill = await _context.DetailBills
+                .Include(d => d.Bill)
+                .Include(d => d.Product)
+                .FirstOrDefaultAsync(m => m.DetailBillId == id);
+            return RedirectToAction("Edit", new { id = id });
         }
 
         // GET: SaleManagement/Bill/Delete/5
