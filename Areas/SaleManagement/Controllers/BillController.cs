@@ -14,7 +14,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
 {
     [Area("SaleManagement")]
     [Route("admin/sale-management/bill/[action]/{id?}")]
-    [Authorize(Roles = RoleName.Administrator +  "," + RoleName.Sale)]
+    [Authorize(Roles = RoleName.Administrator + "," + RoleName.Sale)]
     public class BillController : Controller
     {
         private readonly AppDbContext _context;
@@ -52,11 +52,11 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                             .Include(d => d.Bill)
                             .Include(d => d.Product)
                             .OrderByDescending(emp_skill => emp_skill.DetailBillId)
-                                            select bill_detail;
+                                                 select bill_detail;
             detailBills = detailBills.Where(emp => emp.BillId == id);
             Bill_Info bill_info = new Bill_Info();
             bill_info.bill = bill;
-            bill_info.detailBills = detailBills.ToList(); 
+            bill_info.detailBills = detailBills.ToList();
             return View(bill_info);
         }
 
@@ -76,7 +76,9 @@ namespace AppMvc.Areas.SaleManagement.Controllers
         public async Task<IActionResult> Create([Bind("BillId,EmployeeId,CustomerId,MakeBillTime,ExportBillTime")] Bill bill)
         {
             if (ModelState.IsValid)
-            {
+            {   
+                bill.TotalBill = 0.0;
+
                 _context.Add(bill);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Edit", new { id = bill.BillId });
@@ -101,14 +103,14 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerName", bill.CustomerId);
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", bill.EmployeeId);
-            
+
             IQueryable<DetailBill> detailBills = from bill_detail in _context.DetailBills
                             .Include(d => d.Bill)
                             .Include(d => d.Product)
                             .OrderByDescending(emp_skill => emp_skill.DetailBillId)
-                                            select bill_detail;
+                                                 select bill_detail;
             detailBills = detailBills.Where(emp => emp.BillId == id);
-            
+
             Bill_Info bill_info = new Bill_Info();
             bill_info.bill = bill;
             bill_info.detailBills = detailBills.ToList();
@@ -162,8 +164,23 @@ namespace AppMvc.Areas.SaleManagement.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateDetailBill(DetailBill detail)
         {
+            DateTime localDate = DateTime.Now;
             if (ModelState.IsValid)
-            {
+            {   
+                // update total bill for bill
+                var billUpdation = _context.Bills.Where(b => b.BillId.Equals(detail.BillId)).SingleOrDefault();
+
+                var priceQuery = (from p in _context.Prices
+                             where p.ProductId.Equals(detail.ProductId)
+                             && DateTime.Compare(p.EndTime, localDate).Equals(1) 
+                             && DateTime.Compare(p.StartTime, localDate).Equals(-1)
+                             select p.PriceMoney).First();
+                
+                billUpdation.TotalBill += priceQuery;
+
+                // create a detail bill
+                detail.PriceProduct = priceQuery;
+
                 _context.Add(detail);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Edit", new { id = detail.BillId });
@@ -216,9 +233,24 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         private bool BillExists(int id)
         {
             return _context.Bills.Any(e => e.BillId == id);
+        }
+
+        public JsonResult GetPriceByProduct(int ProductID)
+        {
+            DateTime localDate = DateTime.Now;
+
+            var priceQuery = (from p in _context.Prices
+                             where p.ProductId.Equals(ProductID)
+                             && DateTime.Compare(p.EndTime, localDate).Equals(1) 
+                             && DateTime.Compare(p.StartTime, localDate).Equals(-1)
+                             select p.PriceMoney).First();
+            
+            
+            return Json(priceQuery);
         }
     }
 }

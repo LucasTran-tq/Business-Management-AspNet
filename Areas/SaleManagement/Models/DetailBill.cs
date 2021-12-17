@@ -23,6 +23,9 @@ namespace App.Areas.SaleManagement.Models
         [ForeignKey("BillId")]
         public Bill Bill { set; get; }
 
+        [Display(Name = "Price Product")]
+        public double PriceProduct{set;get;}
+
 
         [Required(ErrorMessage = "Must have Amount")]
         [Display(Name = "Amount")]
