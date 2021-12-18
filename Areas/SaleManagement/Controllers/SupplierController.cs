@@ -25,6 +25,13 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+        [TempData]
+        public string StatusEditMessage { get; set; }
+
         // GET: SaleManagement/Supplier
         public async Task<IActionResult> Index()
         {
@@ -117,6 +124,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                         throw;
                     }
                 }
+                StatusEditMessage = "You have edited successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(supplier);
@@ -148,6 +156,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             var supplier = await _context.Suppliers.FindAsync(id);
             _context.Suppliers.Remove(supplier);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

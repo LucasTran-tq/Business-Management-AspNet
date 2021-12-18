@@ -24,6 +24,13 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+        [TempData]
+        public string StatusEditMessage { get; set; }
+
         // GET: SaleManagement/Bill
         public async Task<IActionResult> Index()
         {
@@ -154,6 +161,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                         throw;
                     }
                 }
+                StatusEditMessage = "You have edited successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerName", bill.CustomerId);
@@ -183,6 +191,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
 
                 _context.Add(detail);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction("Edit", new { id = detail.BillId });
             }
             return View();
@@ -199,6 +208,8 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                 .Include(d => d.Bill)
                 .Include(d => d.Product)
                 .FirstOrDefaultAsync(m => m.DetailBillId == id);
+            
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction("Edit", new { id = id });
         }
 
@@ -230,6 +241,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             var bill = await _context.Bills.FindAsync(id);
             _context.Bills.Remove(bill);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 
