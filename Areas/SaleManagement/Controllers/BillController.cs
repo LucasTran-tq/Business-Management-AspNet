@@ -188,18 +188,34 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<ActionResult> DeleteDetailBill(int? id)
+        public async Task<IActionResult> DeleteDetailBill(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+
             var detailBill = await _context.DetailBills
                 .Include(d => d.Bill)
                 .Include(d => d.Product)
                 .FirstOrDefaultAsync(m => m.DetailBillId == id);
-            return RedirectToAction("Edit", new { id = id });
+            if (detailBill == null)
+            {
+                return NotFound();
+            }
+
+            return View(detailBill);
+        }
+
+        // POST: SaleManagement/DetailBill/Delete/5
+        [HttpPost, ActionName("DeleteDetailBill")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteDetailBillConfirmed(int id)
+        {
+            var detailBill = await _context.DetailBills.FindAsync(id);
+            _context.DetailBills.Remove(detailBill);
+            await _context.SaveChangesAsync();
+            return  RedirectToAction("Edit", new { id = detailBill.BillId });
         }
 
         // GET: SaleManagement/Bill/Delete/5
