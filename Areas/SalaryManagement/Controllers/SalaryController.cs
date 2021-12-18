@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using App.Data;
 using App.Areas.EmployeeManagement.Models;
 
+
 namespace AppMvc.Areas.SalaryManagement.Controllers
 {
     [Area("SalaryManagement")]
@@ -126,7 +127,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var empQuery = from emp in _context.Employees
                            where emp.EmployeeId.Equals(empId)
                            select emp;
-            
+
 
             List<BasicSalary> basicSalary = _context.BasicSalaries.ToList();
             List<ContractType> contractType = _context.ContractTypes.ToList();
@@ -137,7 +138,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                               join con in contract on basic.ContractTypeId equals con.ContractTypeId
                               where con.EmployeeId == empId
                               && basic.StartTime.Year <= localDate.Year && basic.EndTime.Year >= localDate.Year
-                            //   && basic.StartTime.Month <= localDate.Month && basic.EndTime.Month >= localDate.Month
+                              //   && basic.StartTime.Month <= localDate.Month && basic.EndTime.Month >= localDate.Month
                               select new
                               {
                                   BasicSalaryId = basic.BasicSalaryId,
@@ -583,12 +584,184 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             // get report to compare another department by year
             var listReportDepartmentByYear = GetReportDepartmentByYear(year);
 
+            // Get data for report sale in area chart by year
+            var listDataForReportSaleAreaByYear = GetDataForReportSaleAreaByYear(year);
 
-            // Give a json object to FE
-            ChartClass chartClass = new ChartClass(year, listTotalSalaryMonths, listReportDepartmentByYear);
+            // Get data for report sale in pie chart by year
+            var listDataForReportSalePieByYear = GetDataForReportSalePieByYear(year);
+
+            List<string> ProductNameList = new List<string>();
+            List<double> AmountProductList = new List<double>();
+
+            foreach (var item in listDataForReportSalePieByYear)
+            {
+                // System.Console.WriteLine("item: {0}, {1}", item.ProductName, item.Amount);
+                ProductNameList.Add(item.ProductName);
+                AmountProductList.Add(item.Amount);
+            }
 
 
+            ChartClass chartClass = new ChartClass(){
+                year = year,
+                listTotalSalaryMonths = listTotalSalaryMonths,
+                listReportDepartmentByYear = listReportDepartmentByYear,
+                listDataForReportSaleAreaByYear = listDataForReportSaleAreaByYear,
+                ProductNameList = ProductNameList,
+                AmountProductList = AmountProductList,
+            };
+
+            
             return Json(chartClass);
+        }
+
+        public List<RevenueByProduct> GetDataForReportSalePieByYear(int year)
+        {
+
+
+            var topProductQuery = (from b in _context.Bills
+                                   join d in _context.DetailBills on b.BillId equals d.BillId
+                                   join p in _context.Products.Include(p => p.Supplier).Include(p => p.ProductType)
+                                   on d.ProductId equals p.ProductId
+                                   join pri in _context.Prices on p.ProductId equals pri.ProductId
+                                   select new
+                                   {
+                                       ProductName = p.ProductName,
+                                       Amount = d.Amount,
+                                       BillDateYear = b.MakeBillTime.Year,
+                                   } into s
+                                   group s by new
+                                   {
+                                       s.ProductName,
+                                       s.BillDateYear,
+                                   } into g
+
+                                   select new
+                                   {
+                                       ProductName = g.Key.ProductName,
+                                       Amount = g.Select(s => s.Amount).Sum(),
+                                   }
+
+                                ).OrderByDescending(g => g.Amount)
+                                .ToList();
+
+
+            // foreach (var item in topProductQuery)
+            // {
+            //     System.Console.WriteLine("ProductName: {0}, {1}", item.ProductName,item.ProductPrice);
+            // }
+
+            List<RevenueByProduct> testDataList = new List<RevenueByProduct>();
+            List<RevenueByProduct> revenueByProducts = new List<RevenueByProduct>();
+
+            var totalAmount = 0.0;
+            var perPerProduct = 0.0;
+            foreach (var item in topProductQuery)
+            {
+                totalAmount += item.Amount;
+                testDataList.Add(
+                    new RevenueByProduct()
+                    {
+                        ProductName = item.ProductName,
+                        Amount = item.Amount,
+                    }
+                );
+            }
+
+            foreach (var item in testDataList)
+            {
+                perPerProduct = Math.Round(item.Amount / totalAmount * 100, 1, MidpointRounding.ToEven);
+
+                revenueByProducts.Add(
+                    new RevenueByProduct()
+                    {
+                        ProductName = item.ProductName,
+                        Amount = perPerProduct,
+                    }
+                );
+            }
+
+
+            return revenueByProducts;
+        }
+        public List<double> GetDataForReportSaleAreaByYear(int year)
+        {
+            // year = 2021;
+            var billQuery = from b in _context.Bills
+                            where b.MakeBillTime.Year.Equals(year)
+                            select b;
+
+            double month1 = 0.0;
+            double month2 = 0.0;
+            double month3 = 0.0;
+            double month4 = 0.0;
+            double month5 = 0.0;
+            double month6 = 0.0;
+            double month7 = 0.0;
+            double month8 = 0.0;
+            double month9 = 0.0;
+            double month10 = 0.0;
+            double month11 = 0.0;
+            double month12 = 0.0;
+
+            foreach (var item in billQuery)
+            {
+                switch (item.MakeBillTime.Month)
+                {
+                    case 1:
+                        month1 += item.TotalBill;
+                        break;
+                    case 2:
+                        month2 += item.TotalBill;
+                        break;
+                    case 3:
+                        month3 += item.TotalBill;
+                        break;
+                    case 4:
+                        month4 += item.TotalBill;
+                        break;
+                    case 5:
+                        month5 += item.TotalBill;
+                        break;
+                    case 6:
+                        month6 += item.TotalBill;
+                        break;
+                    case 7:
+                        month7 += item.TotalBill;
+                        break;
+                    case 8:
+                        month8 += item.TotalBill;
+                        break;
+                    case 9:
+                        month9 += item.TotalBill;
+                        break;
+                    case 10:
+                        month10 += item.TotalBill;
+                        break;
+                    case 11:
+                        month11 += item.TotalBill;
+                        break;
+                    case 12:
+                        month12 += item.TotalBill;
+                        break;
+                }
+            }
+
+
+            List<double> listData = new List<double>();
+            listData.Add(month1);
+            listData.Add(month2);
+            listData.Add(month3);
+            listData.Add(month4);
+            listData.Add(month5);
+            listData.Add(month6);
+            listData.Add(month7);
+            listData.Add(month8);
+            listData.Add(month9);
+            listData.Add(month10);
+            listData.Add(month11);
+            listData.Add(month12);
+
+            return listData;
         }
 
         public List<double> GetReportDepartmentByYear(int year)
@@ -663,18 +836,23 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 public class ChartClass
 {
 
-    public ChartClass(int year, System.Collections.ArrayList listTotalSalaryMonths1,
-                List<double> listReportDepartmentByYear)
-    {
-        this.year = year;
-        this.listTotalSalaryMonths = listTotalSalaryMonths1;
-        this.listReportDepartmentByYear = listReportDepartmentByYear;
-    }
+    public ChartClass(){}
 
     public int year { get; set; }
     public System.Collections.ArrayList listTotalSalaryMonths { get; set; }
     public List<double> listReportDepartmentByYear { get; set; }
+    public List<double> listDataForReportSaleAreaByYear { get; set; }
+    List<RevenueByProduct> listDataForReportSalePieByYear { set; get; }
+    public List<string> ProductNameList { get; set; }
+    public List<double> AmountProductList { get; set; }
 
+}
 
+public class RevenueByProduct
+{
+
+    public string ProductName { set; get; }
+
+    public double Amount { set; get; }
 
 }

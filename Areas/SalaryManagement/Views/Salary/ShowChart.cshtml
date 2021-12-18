@@ -33,13 +33,50 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Revenue (Monthly)</div>
+                            <div id="RevenueMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$0</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Revenue (Annual)</div>
+                            <div id="RevenueAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$0</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Earnings (Monthly)</div>
-                            <div id="EarningsMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                Total Salary (Monthly)</div>
+                            <div id="SalaryMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$0</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -51,13 +88,13 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Earnings (Annual)</div>
-                            <div id="EarningsAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                Total Salary (Annual)</div>
+                            <div id="SalaryAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$0</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -66,12 +103,49 @@
                 </div>
             </div>
         </div>
-    </div>
 
+       
+    </div>
 
     <!-- Content Row -->
     <div class="row">
+        <div class="col-xl-8 col-lg-7">
+            <!-- Area Chart -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area" id="dvAreaChartSale">
+                        <canvas id="myAreaChart"></canvas>
+                    </div>
+                    <hr>
+                    Revenue process of company in the year
+                </div>
+            </div>
+        </div>
+         <!-- Donut Chart -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4" id="dvPieChartSale">
+                        <canvas id="myPieChartSale"></canvas>
+                    </div>
+                    <hr>
+                    The comparison of products during the
+                    <code>year</code>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Content Row -->
+    <div class="row">
         <div class="col-xl-8 col-lg-7">
             <!-- Bar Chart -->
             <div class="card shadow mb-4">
@@ -102,7 +176,7 @@
                         <canvas id="myPieChart"></canvas>
                     </div>
                     <hr>
-                    The comparison of total salaries between departments during the 
+                    The comparison of total salaries between departments during the
                     <code>year</code>
                 </div>
             </div>
@@ -119,7 +193,10 @@
     // onchange for selector
     var listData = []
     var listPieData = []
-    
+    var listAreaDataForSale = []
+    var listProductNameInPieDataForSale = []
+    var listProductAmountInPieDataForSale = []
+
     $(document).ready(function () {
         GetReportByYear();
     })
@@ -137,27 +214,39 @@
                 year: $('#ddlYear').val(),
             },
             success: function (data) {
-                @* console.log(`data in ddlYear: ${JSON.stringify(data)}`) *@
+                console.log(`data: ${JSON.stringify(data)}`)
                 var year = data.year
                 listData = data.listTotalSalaryMonths
                 listPieData = data.listReportDepartmentByYear
-                
+                listAreaDataForSale = data.listDataForReportSaleAreaByYear
+                listProductNameInPieDataForSale = data.productNameList
+                listProductAmountInPieDataForSale = data.amountProductList
+
                 RegisterChart(listData)
                 RegisterPieChart(listPieData)
+                RegisterAreaChartForSale(listAreaDataForSale)
+                RegisterPieChartForSale(listProductNameInPieDataForSale, listProductAmountInPieDataForSale)
 
 
-
-                var earningsMonthly = 0
-                var earningsAnnual = 0
+                var revenueMonthly = 0
+                var revenueAnnual = 0
+                var salaryMonthly = 0
+                var salarysAnnual = 0
 
                 for (let i = 0; i < listData.length; i++) {
-                    earningsAnnual += listData[i]
+                    salarysAnnual += listData[i]
+                }
+                for (let i = 0; i < listAreaDataForSale.length; i++) {
+                    revenueAnnual += listAreaDataForSale[i]
                 }
 
-                earningsMonthly = (earningsAnnual / 12).toFixed(2);
+                salaryMonthly = (salarysAnnual / 12).toFixed(2);
+                revenueMonthly = (revenueAnnual / 12).toFixed(2);
 
-                $("#EarningsMonthly").html(`<div id="EarningsMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$${earningsMonthly}</div>`)
-                $("#EarningsAnnual").html(`<div id="EarningsAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$${earningsAnnual}</div>`)
+                $("#RevenueMonthly").html(`<div id="RevenueMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$${revenueMonthly}</div>`)
+                $("#RevenueAnnual").html(`<div id="RevenueAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$${revenueAnnual}</div>`)
+                $("#SalaryMonthly").html(`<div id="SalaryMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$${salaryMonthly}</div>`)
+                $("#SalaryAnnual").html(`<div id="SalaryAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$${salarysAnnual}</div>`)
                 $("#titleChart").html(`<p>This chart in <code>${year}</code></p>`);
             },
             error: function () {
@@ -166,8 +255,114 @@
         });
     }
 
+    
+
+    
+    // Area char for Sale
+    function RegisterAreaChartForSale(listData) {
+
+        $("canvas#myAreaChart").remove()
+        $("#dvAreaChartSale").html(`<canvas id="myAreaChart"></canvas>`);
 
 
+        var lsDataSource = [];
+
+        lsDataSource = listData
+
+        var areaChartData = {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Earnings",
+                lineTension: 0.3,
+                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                borderColor: "rgba(78, 115, 223, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointBorderColor: "rgba(78, 115, 223, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                data: lsDataSource,
+            }],
+        }
+
+        // Area Chart Example
+        var ctx = document.getElementById("myAreaChart");
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: areaChartData,
+            options: {
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 25,
+                        top: 25,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        time: {
+                            unit: 'date'
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 7
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            maxTicksLimit: 5,
+                            padding: 10,
+                            // Include a dollar sign in the ticks
+                            callback: function (value, index, values) {
+                                return '$' + number_format(value);
+                            }
+                        },
+                        gridLines: {
+                            color: "rgb(234, 236, 244)",
+                            zeroLineColor: "rgb(234, 236, 244)",
+                            drawBorder: false,
+                            borderDash: [2],
+                            zeroLineBorderDash: [2]
+                        }
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    titleMarginBottom: 10,
+                    titleFontColor: '#6e707e',
+                    titleFontSize: 14,
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    intersect: false,
+                    mode: 'index',
+                    caretPadding: 10,
+                    callbacks: {
+                        label: function (tooltipItem, chart) {
+                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                            return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Bar char for Salary
     function RegisterChart(listData) {
 
         $("canvas#myBarChart").remove()
@@ -225,11 +420,11 @@
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 100000,
+                        max: 30000,
                         maxTicksLimit: 10,
                         padding: 10,
-                        @* max: 15000, *@
-                @* maxTicksLimit: 5, *@
+                         //max: 15000,
+                // maxTicksLimit: 5,
                 // Include a dollar sign in the ticks
                 callback: function (value, index, values) {
                     return '$' + number_format(value);
@@ -273,15 +468,18 @@
     }
 
 
+    // Pie char for Salary
     function RegisterPieChart(listPieData) {
 
         $("canvas#myPieChart").remove()
         $("#dvPieChart").html(`<canvas id="myPieChart"></canvas>`);
 
+        
         var lsDataSource = [];
 
         lsDataSource = listPieData
 
+    
         // Pie Chart Example
         var ctx = document.getElementById("myPieChart");
 
@@ -291,6 +489,52 @@
                 data: lsDataSource,
                 backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
                 hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        }
+
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: pieChartData,
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 80,
+            },
+        });
+    }
+
+    
+    // Pie char for Salary
+    function RegisterPieChartForSale(listLabelData, listDataSource) {
+
+        $("canvas#myPieChartSale").remove()
+        $("#dvPieChartSale").html(`<canvas id="myPieChartSale"></canvas>`);
+
+        
+
+        
+        // Pie Chart Example
+        var ctx = document.getElementById("myPieChartSale");
+
+        var pieChartData = {
+            labels: listLabelData,
+            datasets: [{
+                data: listDataSource,
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#f6c23e'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
         }
