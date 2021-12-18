@@ -164,44 +164,9 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: SaleManagement/Product
+        // GET: SaleManagement/ShowTopProduct
         public IActionResult ShowTopProduct()
         {
-
-        //    var topProductQuery = (from b in _context.Bills
-        //                             join d in _context.DetailBills on b.BillId equals d.BillId
-        //                            join p in _context.Products.Include(p => p.Supplier).Include(p => p.ProductType) 
-        //                            on d.ProductId equals p.ProductId
-        //                            select new
-        //                            {
-        //                                ProductId = d.ProductId,
-        //                                ProductName = p.ProductName,
-        //                                Supplier = p.Supplier.SupplierName,
-        //                                ProductType = p.ProductType.ProductTypeName,
-        //                                Amount = d.Amount,
-        //                                BillDate = b.MakeBillTime,
-        //                            } into s
-        //                            group s by new
-        //                            {
-        //                                s.ProductId,
-        //                                s.ProductName,
-        //                                s.Supplier,
-        //                                s.ProductType,
-        //                                s.BillDate,
-        //                            } into g
-                                   
-        //                            select new
-        //                            {
-        //                                ProductId = g.Key.ProductId,
-        //                                ProductName = g.Key.ProductName,
-        //                                Supplier = g.Key.Supplier,
-        //                                ProductType = g.Key.ProductType,
-        //                                BillDate = g.Key.BillDate,
-        //                                Amount = g.Select(s => s.Amount).Sum(),
-        //                            }
-
-        //                         ).OrderByDescending(g => g.Amount)
-        //                         .ToList();
 
          var topProductQuery = (from b in _context.Bills
                                     join d in _context.DetailBills on b.BillId equals d.BillId
