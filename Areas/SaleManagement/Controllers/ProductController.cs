@@ -14,8 +14,8 @@ namespace AppMvc.Areas.SaleManagement.Controllers
 {
     [Area("SaleManagement")]
     [Route("admin/sale-management/product/[action]/{id?}")]
-    [Authorize(Roles = RoleName.Administrator +  "," + RoleName.Sale)]
-    
+    [Authorize(Roles = RoleName.Administrator + "," + RoleName.Sale)]
+
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
@@ -164,9 +164,83 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: SaleManagement/ShowTopProduct
+        public IActionResult ShowTopProduct()
+        {
+
+         var topProductQuery = (from b in _context.Bills
+                                    join d in _context.DetailBills on b.BillId equals d.BillId
+                                   join p in _context.Products.Include(p => p.Supplier).Include(p => p.ProductType) 
+                                   on d.ProductId equals p.ProductId
+                                   join pri in _context.Prices on p.ProductId equals pri.ProductId
+                                   select new
+                                   {
+                                       ProductId = d.ProductId,
+                                       ProductName = p.ProductName,
+                                       Supplier = p.Supplier.SupplierName,
+                                       ProductType = p.ProductType.ProductTypeName,
+                                       Amount = d.Amount,
+                                       ProductPrice = pri.PriceMoney,
+                                       BillDateYear = b.MakeBillTime.Year,
+                                       BillDateMonth = b.MakeBillTime.Month,
+                                   } into s
+                                   group s by new
+                                   {
+                                       s.ProductId,
+                                       s.ProductName,
+                                       s.Supplier,
+                                       s.ProductType,
+                                       s.ProductPrice,
+                                       s.BillDateYear,
+                                       s.BillDateMonth,
+                                   } into g
+                                   
+                                   select new
+                                   {
+                                       ProductId = g.Key.ProductId,
+                                       ProductName = g.Key.ProductName,
+                                       Supplier = g.Key.Supplier,
+                                       ProductType = g.Key.ProductType,
+                                       ProductPrice = g.Key.ProductPrice,
+                                       BillDateYear = g.Key.BillDateYear,
+                                       BillDateMonth = g.Key.BillDateMonth,
+                                       Amount = g.Select(s => s.Amount).Sum(),
+                                   }
+
+                                ).OrderByDescending(g => g.Amount)
+                                .ToList();
+
+
+            // foreach (var item in topProductQuery)
+            // {
+            //     System.Console.WriteLine("ProductName: {0}, {1}", item.ProductName,item.ProductPrice);
+            // }
+            List<TopProduct> topProducts = new List<TopProduct>();
+            foreach (var item in topProductQuery)
+            {
+               
+                topProducts.Add(
+                    new TopProduct () {
+                        ProductName = item.ProductName,
+                        Amount = item.Amount,
+                        ProductPrice = item.ProductPrice,
+                        SupplierName = item.Supplier,
+                        ProductTypeName = item.ProductType,
+                        // BillDate = item.BillDate.ToString("MM/dd/yyyy"),
+                        BillDate = item.BillDateMonth + "/" + item.BillDateYear,
+                    }
+                );
+            }
+
+
+            return View(topProducts);
+        }
+
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.ProductId == id);
         }
     }
+
+    
 }

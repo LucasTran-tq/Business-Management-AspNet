@@ -4,6 +4,7 @@ using App.Areas.SaleManagement.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace App.Models 
 {
     // App.Models.AppDbContext
@@ -15,6 +16,7 @@ namespace App.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
+            // builder.UseMySQL("server=sql6.freesqldatabase.com;database=sql6459153;user=sql6459153;password=XJSEAavrZd");
             base.OnConfiguring(builder);
         }
 

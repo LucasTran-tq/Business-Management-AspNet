@@ -24,6 +24,9 @@ namespace App.Areas.SaleManagement.Models
         [ForeignKey("CustomerId")]
         public Customer Customer{set;get;}
 
+        [Display(Name = "Total Bill")]
+        public double TotalBill{set;get;}
+
 
         [Display(Name = "Make Bill Time")]
         [DataType(DataType.Date)]

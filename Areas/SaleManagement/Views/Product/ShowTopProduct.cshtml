@@ -1,18 +1,17 @@
-@model IEnumerable<App.Areas.EmployeeManagement.Models.Employee_Position>
+@* @using AppMvc.Areas.SaleManagement.Controllers.TopProduct *@
+@model IEnumerable<App.Areas.SaleManagement.Models.TopProduct>
+
 
 <link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
+
 
 <partial name="_AlertCreateMessage" />
 <partial name="_AlertDeleteMessage" />
 
-
-
 <div class="card shadow mx-5 mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Employee Position list</h6>
-        <p>
-            <a asp-action="Create" class="btn btn-primary float-right mt-n4">Create</a>
-        </p>
+        <h6 class="m-0 font-weight-bold text-primary">Top Product</h6>
+        
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -24,18 +23,25 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Employee)
+                                        @Html.DisplayNameFor(model => model.ProductName)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Position)
+                                        @Html.DisplayNameFor(model => model.Amount)
+                                    </th>
+                                     <th>
+                                        @Html.DisplayNameFor(model => model.ProductPrice)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.StartTime)
+                                        @Html.DisplayNameFor(model => model.SupplierName)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.EndTime)
+                                        @Html.DisplayNameFor(model => model.ProductTypeName)
                                     </th>
-                                    <th style="width: 149px; color: rgb(255, 255, 255);"></th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BillDate)
+                                    </th>
+
+                                    <th style="width: 150px;color: rgb(255, 255, 255);"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,32 +49,40 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                                            @Html.DisplayFor(modelItem => item.ProductName)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Position.PositionName)
+                                            @Html.DisplayFor(modelItem => item.Amount)
+                                        </td>
+                                         <td>
+                                            @Html.DisplayFor(modelItem => item.ProductPrice) $
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.StartTime)
+                                            @Html.DisplayFor(modelItem => item.SupplierName)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.EndTime)
+                                            @Html.DisplayFor(modelItem => item.ProductTypeName)
                                         </td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                                            @Html.DisplayFor(modelItem => item.BillDate)
                                         </td>
+
+                                        <td>
+                                            @* <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a> *@
+                                            </td>
                                     </tr>
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model =>
-                                        model.Employee.EmployeeName)</th>
-                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model =>
-                                        model.Position.PositionName)</th>
-                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.StartTime)</th>
-                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.EndTime)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.ProductName)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Amount)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.ProductPrice)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model =>model.SupplierName)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.ProductTypeName)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.BillDate)</th>
                                     <th rowspan="1" colspan="1"></th>
                                 </tr>
                             </tfoot>
