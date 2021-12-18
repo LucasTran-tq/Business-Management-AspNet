@@ -24,6 +24,13 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+        [TempData]
+        public string StatusEditMessage { get; set; }
+
         // GET: SaleManagement/ProductType
         public async Task<IActionResult> Index()
         {
@@ -116,6 +123,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                         throw;
                     }
                 }
+                StatusEditMessage = "You have edited successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(productType);
@@ -147,6 +155,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             var productType = await _context.ProductTypes.FindAsync(id);
             _context.ProductTypes.Remove(productType);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

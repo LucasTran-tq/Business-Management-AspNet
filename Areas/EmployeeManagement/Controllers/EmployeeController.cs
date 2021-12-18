@@ -30,6 +30,8 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         public string StatusMessage { get; set; }
         [TempData]
         public string StatusDeleteMessage { get; set; }
+        [TempData]
+        public string StatusEditMessage { get; set; }
 
 
         // GET: EmployeeManagement/Employee
@@ -256,6 +258,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                         throw;
                     }
                 }
+                StatusEditMessage = "You have edited successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
