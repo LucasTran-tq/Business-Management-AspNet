@@ -1,0 +1,46 @@
+@model App.Areas.SaleManagement.Models.DetailBill
+
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
+
+<partial name="SBAdmin/_Styles" />
+
+<h3 class="mx-5">Are you sure you want to delete this Detail Bill</h3>
+<form asp-action="DeleteDetailBill">
+    <input type="hidden" asp-for="DetailBillId" />
+    <input type="submit" value="Delete" class="btn btn-danger mx-5" />
+</form>
+
+<div class="mx-5">
+    <div class="col-md-6 bg-white rounded shadow-lg">
+        <div class="information-group mt-3">
+            <div class="information-group1">
+                <dl class="col">
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.Product)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.Product.ProductName)
+                    </dd class>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.Bill)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.Bill.BillId)
+                    </dd class>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.Amount)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>
