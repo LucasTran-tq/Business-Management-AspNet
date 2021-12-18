@@ -176,7 +176,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                              && DateTime.Compare(p.StartTime, localDate).Equals(-1)
                              select p.PriceMoney).First();
                 
-                billUpdation.TotalBill += priceQuery;
+                billUpdation.TotalBill += priceQuery * detail.Amount;
 
                 // create a detail bill
                 detail.PriceProduct = priceQuery;
