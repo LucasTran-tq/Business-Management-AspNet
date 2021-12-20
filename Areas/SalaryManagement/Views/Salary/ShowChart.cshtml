@@ -4,6 +4,8 @@
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
 
 <!-- Begin Page Content -->
 <div class="container-fluid mx-2">
@@ -18,12 +20,9 @@
                 <option value="2018">2018</option>
                 <option value="2019">2019</option>
                 <option value="2020">2020</option>
-                <option value="2021">2021</option>
+                <option value="2021" selected>2021</option>
                 <option value="2022">2022</option>
             </select>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <h2 id="titleChart" class="h3 mb-2 text-gray-800">This chart in <code>year</code></h2>
         </div>
     </div>
 
@@ -42,7 +41,7 @@
                             <div id="RevenueMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$0</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -243,11 +242,18 @@
                 salaryMonthly = (salarysAnnual / 12).toFixed(2);
                 revenueMonthly = (revenueAnnual / 12).toFixed(2);
 
-                $("#RevenueMonthly").html(`<div id="RevenueMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$${revenueMonthly}</div>`)
-                $("#RevenueAnnual").html(`<div id="RevenueAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$${revenueAnnual}</div>`)
-                $("#SalaryMonthly").html(`<div id="SalaryMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$${salaryMonthly}</div>`)
-                $("#SalaryAnnual").html(`<div id="SalaryAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$${salarysAnnual}</div>`)
-                $("#titleChart").html(`<p>This chart in <code>${year}</code></p>`);
+
+                revenueMonthly = numeral(revenueMonthly).format('0,0.0')
+                revenueAnnual = numeral(revenueAnnual).format('0,0.0')
+                salaryMonthly = numeral(salaryMonthly).format('0,0.0')
+                salarysAnnual = numeral(salarysAnnual).format('0,0.0')
+              
+
+                $("#RevenueMonthly").html(`<div id="RevenueMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$ ${revenueMonthly}</div>`)
+                $("#RevenueAnnual").html(`<div id="RevenueAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$ ${revenueAnnual}</div>`)
+                $("#SalaryMonthly").html(`<div id="SalaryMonthly" class="h5 mb-0 font-weight-bold text-gray-800">$ ${salaryMonthly}</div>`)
+                $("#SalaryAnnual").html(`<div id="SalaryAnnual" class="h5 mb-0 font-weight-bold text-gray-800">$ ${salarysAnnual}</div>`)
+                
             },
             error: function () {
             }

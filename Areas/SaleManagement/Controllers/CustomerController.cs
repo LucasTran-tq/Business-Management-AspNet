@@ -24,6 +24,13 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             _context = context;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+        [TempData]
+        public string StatusDeleteMessage { get; set; }
+        [TempData]
+        public string StatusEditMessage { get; set; }
+
         // GET: SaleManagement/Customer
         public async Task<IActionResult> Index()
         {
@@ -65,6 +72,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             {
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
+                StatusMessage = "You have created successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
@@ -116,6 +124,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                         throw;
                     }
                 }
+                StatusEditMessage = "You have edited successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
@@ -147,6 +156,7 @@ namespace AppMvc.Areas.SaleManagement.Controllers
             var customer = await _context.Customers.FindAsync(id);
             _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
+            StatusDeleteMessage = "You have deleted successfully!!!";
             return RedirectToAction(nameof(Index));
         }
 

@@ -28,6 +28,8 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
         public string StatusMessage { get; set; }
         [TempData]
         public string StatusDeleteMessage { get; set; }
+        [TempData]
+        public string StatusEditMessage { get; set; }
 
         // GET: EmployeeManagement/Employee_Skill
         public async Task<IActionResult> Index()
@@ -168,6 +170,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                         throw;
                     }
                 }
+                StatusEditMessage = "You have edited successfully!!!";
                 return RedirectToAction(nameof(Index));
             }
 
