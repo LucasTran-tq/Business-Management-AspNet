@@ -57,23 +57,23 @@
                         <input asp-for="Address" class="form-control" />
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
-                    <div class="form-group mx-5">
-                        <img src="/img/defaultAvatar.jpg" alt="preview" id="imagePreview"
-                            style="height: 200px; width: 200px; margin: auto; display: block;" />
-                    </div>
-                    <div class="form-group mx-5">
-                        <label asp-for="ImageByte" class="control-label title-text"></label>
-                        <input asp-for="ImageByte" class="form-control" type="file"
-                            onchange="return ShowImagePreview(this)" id="fileupload" hidden />
-                        <label for="fileupload">
-                            Upload image
-                        </label>
-
-                        <span asp-validation-for="ImageByte" class="text-danger"></span>
-                    </div>
+              
+                   
                 </div>
                 <div class="information-group2">
-
+                        <div class="form-group">
+                           
+                        
+                        <input asp-for="ImageByte" class="form-control" type="file"
+                            onchange="return ShowImagePreview(this)" id="fileupload" hidden />
+                        <label for="fileupload" style="display: flex; justify-content: center;">
+                           <img src="/img/defaultAvatar.jpg" alt="preview" id="imagePreview"
+                            style="height: 200px; width: 200px; border-radius: 50%;" />
+                  
+                        </label>
+                            <span asp-validation-for="ImageByte" class="text-danger"></span>
+                        
+                    </div>
                 </div>
             </div>
             <div class="form-group mx-5 mt-4 float-right">

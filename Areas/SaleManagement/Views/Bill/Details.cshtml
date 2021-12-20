@@ -4,8 +4,14 @@
 
 <partial name="SBAdmin/_Styles" />
 
+<link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
+
+
+<partial name="_AlertCreateMessage" />
+<partial name="_AlertDeleteMessage" />
+
 <div>
-    <div class="profile_background">
+    <div class="profile_background mx-5">
         <div class="profile_title">
             <h1>Bill</h1>
             <a asp-action="Edit" asp-route-id="@Model.bill.BillId" class="btn btn-primary sm ">Edit</a>
@@ -51,10 +57,19 @@
     </div>
 </div>
 
-<h1>Bill detail</h1>
 
- <table class="table mb-5">
-    <thead>
+<div class="card shadow mx-5 mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Detail bill</h6>
+     
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                       <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" width="100%" cellspacing="0">
+                            <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.detailBills[0].Product)
@@ -68,7 +83,7 @@
              <th>
                 @Html.DisplayNameFor(model => model.detailBills[0].PriceProduct)
             </th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
@@ -94,7 +109,39 @@
         </tr>
 }
     </tbody>
-</table>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.detailBills[0].Product)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.detailBills[0].BillId)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.detailBills[0].Amount)</th>
+                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.detailBills[0].PriceProduct)</th>
+                             
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/js/demo/datatables-demo.js"></script>
 
 <div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
@@ -102,3 +149,5 @@
         Back
     </a>
 </div>
+
+
