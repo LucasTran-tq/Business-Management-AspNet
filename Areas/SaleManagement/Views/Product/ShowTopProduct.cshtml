@@ -41,7 +41,7 @@
                                         @Html.DisplayNameFor(model => model.BillDate)
                                     </th>
 
-                                    <th style="width: 150px;color: rgb(255, 255, 255);"></th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,11 +67,11 @@
                                             @Html.DisplayFor(modelItem => item.BillDate)
                                         </td>
 
-                                        <td>
-                                            @* <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                                        @* <td>
+                                             <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
                                             <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a> *@
-                                            </td>
+                                            <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a> 
+                                            </td> *@
                                     </tr>
                                 }
                             </tbody>
@@ -83,7 +83,7 @@
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model =>model.SupplierName)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.ProductTypeName)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.BillDate)</th>
-                                    <th rowspan="1" colspan="1"></th>
+                                   
                                 </tr>
                             </tfoot>
                         </table>

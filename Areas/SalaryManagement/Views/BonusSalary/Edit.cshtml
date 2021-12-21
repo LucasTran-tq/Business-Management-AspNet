@@ -1,7 +1,9 @@
 @model App.Areas.SalaryManagement.Models.BonusSalary
 
 
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
+<partial name="SBAdmin/_Styles" />
 
 
 
@@ -10,6 +12,13 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BonusSalaryId" />
+                <div class="information-title mx-5"><p>Edit Bonus Salary</p></div>
+            <div class="form-group mx-5 float-right mt-n5">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            <hr>
+            <div class="information-group row">
+                <div class="information-group1">
             @* <div class="form-group mx-5">
                 <label asp-for="BonusLevel" class="control-label"></label>
                 <input asp-for="BonusLevel" class="form-control" />
@@ -35,7 +44,8 @@
                 <input asp-for="EndTime" class="form-control" />
                 <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
-            
+            </div>
+            </div>
         </form>
     </div>
 </div>
