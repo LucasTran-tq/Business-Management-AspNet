@@ -140,8 +140,8 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             var basicQuery = (from basic in basicSalary
                               join con in contract on basic.ContractTypeId equals con.ContractTypeId
                               where con.EmployeeId == empId
-                              && basic.StartTime.Year <= localDate.Year && basic.EndTime.Year >= localDate.Year
-                              //   && basic.StartTime.Month <= localDate.Month && basic.EndTime.Month >= localDate.Month
+                              && DateTime.Compare(basic.EndTime, localDate).Equals(1)
+                                && DateTime.Compare(basic.StartTime, localDate).Equals(-1)
                               select new
                               {
                                   BasicSalaryId = basic.BasicSalaryId,
@@ -154,9 +154,8 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                                   join position in _context.Positions on allowance.PositionId equals position.PositionId
                                   join emp_pos in _context.Employee_Positions on position.PositionId equals emp_pos.PositionId
                                   where emp_pos.EmployeeId == empId
-                                  && allowance.StartTime.Year <= localDate.Year && allowance.EndTime.Year >= localDate.Year
-                                  && allowance.StartTime.Month <= localDate.Month && allowance.EndTime.Month >= localDate.Month
-
+                                  && DateTime.Compare(allowance.EndTime, localDate).Equals(1)
+                                    && DateTime.Compare(allowance.StartTime, localDate).Equals(-1)
                                   select new
                                   {
                                       AllowanceSalaryId = allowance.AllowanceSalaryId,
@@ -164,13 +163,15 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                                   }).ToList();
 
             var overtimeSalary = from ove in _context.OvertimeSalaries
-                                 where ove.StartTime.Year <= localDate.Year && ove.EndTime.Year >= localDate.Year
-                                    && ove.StartTime.Month <= localDate.Month && ove.EndTime.Month >= localDate.Month
+                                 where
+                                  DateTime.Compare(ove.EndTime, localDate).Equals(1)
+                                    && DateTime.Compare(ove.StartTime, localDate).Equals(-1)
                                  select ove;
 
             var bonusSalary = from bonus in _context.BonusSalaries
-                              where bonus.StartTime.Year <= localDate.Year && bonus.EndTime.Year >= localDate.Year
-                                 && bonus.StartTime.Month <= localDate.Month && bonus.EndTime.Month >= localDate.Month
+                              where
+                                DateTime.Compare(bonus.EndTime, localDate).Equals(1)
+                                    && DateTime.Compare(bonus.StartTime, localDate).Equals(-1)
                               select bonus;
 
 
@@ -242,11 +243,74 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             {
                 return NotFound();
             }
+
+
+            DateTime localDate = DateTime.Now;
+
+            // basic 
+            // allowance
+            // bonus in time
+            // overtime
+
+            var empId = salary.EmployeeId;
+
+            var empQuery = from emp in _context.Employees
+                           where emp.EmployeeId.Equals(empId)
+                           select emp;
+
+
+            List<BasicSalary> basicSalary = _context.BasicSalaries.ToList();
+            List<ContractType> contractType = _context.ContractTypes.ToList();
+            List<Contract> contract = _context.Contracts.ToList();
+
+            // basic
+            var basicQuery = (from basic in basicSalary
+                              join con in contract on basic.ContractTypeId equals con.ContractTypeId
+                              where con.EmployeeId == empId
+                              && DateTime.Compare(basic.EndTime, localDate).Equals(1)
+                                && DateTime.Compare(basic.StartTime, localDate).Equals(-1)
+                              select new
+                              {
+                                  BasicSalaryId = basic.BasicSalaryId,
+                                  BasicSalaryName = basic.BasicSalaryName,
+                              }).ToList();
+
+
+            // allowance
+            var allowanceQuery = (from allowance in _context.AllowanceSalaries
+                                  join position in _context.Positions on allowance.PositionId equals position.PositionId
+                                  join emp_pos in _context.Employee_Positions on position.PositionId equals emp_pos.PositionId
+                                  where emp_pos.EmployeeId == empId
+                                  && DateTime.Compare(allowance.EndTime, localDate).Equals(1)
+                                    && DateTime.Compare(allowance.StartTime, localDate).Equals(-1)
+                                  select new
+                                  {
+                                      AllowanceSalaryId = allowance.AllowanceSalaryId,
+                                      AllowanceSalaryName = allowance.AllowanceSalaryName,
+                                  }).ToList();
+
+            var overtimeSalary = from ove in _context.OvertimeSalaries
+                                 where
+                                  DateTime.Compare(ove.EndTime, localDate).Equals(1)
+                                    && DateTime.Compare(ove.StartTime, localDate).Equals(-1)
+                                 select ove;
+
+            var bonusSalary = from bonus in _context.BonusSalaries
+                              where
+                                DateTime.Compare(bonus.EndTime, localDate).Equals(1)
+                                    && DateTime.Compare(bonus.StartTime, localDate).Equals(-1)
+                              select bonus;
+
+            ViewData["EmployeeId"] = new SelectList(empQuery, "EmployeeId", "EmployeeName");
+            ViewData["BasicSalaryId"] = new SelectList(basicQuery, "BasicSalaryId", "BasicSalaryName");
+            ViewData["AllowanceSalaryId"] = new SelectList(allowanceQuery, "AllowanceSalaryId", "AllowanceSalaryName");
+            ViewData["BonusSalaryId"] = new SelectList(bonusSalary, "BonusSalaryId", "BonusSalaryName");
+            ViewData["OvertimeSalaryId"] = new SelectList(overtimeSalary, "OvertimeSalaryId", "OvertimeSalaryName");
             // ViewData["AllowanceSalaryId"] = new SelectList(_context.AllowanceSalaries, "AllowanceSalaryId", "AllowanceSalaryName", salary.AllowanceSalaryId);
             // ViewData["BasicSalaryId"] = new SelectList(_context.BasicSalaries, "BasicSalaryId", "BasicSalaryName", salary.BasicSalaryId);
-            ViewData["BonusSalaryId"] = new SelectList(_context.BonusSalaries, "BonusSalaryId", "BonusSalaryName", salary.BonusSalaryId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", salary.EmployeeId);
-            ViewData["OvertimeSalaryId"] = new SelectList(_context.OvertimeSalaries, "OvertimeSalaryId", "OvertimeSalaryName", salary.OvertimeSalaryId);
+            // ViewData["BonusSalaryId"] = new SelectList(_context.BonusSalaries, "BonusSalaryId", "BonusSalaryName", salary.BonusSalaryId);
+            // ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeName", salary.EmployeeId);
+            // ViewData["OvertimeSalaryId"] = new SelectList(_context.OvertimeSalaries, "OvertimeSalaryId", "OvertimeSalaryName", salary.OvertimeSalaryId);
             return View(salary);
         }
 
@@ -605,7 +669,8 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             }
 
 
-            ChartClass chartClass = new ChartClass(){
+            ChartClass chartClass = new ChartClass()
+            {
                 year = year,
                 listTotalSalaryMonths = listTotalSalaryMonths,
                 listReportDepartmentByYear = listReportDepartmentByYear,
@@ -614,7 +679,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
                 AmountProductList = AmountProductList,
             };
 
-            
+
             return Json(chartClass);
         }
 
@@ -840,7 +905,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 public class ChartClass
 {
 
-    public ChartClass(){}
+    public ChartClass() { }
 
     public int year { get; set; }
     public System.Collections.ArrayList listTotalSalaryMonths { get; set; }
