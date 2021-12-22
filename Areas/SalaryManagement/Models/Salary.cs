@@ -13,7 +13,7 @@ namespace App.Areas.SalaryManagement.Models
 
 
         [Required(ErrorMessage = "Must have Total Salary")]
-        [Display(Name = "Total Salary")]
+        [Display(Name = "TotalSalary")]
         public double TotalSalary {set;get;}  
 
 
