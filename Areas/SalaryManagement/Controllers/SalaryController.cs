@@ -11,7 +11,10 @@ using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Authorization;
 using App.Data;
 using App.Areas.EmployeeManagement.Models;
-
+using Aspose.Pdf;
+using System.Data;
+using System.IO;
+using Aspose.Pdf.Text;
 
 namespace AppMvc.Areas.SalaryManagement.Controllers
 {
@@ -90,7 +93,80 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(await empQuery.AsNoTracking().ToListAsync());
         }
 
+        public IActionResult ExportPDF(){
+            var document = new Document{ 
+                PageInfo = new PageInfo{Margin= new MarginInfo(28,28,28,40)}
+            };
+            var pdfpage = document.Pages.Add();
+            var textStamp = new Aspose.Pdf.TextStamp("AIT COMPANY")
+            {
+            Background = false,
+            Opacity = 0.5,
+            HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
+            VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center,
+            TextAlignment = Aspose.Pdf.HorizontalAlignment.Center,
+            };
+            textStamp.TextState.Font = FontRepository.FindFont("Arial");
+            textStamp.TextState.FontSize = 38.0f;
+            textStamp.TextState.FontStyle = FontStyles.Bold;
+            textStamp.TextState.FontStyle = FontStyles.Italic;
+            textStamp.TextState.ForegroundColor = Aspose.Pdf.Color.FromRgb(System.Drawing.Color.FromArgb(0, 137, 237));
+            Table table = new Table{
+                ColumnWidths = "20% 14% 15% 17% 20% 14%",
+                DefaultCellPadding = new MarginInfo(10, 5, 10, 5),
+                Border = new BorderInfo(BorderSide.All, .5f, Color.Black),
+                DefaultCellBorder = new BorderInfo(BorderSide.All, .2f, Color.Black),
+            };
+            DateTime localdate = DateTime.Now;
+            var empQuery = from s in _context.Salaries
+                                .Include(s => s.AllowanceSalary)
+                                .Include(s => s.BasicSalary)
+                                .Include(s => s.BonusSalary)
+                                .Include(s => s.Employee)
+                                .Include(s => s.OvertimeSalary)
+                                .Where(s => s.SalaryDate.Year.Equals(localdate.Year) && s.SalaryDate.Month.Equals(localdate.Month))
+                                .OrderByDescending(s => s.SalaryDate)
+                           select s;
 
+            DataTable table1 = new DataTable();
+            table1.Columns.Add("Employee name", typeof(string));
+            table1.Columns.Add("TotalSalary", typeof(double));
+            table1.Columns.Add("BonusSalary", typeof(string));
+            table1.Columns.Add("OvertimeSalary", typeof(string));
+            table1.Columns.Add("Number of session", typeof(double));
+            table1.Columns.Add("SalaryDate", typeof(string));
+
+            foreach(var emp in empQuery) {
+                var row = table1.NewRow();
+                row["Employee name"] = emp.Employee.EmployeeName;
+                row["TotalSalary"] = emp.TotalSalary;
+                row["BonusSalary"] = emp.BonusSalary.BonusSalaryName;
+                row["OvertimeSalary"] = emp.OvertimeSalary.OvertimeSalaryName;
+                row["Number of session"] = emp.NumberOfSession;
+                row["SalaryDate"] = emp.SalaryDate.ToString("yyyy-MM-dd");
+                table1.Rows.Add(row);
+            }
+            table.ImportDataTable(table1,true,0,0);
+            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("List salary on " + localdate.ToString("yyyy-MM-dd")){
+                HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
+                VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center
+            };
+            text.TextState.FontSize = 16.0f;
+            text.TextState.FontStyle = FontStyles.Bold;
+            text.TextState.FontStyle = FontStyles.Italic;
+            text.TextState.ForegroundColor = Aspose.Pdf.Color.FromRgb(System.Drawing.Color.FromArgb(121, 177, 0));
+            text.Margin.Bottom = 20;
+            document.Pages[1].AddStamp(textStamp);
+            document.Pages[1].Paragraphs.Add(text);
+            document.Pages[1].Paragraphs.Add(table);
+
+            using (var streamout = new MemoryStream()){
+                document.Save(streamout);
+                return new FileContentResult(streamout.ToArray(), "application/pdf"){
+                    FileDownloadName = "Salary.pdf"
+                };
+            }
+        }
 
         // GET: SalaryManagement/Salary/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -115,7 +191,70 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             return View(salary);
         }
 
+        public async Task<IActionResult> ExportDetailPDF(int? id){
+             var document = new Document{ 
+                PageInfo = new PageInfo{Margin= new MarginInfo(28,28,28,40)}
+            };
+            var pdfpage = document.Pages.Add();
+            var textStamp = new Aspose.Pdf.TextStamp("AIT COMPANY")
+            {
+            Background = false,
+            Opacity = 0.5,
+            HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
+            VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center,
+            TextAlignment = Aspose.Pdf.HorizontalAlignment.Center,
+            };
+            textStamp.TextState.Font = FontRepository.FindFont("Arial");
+            textStamp.TextState.FontSize = 38.0f;
+            textStamp.TextState.FontStyle = FontStyles.Bold;
+            textStamp.TextState.FontStyle = FontStyles.Italic;
+            textStamp.TextState.ForegroundColor = Aspose.Pdf.Color.FromRgb(System.Drawing.Color.FromArgb(0, 137, 237));
+            Table table = new Table{
+                ColumnWidths = "40% 60%",
+                DefaultCellPadding = new MarginInfo(10, 5, 10, 5),
+                Border = new BorderInfo(BorderSide.All, .5f, Color.Black),
+                DefaultCellBorder = new BorderInfo(BorderSide.All, .2f, Color.Black),
+            };
+            DateTime localdate = DateTime.Now;
+            var salary = await _context.Salaries
+                .Include(s => s.AllowanceSalary)
+                .Include(s => s.BasicSalary)
+                .Include(s => s.BonusSalary)
+                .Include(s => s.Employee)
+                .Include(s => s.OvertimeSalary)
+                .FirstOrDefaultAsync(m => m.SalaryId == id);
+            DataTable table1 = new DataTable();
+            table1.Columns.Add("Key", typeof(string));
+            table1.Columns.Add("Value", typeof(String));
+            table1.Rows.Add("Employee", salary.Employee.EmployeeName);
+            table1.Rows.Add("BasicSalary", salary.BasicSalary.BasicSalaryName);
+            table1.Rows.Add("AllowanceSalary", salary.AllowanceSalary.AllowanceSalaryName);
+            table1.Rows.Add("BonusSalary", salary.BonusSalary.BonusSalaryName);
+            table1.Rows.Add("OvertimeSalary", salary.OvertimeSalary.OvertimeSalaryName);
+            table1.Rows.Add("Number of session", salary.NumberOfSession);
+            table1.Rows.Add("Salary Date", salary.SalaryDate.ToString("yyyy-MM-dd"));
+            table1.Rows.Add("TotalSalary", salary.TotalSalary);
 
+            table.ImportDataTable(table1,false,0,0);
+            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("Payroll on " + localdate.ToString("yyyy-MM-dd")){
+                HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
+                VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center
+            };
+            text.TextState.FontSize = 16.0f;
+            text.TextState.FontStyle = FontStyles.Bold;
+            text.TextState.FontStyle = FontStyles.Italic;
+            text.TextState.ForegroundColor = Aspose.Pdf.Color.FromRgb(System.Drawing.Color.FromArgb(121, 177, 0));
+            text.Margin.Bottom = 20;
+            document.Pages[1].AddStamp(textStamp);
+            document.Pages[1].Paragraphs.Add(text);
+            document.Pages[1].Paragraphs.Add(table);
+            using (var streamout = new MemoryStream()){
+                document.Save(streamout);
+                return new FileContentResult(streamout.ToArray(), "application/pdf"){
+                    FileDownloadName = "Payroll.pdf"
+                };
+            }
+        }
 
         // GET: SalaryManagement/Salary/Create
         public IActionResult Create(int? empId)
