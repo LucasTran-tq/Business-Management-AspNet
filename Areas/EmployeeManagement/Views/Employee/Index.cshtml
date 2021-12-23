@@ -8,10 +8,15 @@
 
 <div class="card shadow mx-5 mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Employee</h6>
+         <h6 class="m-0 font-weight-bold text-primary">Employee</h6>
+         <div class="d-flex float-right justify-content-between col-sm-3">
+        <p>
+        <a asp-action="ExportPDF" class="btn btn-primary float-right mt-n4"> <i class="fas fa-file-pdf mr-2"></i>Export</a>
+        </p>
         <p>
             <a asp-action="Create" class="btn btn-primary float-right mt-n4">Create</a>
         </p>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -74,9 +79,10 @@
                                 <tr>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.EmployeeName)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Department)</th>
+                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Sex)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Level)</th>
                                     <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.DOB)</th>
-                                    <th rowspan="1" colspan="1">@Html.DisplayNameFor(model => model.Sex)</th>
+                                    
                                     <th rowspan="1" colspan="1"></th>
                                 </tr>
                             </tfoot>
@@ -86,9 +92,6 @@
             </div>
         </div>
     </div>
-    <p>
-        <a asp-action="ExportPDF" class="btn btn-primary float-right mt-n4">Export</a>
-    </p>
 </div>
 
 <!-- Bootstrap core JavaScript-->

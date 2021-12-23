@@ -1,12 +1,12 @@
 @model App.Areas.EmployeeManagement.Models.Employee_Info
 @* @model1 App.Areas.EmployeeManagement.Models.Employee_Skill *@
 
-
+<link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
 <link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
 <partial name="SBAdmin/_Styles" />
 <div>
-    <div class="profile_background">
+    <div class="profile_background mx-5">
         <div class="profile_title">
             <h1>Profile</h1>
             <a asp-action="Edit" asp-route-id="@Model.employee.EmployeeId" class="btn btn-primary sm ">Edit</a>
@@ -72,22 +72,6 @@
                                 @Html.DisplayFor(model => model.employee_positions.First().Position.PositionName)
                             </dd>
                             <dt class="row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.ImageByte)
-                            </dt>
-                            <dd class="row-sm-10 content-information">
-                                <img src="@(Model.employee.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.employee.ImageByte)))"
-                                    id="imagePreview" alt="DefaultAvatar" style="max-width: 200px; max-height: 200px">
-                            </dd>
-                            <dt class="row-sm-2 title-text">
-                                @Html.DisplayNameFor(model => model.employee.Address)
-                            </dt>
-                            <dd class="row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.Address)
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="information-group2">
-                        <dt class="row-sm-2 title-text">
                             @Html.DisplayNameFor(model => model.employee.Department.DepartmentName)
                         </dt>
                         <dd class="row-sm-10 content-information">
@@ -99,12 +83,146 @@
                         <dd class="row-sm-10 content-information">
                             @Html.DisplayFor(model => model.employee.Level.LevelName)
                         </dd>
+                            <dt class="row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.employee.Address)
+                            </dt>
+                            <dd class="row-sm-10 content-information">
+                                @Html.DisplayFor(model => model.employee.Address)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="information-group2" style="display: flex; justify-content: center; flex-direction: column;">
+                        <div class="form-group mx-5">
+                         <dd class="row-sm-10 content-information">
+                                <img src="@(Model.employee.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.employee.ImageByte)))"
+                                    id="imagePreview" alt="DefaultAvatar" style="max-width: 200px; max-height: 200px; border-radius: 50% !important;">
+                            </dd>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+</div>
+
+
+<div class="card shadow mx-5 mb-4">
+    <div class="card-header py-3">
+         <h6 class="m-0 font-weight-bold text-primary">Position</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable" id="dataTable" role="grid"
+                            aria-describedby="dataTable_info" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.employee_positions[0].Employee)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.employee_positions[0].Position)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.employee_positions[0].StartTime)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.employee_positions[0].EndTime)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.employee_positions)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Position.PositionName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StartTime)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EndTime)
+                                        </td>
+                                        @* <td>
+                                            <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                                            </td> *@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mx-5 mb-4">
+    <div class="card-header py-3">
+         <h6 class="m-0 font-weight-bold text-primary">Skill</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable" id="dataTable" role="grid"
+                            aria-describedby="dataTable_info" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.employee_skills[0].Employee)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.employee_skills[0].Skill)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.employee_skills[0].Level)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.employee_skills[0].EvaluationDate)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.employee_skills)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Skill.SkillName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Level)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EvaluationDate)
+                                        </td>
+                                        @* <td>
+                                            <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                                            </td> *@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="mx-5 content-information">
     <a asp-action="Index">
@@ -113,94 +231,20 @@
     </a>
 </div>
 
-<h1>Position</h1>
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<table class="table mb-5">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_positions[0].Employee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_positions[0].Position)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_positions[0].StartTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_positions[0].EndTime)
-            </th>
-            <th style="width: 150px;color: rgb(255, 255, 255);"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.employee_positions)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position.PositionName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndTime)
-                </td>
-                @* <td>
-                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                    </td> *@
-            </tr>
-        }
-    </tbody>
-</table>
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<h1>Skill</h1>
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin-2.min.js"></script>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_skills[0].Employee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_skills[0].Skill)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_skills[0].Level)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_skills[0].EvaluationDate)
-            </th>
-            <th style="width: 150px;color: rgb(255, 255, 255);"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.employee_skills)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Skill.SkillName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Level)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EvaluationDate)
-                </td>
-                @* <td>
-                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                    </td> *@
-            </tr>
-        }
-    </tbody>
-</table>
+<!-- Page level plugins -->
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/js/demo/datatables-demo.js"></script>
+<link href="/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
