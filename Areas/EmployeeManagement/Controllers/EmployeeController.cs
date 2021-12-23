@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Authorization;
 using App.Data;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Aspose.Pdf;
+using System.Data;
+using Aspose.Pdf.Text;
 
 namespace AppMvc.Areas.EmployeeManagement.Controllers
 {
@@ -58,6 +61,75 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 empQuery = empQuery.Where(emp => emp.EmployeeName.Contains(EmpSearch));
             }
             return View(await empQuery.AsNoTracking().ToListAsync());
+        }
+
+         public IActionResult ExportPDF(){
+            var document = new Document{ 
+                PageInfo = new PageInfo{Margin= new MarginInfo(28,28,28,40)}
+            };
+            var pdfpage = document.Pages.Add();
+            var textStamp = new Aspose.Pdf.TextStamp("AIT COMPANY")
+            {
+            Background = false,
+            Opacity = 0.5,
+            HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
+            VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center,
+            TextAlignment = Aspose.Pdf.HorizontalAlignment.Center
+            };
+            textStamp.TextState.Font = FontRepository.FindFont("Arial");
+            textStamp.TextState.FontSize = 38.0f;
+            textStamp.TextState.FontStyle = FontStyles.Bold;
+            textStamp.TextState.FontStyle = FontStyles.Italic;
+            textStamp.TextState.ForegroundColor = Aspose.Pdf.Color.FromRgb(System.Drawing.Color.FromArgb(0, 137, 237));
+            Table table = new Table{
+                ColumnWidths = "20% 25% 15% 15% 25%",
+                DefaultCellPadding = new MarginInfo(10, 5, 10, 5),
+                Border = new BorderInfo(BorderSide.All, .5f, Color.Black),
+                DefaultCellBorder = new BorderInfo(BorderSide.All, .2f, Color.Black),
+            };
+            DateTime localdate = DateTime.Now;
+            var empQuery = from emp in _context.Employees
+                            .Include(s => s.Department)
+                            .Include(s => s.Level)
+                            select emp;
+
+            DataTable table1 = new DataTable();
+            table1.Columns.Add("Employee name", typeof(string));
+            table1.Columns.Add("Department", typeof(string));
+            table1.Columns.Add("Sex", typeof(string));
+            table1.Columns.Add("Level", typeof(string));
+            table1.Columns.Add("Day of birth", typeof(string));
+
+            foreach(var emp in empQuery) {
+                var row = table1.NewRow();
+                row["Employee name"] = emp.EmployeeName;
+                row["Department"] = emp.Department.DepartmentName;
+                row["Sex"] = emp.Sex;
+                row["Level"] = emp.Level.LevelName;
+                row["Day of birth"] = emp.DOB.ToString("yyyy-MM-dd");
+                table1.Rows.Add(row);
+            }
+            table.ImportDataTable(table1,true,0,0);
+            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("List employees on " + localdate.ToString("yyyy-MM-dd")){
+                HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
+                VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center
+            };
+            text.TextState.FontSize = 16.0f;
+            text.TextState.FontStyle = FontStyles.Bold;
+            text.TextState.FontStyle = FontStyles.Italic;
+            text.TextState.ForegroundColor = Aspose.Pdf.Color.FromRgb(System.Drawing.Color.FromArgb(121, 177, 0));
+            text.Margin.Bottom = 20;
+            document.Pages[1].AddStamp(textStamp);
+            document.Pages[1].Paragraphs.Add(text);
+            document.Pages[1].Paragraphs.Add(table);
+
+            using (var streamout = new MemoryStream()){
+                document.Save(streamout);
+                return new FileContentResult(streamout.ToArray(), "application/pdf"){
+                    FileDownloadName = "Employee.pdf"
+                };
+            }
+
         }
 
         // GET: EmployeeManagement/Employee/Details/5

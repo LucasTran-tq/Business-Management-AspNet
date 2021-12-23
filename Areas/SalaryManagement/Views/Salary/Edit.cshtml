@@ -4,7 +4,9 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
 
+<partial name="SBAdmin/_Styles" />
 
 
 <div class="mx-5">
@@ -12,7 +14,13 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="SalaryId" />
-
+<div class="information-title mx-5"><p>Edit Salary</p></div>
+            <div class="form-group mx-5 float-right mt-n5">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            <hr>
+            <div class="information-group row">
+                <div class="information-group1">
             <div class="form-group mx-5">
                 <label asp-for="EmployeeId" class="control-label"></label>
                 <select id="EmployeeId" asp-for="EmployeeId" class="form-control"
@@ -28,6 +36,8 @@
                 <span asp-validation-for="BasicSalaryId" class="text-danger"></span>
 
             </div>
+       
+            
             <div class="form-group mx-5">
                 <label asp-for="AllowanceSalaryId" class="control-label"></label>
                 @* <select asp-for="AllowanceSalaryId" class="form-control"
@@ -40,6 +50,8 @@
                 <select asp-for="BonusSalaryId" class="form-control" asp-items="ViewBag.BonusSalaryId"></select>
                 <span asp-validation-for="BonusSalaryId" class="text-danger"></span>
             </div>
+            </div>
+            <div class="information-group2">
             <div class="form-group mx-5">
                 <label asp-for="OvertimeSalaryId" class="control-label"></label>
                 <select asp-for="OvertimeSalaryId" class="form-control" asp-items="ViewBag.OvertimeSalaryId"></select>
@@ -56,7 +68,8 @@
                 <input asp-for="SalaryDate" class="form-control" />
                 <span asp-validation-for="SalaryDate" class="text-danger"></span>
             </div>
-            
+            </div>
+        </div>
         </form>
     </div>
 </div>

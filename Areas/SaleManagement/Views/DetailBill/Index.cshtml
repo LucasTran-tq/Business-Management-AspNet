@@ -24,10 +24,10 @@
                            <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Product)
+                                        @Html.DisplayNameFor(model => model.Product.ProductName)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Bill)
+                                        @Html.DisplayNameFor(model => model.Bill.BillId)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.Amount)
@@ -49,7 +49,6 @@
                                     </td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.DetailBillId">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.DetailBillId">Details</a> |
                                         <a asp-action="Delete" asp-route-id="@item.DetailBillId">Delete</a>
                                     </td>
                                 </tr>

@@ -5,15 +5,16 @@
 <partial name="SBAdmin/_Styles" />
 
 <div>
-    <div class="profile_background">
+    <div class="profile_background mx-5">
         <div class="profile_title">
-            <h1>AllowanceSalary</h1>
+            <h1>Salary</h1>
             <a asp-action="Edit" asp-route-id="@Model.AllowanceSalaryId" class="btn btn-primary sm ">Edit</a>
         </div>
         <div class="contain_profile  mb-5">
             <div class="basic_information">
-                <div class="information-title mx-5">
-                    <p>Employee profile basic</p>
+                <div class="information-title mx-5 d-flex justify-content-between">
+                    <p>Salary</p>
+                    <a asp-action="ExportDetailPDF" asp-route-id="@Model.AllowanceSalaryId" class="btn btn-primary sm "> <i class="fas fa-file-pdf mr-2"></i>Export</a>
                 </div>
                 <hr>
                 <div class="basic_information-group">
@@ -88,12 +89,8 @@
         </div>
     </div>
 </div>
+
 <div class="mx-5 mb-4 content-information mt-5">
-    <a asp-action="Index">
-        <i class="far fa-arrow-alt-circle-left"></i>
-        Back
-    </a>
-</div>|<div class="mx-5 mb-4 content-information mt-5">
     <a asp-action="Index">
         <i class="far fa-arrow-alt-circle-left"></i>
         Back
