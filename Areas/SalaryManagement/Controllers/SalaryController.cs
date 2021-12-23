@@ -130,7 +130,7 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
 
             DataTable table1 = new DataTable();
             table1.Columns.Add("Employee name", typeof(string));
-            table1.Columns.Add("TotalSalary", typeof(double));
+            table1.Columns.Add("TotalSalary", typeof(string));
             table1.Columns.Add("BonusSalary", typeof(string));
             table1.Columns.Add("OvertimeSalary", typeof(string));
             table1.Columns.Add("Number of session", typeof(double));
@@ -139,15 +139,15 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             foreach(var emp in empQuery) {
                 var row = table1.NewRow();
                 row["Employee name"] = emp.Employee.EmployeeName;
-                row["TotalSalary"] = emp.TotalSalary;
+                row["TotalSalary"] = emp.TotalSalary + " USD";
                 row["BonusSalary"] = emp.BonusSalary.BonusSalaryName;
                 row["OvertimeSalary"] = emp.OvertimeSalary.OvertimeSalaryName;
                 row["Number of session"] = emp.NumberOfSession;
-                row["SalaryDate"] = emp.SalaryDate.ToString("yyyy-MM-dd");
+                row["SalaryDate"] = emp.SalaryDate.ToString("dd/MM/yyyy");
                 table1.Rows.Add(row);
             }
             table.ImportDataTable(table1,true,0,0);
-            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("List salary on " + localdate.ToString("yyyy-MM-dd")){
+            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("List salary on " + localdate.ToString("dd/MM/yyyy")){
                 HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
                 VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center
             };
@@ -227,16 +227,16 @@ namespace AppMvc.Areas.SalaryManagement.Controllers
             table1.Columns.Add("Key", typeof(string));
             table1.Columns.Add("Value", typeof(String));
             table1.Rows.Add("Employee", salary.Employee.EmployeeName);
-            table1.Rows.Add("BasicSalary", salary.BasicSalary.BasicSalaryName);
-            table1.Rows.Add("AllowanceSalary", salary.AllowanceSalary.AllowanceSalaryName);
-            table1.Rows.Add("BonusSalary", salary.BonusSalary.BonusSalaryName);
-            table1.Rows.Add("OvertimeSalary", salary.OvertimeSalary.OvertimeSalaryName);
+            table1.Rows.Add("BasicSalary", salary.BasicSalary.BasicSalaryName + ": " + salary.BasicSalary.Money + " USD");
+            table1.Rows.Add("AllowanceSalary", salary.AllowanceSalary.AllowanceSalaryName + ": " + salary.AllowanceSalary.Allowance + " USD");
+            table1.Rows.Add("BonusSalary", salary.BonusSalary.BonusSalaryName + ": " + salary.BonusSalary.PrizeMoney + " USD");
+            table1.Rows.Add("OvertimeSalary", salary.OvertimeSalary.OvertimeSalaryName + ": " + salary.OvertimeSalary.moneyPerSession + " USD");
             table1.Rows.Add("Number of session", salary.NumberOfSession);
-            table1.Rows.Add("Salary Date", salary.SalaryDate.ToString("yyyy-MM-dd"));
-            table1.Rows.Add("TotalSalary", salary.TotalSalary);
+            table1.Rows.Add("Salary Date", salary.SalaryDate.ToString("dd/MM/yyyy"));
+            table1.Rows.Add("TotalSalary", salary.TotalSalary + " USD");
 
             table.ImportDataTable(table1,false,0,0);
-            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("Payroll on " + localdate.ToString("yyyy-MM-dd")){
+            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("Payroll on " + localdate.ToString("dd/MM/yyyy")){
                 HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
                 VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center
             };

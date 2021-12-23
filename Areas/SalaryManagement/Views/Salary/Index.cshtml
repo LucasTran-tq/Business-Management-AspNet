@@ -7,7 +7,7 @@
 <partial name="_AlertEditMessage" />
 
 
-<form 
+@* <form 
 asp-action="Index" method="post"
     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
@@ -22,19 +22,19 @@ asp-action="Index" method="post"
             </button>
         </div>
     </div>
-</form>
+</form> *@
 
 <div class="card shadow mx-5 mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Salary</h6>
-        <div class="d-flex float-right justify-content-between col-sm-3">
+        
         <p>
         <a asp-action="ExportPDF" class="btn btn-primary float-right mt-n4"> <i class="fas fa-file-pdf mr-2"></i>Export</a>
         </p>
-        <p>
+        @* <p>
             <a asp-action="Create" class="btn btn-primary float-right mt-n4">Create</a>
-        </p>
-        </div>
+        </p> *@
+        
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -103,7 +103,8 @@ asp-action="Index" method="post"
                                             @Html.DisplayFor(modelItem => item.NumberOfSession)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.SalaryDate)
+                                            @* @Html.DisplayFor(modelItem => item.SalaryDate) *@
+                                            @Convert.ToDateTime(item.SalaryDate).ToString("dd/MM/yyyy")
                                         </td>
                                         <td>
                                             <a asp-action="Edit" asp-route-id="@item.SalaryId">Edit</a> |

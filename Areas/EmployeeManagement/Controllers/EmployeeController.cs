@@ -106,11 +106,11 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 row["Department"] = emp.Department.DepartmentName;
                 row["Sex"] = emp.Sex;
                 row["Level"] = emp.Level.LevelName;
-                row["Day of birth"] = emp.DOB.ToString("yyyy-MM-dd");
+                row["Day of birth"] = emp.DOB.ToString("dd/MM/yyyy");
                 table1.Rows.Add(row);
             }
             table.ImportDataTable(table1,true,0,0);
-            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("List employees on " + localdate.ToString("yyyy-MM-dd")){
+            Aspose.Pdf.Text.TextFragment text = new Aspose.Pdf.Text.TextFragment("List employees on " + localdate.ToString("dd/MM/yyyy")){
                 HorizontalAlignment = Aspose.Pdf.HorizontalAlignment.Center,
                 VerticalAlignment = Aspose.Pdf.VerticalAlignment.Center
             };
