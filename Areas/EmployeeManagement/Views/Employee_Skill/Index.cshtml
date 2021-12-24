@@ -50,7 +50,8 @@
                                         @Html.DisplayFor(modelItem => item.Level)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.EvaluationDate)
+                                        @* @Html.DisplayFor(modelItem => item.EvaluationDate) *@
+                                        @Convert.ToDateTime(item.EvaluationDate).ToString("dd/MM/yyyy")
                                     </td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

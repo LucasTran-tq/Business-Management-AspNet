@@ -31,7 +31,8 @@
                                 @Html.DisplayNameFor(model => model.employee.DOB)
                             </dt>
                             <dd class="row-sm-10 content-information">
-                                @Html.DisplayFor(model => model.employee.DOB)
+                                @* @Html.DisplayFor(model => model.employee.DOB) *@
+                                @Convert.ToDateTime(Model.employee.DOB).ToString("dd/MM/yyyy")
                             </dd>
                             <dt class="row-sm-2 title-text">
                                 @Html.DisplayNameFor(model => model.employee.Sex)
@@ -145,10 +146,13 @@
                                             @Html.DisplayFor(modelItem => item.Position.PositionName)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.StartTime)
+                                            @* @Html.DisplayFor(modelItem => item.StartTime) *@
+                                            @Convert.ToDateTime(item.StartTime).ToString("dd/MM/yyyy")
+
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.EndTime)
+                                            @* @Html.DisplayFor(modelItem => item.EndTime) *@
+                                            @Convert.ToDateTime(item.EndTime).ToString("dd/MM/yyyy")
                                         </td>
                                         @* <td>
                                             <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
@@ -207,7 +211,8 @@
                                             @Html.DisplayFor(modelItem => item.Level)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.EvaluationDate)
+                                            @* @Html.DisplayFor(modelItem => item.EvaluationDate) *@
+                                            @Convert.ToDateTime(item.EvaluationDate).ToString("dd/MM/yyyy")
                                         </td>
                                         @* <td>
                                             <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

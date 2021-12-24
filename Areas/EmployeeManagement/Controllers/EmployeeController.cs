@@ -224,7 +224,7 @@ namespace AppMvc.Areas.EmployeeManagement.Controllers
                 Employee_Position employee_Position = new Employee_Position
                 {
                     EmployeeId = employee.EmployeeId,
-                    PositionId = 2,
+                    PositionId = 1,
                     StartTime = localDate,
                     EndTime = localDate,
                 };

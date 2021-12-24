@@ -74,7 +74,7 @@
             @Html.DisplayNameFor(model => model.SalaryDate)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.SalaryDate)
+            @Convert.ToDateTime(Model.SalaryDate).ToString("dd/MM/yyyy")
         </dd>
         <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.TotalSalary)
