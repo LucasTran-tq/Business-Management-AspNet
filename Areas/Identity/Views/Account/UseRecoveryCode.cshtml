@@ -1,9 +1,9 @@
 ﻿@model UseRecoveryCodeViewModel
 @{
-    ViewData["Title"] = "Sử dụng mã phục hồi";
+    ViewData["Title"] = "Use recovery code";
 }
 
-<h1>@ViewData["Title"].</h1>
+<h1 class="ml-5">@ViewData["Title"].</h1>
 
 <form asp-controller="Account" asp-action="UseRecoveryCode" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group mx-5">
         <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-success">Gửi</button>
+            <button type="submit" class="btn btn-success">Send</button>
         </div>
     </div>
 </form>

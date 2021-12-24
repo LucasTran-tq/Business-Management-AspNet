@@ -1,9 +1,9 @@
 ﻿@model VerifyAuthenticatorCodeViewModel
 @{
-    ViewData["Title"] = "Mã xác thực";
+    ViewData["Title"] = "Verification codes";
 }
 
-<h1>@ViewData["Title"].</h1>
+<h1 class="ml-5">@ViewData["Title"].</h1>
 
 <form asp-controller="Account" asp-action="VerifyAuthenticatorCode" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -27,11 +27,11 @@
     </div>
     <div class="form-group mx-5">
         <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-primary">Gửi</button>
+            <button type="submit" class="btn btn-primary">Send</button>
         </div>
     </div>
     <p>
-        <a asp-action="UseRecoveryCode">Mất mã xác thực, sử dụng mã phục hồi đã lưu?</a>
+        <a asp-action="UseRecoveryCode">Lost authentication code, use saved recovery code?</a>
     </p>
 </form>
 

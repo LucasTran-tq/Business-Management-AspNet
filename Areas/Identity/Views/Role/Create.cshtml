@@ -1,11 +1,11 @@
 @model CreateRoleModel
 @{
-    ViewData["Title"] = "Tạo role mới";
+    ViewData["Title"] = "Create a new role";
 }
-<h2>@ViewData["Title"]</h2>
+<h2 class="mx-5">@ViewData["Title"]</h2>
 <partial name="_StatusMessage"></partial>
 
-<hr>
+
 
 <div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
@@ -18,13 +18,18 @@
             </div>
 
             <div class="form-group mx-5">
-                <input type="submit" value="Tạo mới" class="btn btn-primary" />
-                <a class="btn btn-primary" asp-action="Index">Danh sách các role</a>
+                <input type="submit" value="Create" class="btn btn-primary  my-4" />
+                <a class="btn btn-primary  my-4" asp-action="Index">List of roles</a>
             </div>
         </form>
     </div>
 </div>
-
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

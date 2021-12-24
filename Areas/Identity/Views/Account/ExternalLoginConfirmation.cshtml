@@ -3,7 +3,7 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"].</h1>
+<h1 class="ml-5">@ViewData["Title"].</h1>
 <h3>Make an account link @ViewData["ProviderDisplayName"].</h3>
 
 <form asp-controller="Account" asp-action="ExternalLoginConfirmation" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">

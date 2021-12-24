@@ -1,12 +1,12 @@
 @model EditRoleModel
  
 @{
-    ViewData["Title"] = "Cập nhật role";
+    ViewData["Title"] = "Update roles";
 }
-<h2>@ViewData["Title"]</h2>
+<h2 class="mx-5">@ViewData["Title"]</h2>
 <partial name="_StatusMessage"></partial>
 
-<hr>
+
 
 <div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
@@ -19,13 +19,13 @@
             </div>
 
             <div class="form-group mx-5">
-                <input type="submit" value="Cập nhật" class="btn btn-primary" />
-                <a class="btn btn-primary" asp-action="Index">Danh sách các role</a>
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="Index">List of roles</a>
             </div>
         </form>
         <hr>
-        <p>Các đặc tính  (claim) của role:
-            <a asp-action="AddRoleClaim" asp-route-roleid="@Model.role.Id">+ Thêm claim</a>
+        <p>Features (claim) of the role:
+            <a asp-action="AddRoleClaim" asp-route-roleid="@Model.role.Id">+ More claims</a>
         </p>
         @if (Model.Claims.Count > 0)
         {
@@ -45,7 +45,12 @@
     </div>
 </div>
 
-
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

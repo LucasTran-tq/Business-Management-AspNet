@@ -24,8 +24,8 @@ namespace App.Areas.Identity.Models.AccountViewModels
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Re-Enter password")]
-        [Compare("Password", ErrorMessage = "Re-Enter password is incorrect.")]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "Confirm password is incorrect.")]
         public string ConfirmPassword { get; set; }
 
 

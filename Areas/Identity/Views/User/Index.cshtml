@@ -1,16 +1,22 @@
 @model UserListModel
 @{
-    ViewData["Title"] = "Danh sách các thành viên";
+    ViewData["Title"] = "List of members";
 }
-<h2>@ViewData["Title"]</h2>
 <partial name="_StatusMessage"></partial>
-<p>Tổng số thành viên: @Model.totalUsers</p>
+<div class="card shadow mx-5 mb-4">
+    <h2 class="mx-5"> @ViewData["Title"]</h2>
 
-<table class="table">
+    <p class="mx-5 h3">Total number of members: @Model.totalUsers</p>
+
+
+
+
+
+<table class="table mx-5">
     <tr>
-        <th>Tên user</th>
-        <th>Vai trò (role)</th>
-        <th>Tác vụ</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Action</th>
     </tr>
     @foreach (var user in Model.users)
     {
@@ -19,7 +25,7 @@
             <td>
                 @if (string.IsNullOrEmpty(user.RoleNames))
                 {
-                    <a class="text-dark" asp-action="AddRole" asp-route-id="@user.Id">+ Thêm roles</a>
+                    <a class="text-dark" asp-action="AddRole" asp-route-id="@user.Id">+ Add roles</a>
                 }
                 else
                 {
@@ -27,11 +33,12 @@
                 }
             </td>
             <td>
-                <a class="btn btn-success btn-sm" asp-action="SetPassword" asp-route-id="@user.Id">Đặt mật khẩu</a>
+                <a class="btn btn-success btn-sm" asp-action="SetPassword" asp-route-id="@user.Id">Set password</a>
             </td>
         </tr>
     }
 </table>
+</div>
 @{
     var pagingmodel = new PagingModel()
     {
