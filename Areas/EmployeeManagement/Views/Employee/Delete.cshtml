@@ -37,7 +37,8 @@
                         @Html.DisplayNameFor(model => model.DOB)
                     </dt>
                     <dd class = "row-sm-10 content-information">
-                        @Html.DisplayFor(model => model.DOB)
+                        @* @Html.DisplayFor(model => model.DOB) *@
+                        @Convert.ToDateTime(Model.DOB).ToString("dd/MM/yyyy")
                     </dd>
                     <dt class = "row-sm-2 title-text">
                         @Html.DisplayNameFor(model => model.Sex)

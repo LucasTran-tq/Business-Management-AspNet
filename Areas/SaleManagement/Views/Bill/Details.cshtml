@@ -41,13 +41,13 @@
             @Html.DisplayNameFor(model => model.bill.MakeBillTime)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.bill.MakeBillTime)
+            @Convert.ToDateTime(Model.bill.MakeBillTime).ToString("dd/MM/yyyy")
         </dd>
         <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.bill.ExportBillTime)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.bill.ExportBillTime)
+            @Convert.ToDateTime(Model.bill.ExportBillTime).ToString("dd/MM/yyyy")
         </dd>
                         </dl>
                     </div>

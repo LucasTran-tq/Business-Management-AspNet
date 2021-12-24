@@ -54,10 +54,10 @@
                                             @Html.DisplayFor(modelItem => item.TotalBill) $
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.MakeBillTime)
+                                            @Convert.ToDateTime(item.MakeBillTime).ToString("dd/MM/yyyy")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.ExportBillTime)
+                                            @Convert.ToDateTime(item.ExportBillTime).ToString("dd/MM/yyyy")
                                         </td>
                                         <td>
                                             <a asp-action="Edit" asp-route-id="@item.BillId">Edit</a> |
