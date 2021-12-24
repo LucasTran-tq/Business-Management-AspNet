@@ -43,12 +43,12 @@ namespace App.Areas.Identity.Controllers
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =
-                message == ManageMessageId.ChangePasswordSuccess ? "Đã thay đổi mật khẩu."
-                : message == ManageMessageId.SetPasswordSuccess ? "Đã đặt lại mật khẩu."
+                message == ManageMessageId.ChangePasswordSuccess ? "Change Password Successfully"
+                : message == ManageMessageId.SetPasswordSuccess ? "Set Password Successfully"
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "Có lỗi."
-                : message == ManageMessageId.AddPhoneSuccess ? "Đã thêm số điện thoại."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Đã bỏ số điện thoại."
+                : message == ManageMessageId.Error ? "Error"
+                : message == ManageMessageId.AddPhoneSuccess ? "Add phone successfully"
+                : message == ManageMessageId.RemovePhoneSuccess ? "Remove phone successfully"
                 : "";
 
             var user = await GetCurrentUserAsync();
@@ -159,9 +159,9 @@ namespace App.Areas.Identity.Controllers
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =
-                message == ManageMessageId.RemoveLoginSuccess ? "Đã loại bỏ liên kết tài khoản."
-                : message == ManageMessageId.AddLoginSuccess ? "Đã thêm liên kết tài khoản"
-                : message == ManageMessageId.Error ? "Có lỗi."
+                message == ManageMessageId.RemoveLoginSuccess ? "Remove Login Successfully"
+                : message == ManageMessageId.AddLoginSuccess ? "Add Login Success"
+                : message == ManageMessageId.Error ? "Error"
                 : "";
             var user = await GetCurrentUserAsync();
             if (user == null)
@@ -252,7 +252,7 @@ namespace App.Areas.Identity.Controllers
             // Generate the token and send it
             var user = await GetCurrentUserAsync();
             var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
-            await _emailSender.SendSmsAsync(model.PhoneNumber, "Mã xác thực là: " + code);
+            await _emailSender.SendSmsAsync(model.PhoneNumber, "Authentication code is: " + code);
             return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
         }
         //
@@ -286,7 +286,7 @@ namespace App.Areas.Identity.Controllers
                 }
             }
             // If we got this far, something failed, redisplay the form
-            ModelState.AddModelError(string.Empty, "Lỗi thêm số điện thoại");
+            ModelState.AddModelError(string.Empty, "Add phone error");
             return View(model);
         }
         //
