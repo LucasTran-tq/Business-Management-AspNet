@@ -93,14 +93,14 @@ namespace App.Areas.Identity.Controllers
             var model = new AddUserRoleModel();
             if (string.IsNullOrEmpty(id))
             {
-                return NotFound($"Không có user");
+                return NotFound($"Not found users");
             }
 
             model.user = await _userManager.FindByIdAsync(id);
 
             if (model.user == null)
             {
-                return NotFound($"Không thấy user, id = {id}.");
+                return NotFound($"Can't found the user, id = {id}.");
             }
 
             model.RoleNames = (await _userManager.GetRolesAsync(model.user)).ToArray<string>();
@@ -120,14 +120,14 @@ namespace App.Areas.Identity.Controllers
         {
             if (string.IsNullOrEmpty(id))
             {
-                return NotFound($"Không có user");
+                return NotFound($"Not found users");
             }
 
             model.user = await _userManager.FindByIdAsync(id);
 
             if (model.user == null)
             {
-                return NotFound($"Không thấy user, id = {id}.");
+                return NotFound($"Can't found the user, id = {id}.");
             }
             await GetClaims(model);
 
@@ -155,7 +155,7 @@ namespace App.Areas.Identity.Controllers
             }
 
             
-            StatusMessage = $"Vừa cập nhật role cho user: {model.user.UserName}";
+            StatusMessage = $"Updated the role for user: {model.user.UserName}";
 
             return RedirectToAction("Index");
         }
@@ -165,7 +165,7 @@ namespace App.Areas.Identity.Controllers
         {
             if (string.IsNullOrEmpty(id))
             {
-                return NotFound($"Không có user");
+                return NotFound($"Not found users");
             }
 
             var user = await _userManager.FindByIdAsync(id);
@@ -173,7 +173,7 @@ namespace App.Areas.Identity.Controllers
 
             if (user == null)
             {
-                return NotFound($"Không thấy user, id = {id}.");
+                return NotFound($"Can't found the user, id = {id}.");
             }
 
             return View();
@@ -185,7 +185,7 @@ namespace App.Areas.Identity.Controllers
         {
             if (string.IsNullOrEmpty(id))
             {
-                return NotFound($"Không có user");
+                return NotFound($"Not found users");
             }
 
             var user = await _userManager.FindByIdAsync(id);
@@ -193,7 +193,7 @@ namespace App.Areas.Identity.Controllers
 
             if (user == null)
             {
-                return NotFound($"Không thấy user, id = {id}.");
+                return NotFound($"Can't found the user, id = {id}.");
             }
 
             if (!ModelState.IsValid)
@@ -213,7 +213,7 @@ namespace App.Areas.Identity.Controllers
                 return View(model);
             }
 
-            StatusMessage = $"Vừa cập nhật mật khẩu cho user: {user.UserName}";
+            StatusMessage = $"Updated the password for the user: {user.UserName}";
 
             return RedirectToAction("Index");
         }        
@@ -224,7 +224,7 @@ namespace App.Areas.Identity.Controllers
         {
             
             var user = await _userManager.FindByIdAsync(userid);
-            if (user == null) return NotFound("Không tìm thấy user");
+            if (user == null) return NotFound("User not found");
             ViewBag.user = user;
             return View();
         }
@@ -235,19 +235,19 @@ namespace App.Areas.Identity.Controllers
         {
             
             var user = await _userManager.FindByIdAsync(userid);
-            if (user == null) return NotFound("Không tìm thấy user");
+            if (user == null) return NotFound("User not found");
             ViewBag.user = user;
             if (!ModelState.IsValid) return View(model);
             var claims = _context.UserClaims.Where(c => c.UserId == user.Id);
 
             if (claims.Any(c => c.ClaimType == model.ClaimType && c.ClaimValue == model.ClaimValue))
             {
-                ModelState.AddModelError(string.Empty, "Đặc tính này đã có");
+                ModelState.AddModelError(string.Empty, "This feature already exists");
                 return View(model);
             }
 
             await _userManager.AddClaimAsync(user, new Claim(model.ClaimType, model.ClaimValue));
-            StatusMessage = "Đã thêm đặc tính cho user";
+            StatusMessage = "Added features for users";
                         
             return RedirectToAction("AddRole", new {id = user.Id});
         }        
@@ -258,7 +258,7 @@ namespace App.Areas.Identity.Controllers
             var userclaim = _context.UserClaims.Where(c => c.Id == claimid).FirstOrDefault();
             var user = await _userManager.FindByIdAsync(userclaim.UserId);
 
-            if (user == null) return NotFound("Không tìm thấy user");
+            if (user == null) return NotFound("User not found");
 
             var model = new AddUserClaimModel()
             {
@@ -276,7 +276,7 @@ namespace App.Areas.Identity.Controllers
         {
             var userclaim = _context.UserClaims.Where(c => c.Id == claimid).FirstOrDefault();
             var user = await _userManager.FindByIdAsync(userclaim.UserId);
-            if (user == null) return NotFound("Không tìm thấy user");
+            if (user == null) return NotFound("User not found");
 
             if (!ModelState.IsValid) return View("AddClaim", model);
 
@@ -285,7 +285,7 @@ namespace App.Areas.Identity.Controllers
                 && c.ClaimValue == model.ClaimValue 
                 && c.Id != userclaim.Id))
                 {
-                    ModelState.AddModelError("Claim này đã có");
+                    ModelState.AddModelError("This claim already exists");
                     return View("AddClaim", model);
                 }
 
@@ -294,7 +294,7 @@ namespace App.Areas.Identity.Controllers
             userclaim.ClaimValue = model.ClaimValue;
 
             await _context.SaveChangesAsync();
-            StatusMessage = "Bạn vừa cập nhật claim";
+            StatusMessage = "You just updated your claim";
             
 
             ViewBag.user = user;
@@ -308,11 +308,11 @@ namespace App.Areas.Identity.Controllers
             var userclaim = _context.UserClaims.Where(c => c.Id == claimid).FirstOrDefault();
             var user = await _userManager.FindByIdAsync(userclaim.UserId);
 
-            if (user == null) return NotFound("Không tìm thấy user");
+            if (user == null) return NotFound("User not found");
 
             await _userManager.RemoveClaimAsync(user, new Claim(userclaim.ClaimType, userclaim.ClaimValue));
 
-            StatusMessage = "Bạn đã xóa claim";
+            StatusMessage = "You deleted the claim";
             
             return RedirectToAction("AddRole", new {id = user.Id});
         }
