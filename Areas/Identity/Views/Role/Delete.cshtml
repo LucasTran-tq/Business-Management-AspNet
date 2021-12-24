@@ -1,21 +1,21 @@
 @model IdentityRole
 @{
-    ViewData["Title"] = "Xóa role";
+    ViewData["Title"] = "Delete role";
 }
-<h2>@ViewData["Title"]</h2>
+<h2 class="mx-5">@ViewData["Title"]</h2>
 <partial name="_StatusMessage"></partial>
 
-<hr>
+
 
 <div class="mx-5">
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
          
-            <p>Bạn có chắc chắn xóa <strong>@Model.Name</strong></p>
+            <p>Are you sure to delete <strong>@Model.Name</strong></p>
             <div class="form-group mx-5">
-                <input type="submit" value="Đồng ý" class="btn btn-danger" />
-                <a class="btn btn-primary" asp-action="Index">Danh sách các role</a>
+                <input type="submit" value="Delete" class="btn btn-danger my-4" />
+                <a class="btn btn-primary my-4" asp-action="Index">List of roles</a>
             </div>
         </form>
     </div>

@@ -1,9 +1,9 @@
 @model AddUserRoleModel
 @{
-    ViewData["Title"] = "Gán role";
+    ViewData["Title"] = "Assign roles";
 }
 
-<h4>Thiết lập role cho user: @Model.user.UserName</h4>
+<h4 class="mx-5">Set roles for users: @Model.user.UserName</h4>
 <partial name="_StatusMessage" />
 
 <div class="mx-5">
@@ -20,11 +20,11 @@
                 <span asp-validation-for="RoleNames" class="text-danger"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary">Cập nhật</button>
-            <a class="btn btn-primary" asp-action="Index">Danh sách thành viên</a>
+            <button type="submit" class="btn btn-primary ml-5">Update</button>
+            <a class="btn btn-primary ml-5" asp-action="Index">Members list</a>
         </form>
         <hr>
-        <p>Các claim của user có được từ role:</p>
+        <p>User claims obtained from the role:</p>
         @if (Model.claimsInRole.Count >  0)
         {
             <ul>
@@ -35,8 +35,8 @@
             </ul>
         }
         <hr>
-        <p>Các claim riêng:
-            <a asp-action="AddClaim" asp-route-userid="@Model.user.Id">+ Thêm claim riêng</a>     
+        <p>Claims:
+            <a asp-action="AddClaim" asp-route-userid="@Model.user.Id">+ Add claim</a>     
         </p>
         @if (Model.claimsInUserClaim.Count >  0)
         {
