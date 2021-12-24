@@ -87,12 +87,12 @@ namespace App.Areas.Identity.Controllers
                 
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning(2, "Tài khoản bị khóa");
+                    _logger.LogWarning(2, "Account is locked");
                     return View("Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError("Không đăng nhập được.");
+                    ModelState.AddModelError("Can not login.");
                     return View(model);
                 }
             }
@@ -105,7 +105,7 @@ namespace App.Areas.Identity.Controllers
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User đăng xuất");
+            _logger.LogInformation("User logout");
             // return RedirectToAction("Index", "Home", new {area = ""});
             return RedirectToAction("Login", "Account", new {area = "Identity"});
         }
@@ -135,7 +135,7 @@ namespace App.Areas.Identity.Controllers
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("Đã tạo user mới.");
+                    _logger.LogInformation("New user created.");
 
                     // Phát sinh token để xác nhận email
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -151,10 +151,10 @@ namespace App.Areas.Identity.Controllers
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(model.Email, 
-                        "Xác nhận địa chỉ email",
-                        @$"Bạn đã đăng ký tài khoản trên RazorWeb, 
-                           hãy <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>bấm vào đây</a> 
-                           để kích hoạt tài khoản.");
+                        "Verify email address",
+                        @$"You have registered an account on RazorWeb, 
+                           let <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>click here</a> 
+                           to activate the account.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -223,7 +223,7 @@ namespace App.Areas.Identity.Controllers
             returnUrl ??= Url.Content("~/");
             if (remoteError != null)
             {
-                ModelState.AddModelError(string.Empty, $"Lỗi sử dụng dịch vụ ngoài: {remoteError}");
+                ModelState.AddModelError(string.Empty, $"Error using external service: {remoteError}");
                 return View(nameof(Login));
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
@@ -313,7 +313,7 @@ namespace App.Areas.Identity.Controllers
                             info => user1 (mail1@abc.com)
                                  => user2 (mail2@abc.com)
                         */
-                        ModelState.AddModelError(string.Empty, "Không liên kết được tài khoản, hãy sử dụng email khác");
+                        ModelState.AddModelError(string.Empty, "Unable to link account, please use another email");
                         return View();
                     }
                 }
@@ -321,7 +321,7 @@ namespace App.Areas.Identity.Controllers
 
                 if ((externalEmailUser != null) && (registeredUser == null))
                 {
-                    ModelState.AddModelError(string.Empty, "Không hỗ trợ tạo tài khoản mới - có email khác email từ dịch vụ ngoài");
+                    ModelState.AddModelError(string.Empty, "New account creation is not supported - there is a different email from an external service");
                     return View();                    
                 }
 
@@ -347,7 +347,7 @@ namespace App.Areas.Identity.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("Không tạo được tài khoản mới");
+                        ModelState.AddModelError("Can't create a new account");
                         return View();   
                     }
                 }           
@@ -411,7 +411,7 @@ namespace App.Areas.Identity.Controllers
                 await _emailSender.SendEmailAsync(
                     model.Email,
                     "Reset Password",
-                    $"Hãy bấm <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>vào đây</a> để đặt lại mật khẩu.");
+                    $"Please click <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>here</a> to reset the password.");
 
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
    
@@ -623,7 +623,7 @@ namespace App.Areas.Identity.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Mã sai.");
+                ModelState.AddModelError(string.Empty, "Wrong code.");
                 return View(model);
             }
         }
@@ -662,7 +662,7 @@ namespace App.Areas.Identity.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Sai mã phục hồi.");
+                ModelState.AddModelError(string.Empty, "Wrong recovery code.");
                 return View(model);
             }
         }

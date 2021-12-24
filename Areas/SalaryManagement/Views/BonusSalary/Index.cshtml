@@ -55,10 +55,12 @@
                                         @Html.DisplayFor(modelItem => item.PrizeMoney)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.StartTime)
+                                        @* @Html.DisplayFor(modelItem => item.StartTime) *@
+                                            @Convert.ToDateTime(item.StartTime).ToString("dd/MM/yyyy")
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.EndTime)
+                                        @* @Html.DisplayFor(modelItem => item.EndTime) *@
+                                        @Convert.ToDateTime(item.EndTime).ToString("dd/MM/yyyy")
                                     </td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.BonusSalaryId">Edit</a> |

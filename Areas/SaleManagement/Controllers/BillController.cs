@@ -211,10 +211,12 @@ namespace AppMvc.Areas.SaleManagement.Controllers
                 return NotFound();
             }
 
+           
             var detailBill = await _context.DetailBills
                 .Include(d => d.Bill)
                 .Include(d => d.Product)
                 .FirstOrDefaultAsync(m => m.DetailBillId == id);
+   
             if (detailBill == null)
             {
                 return NotFound();
@@ -228,7 +230,21 @@ namespace AppMvc.Areas.SaleManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteDetailBillConfirmed(int id)
         {
+             DateTime localDate = DateTime.Now;
+             
             var detailBill = await _context.DetailBills.FindAsync(id);
+
+            // update total bill for bill
+                var billUpdation = _context.Bills.Where(b => b.BillId.Equals(detailBill.BillId)).SingleOrDefault();
+
+                var priceQuery = (from p in _context.Prices
+                             where p.ProductId.Equals(detailBill.ProductId)
+                             && DateTime.Compare(p.EndTime, localDate).Equals(1) 
+                             && DateTime.Compare(p.StartTime, localDate).Equals(-1)
+                             select p.PriceMoney).First();
+                
+                billUpdation.TotalBill -= priceQuery * detailBill.Amount;
+
             _context.DetailBills.Remove(detailBill);
             await _context.SaveChangesAsync();
             StatusDeleteMessage = "You have deleted successfully!!!";

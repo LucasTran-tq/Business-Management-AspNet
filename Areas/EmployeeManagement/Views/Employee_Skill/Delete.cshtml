@@ -36,7 +36,8 @@
                         @Html.DisplayNameFor(model => model.EvaluationDate)
                     </dt>
                     <dd class = "row-sm-10 content-information">
-                        @Html.DisplayFor(model => model.EvaluationDate)
+                        @* @Html.DisplayFor(model => model.EvaluationDate) *@
+                        @Convert.ToDateTime(Model.EvaluationDate).ToString("dd/MM/yyyy")
                     </dd>
                 </dl>
             </div>

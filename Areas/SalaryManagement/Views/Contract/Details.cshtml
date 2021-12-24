@@ -35,13 +35,13 @@
             @Html.DisplayNameFor(model => model.StartTime)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.StartTime)
+            @Convert.ToDateTime(Model.StartTime).ToString("dd/MM/yyyy")
         </dd>
         <dt class = "row-sm-2 title-text">
             @Html.DisplayNameFor(model => model.EndTime)
         </dt>
         <dd class = "row-sm-10 content-information">
-            @Html.DisplayFor(model => model.EndTime)
+            @Convert.ToDateTime(Model.EndTime).ToString("dd/MM/yyyy")
         </dd>
                         </dl>
                     </div>
