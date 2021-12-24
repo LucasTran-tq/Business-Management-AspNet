@@ -30,42 +30,41 @@
 
                             </div>
                         </div>
-                        <div class="login_form">
-                        <div class="login_form-caption">
-                                <h2 style="font-size: 21px; font-weight: 400;line-height: 36px; width: 150px;">Welcome to <span style="color: #0089ED;">AIT</span></h2>
+                        <div class="login_form" >
+                        <div class="login_form-caption" style="margin-top: 5px">
                                 <h1 style="font-weight: 600; font-size: 32px; line-height: 51px; width: 120px;">Register   </h1>
 
                                 <div class="login_form-login" style="display: flex; flex-direction: column; margin-top: 16px;"  >
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <div class="form-group margin-bottom16">
+                                <div class="form-group margin-bottom16 " style="height: 65px">
                                     <label asp-for="UserName" class="col-md-10 control-label margin-bottom"></label>
                                     <div class="col-md-10">
                                         <input asp-for="UserName" class="form-control" />
-                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                        <span asp-validation-for="UserName" class="text-danger" style="height: 18px"></span>
                                     </div>
                                 </div>
-                                <div class="form-group margin-bottom16">
+                                <div class="form-group margin-top" style="height: 65px">
                                     <label asp-for="Email" class="col-md-10 control-label margin-bottom"></label>
                                     <div class="col-md-10">
                                         <input asp-for="Email" class="form-control" />
-                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                        <span asp-validation-for="Email" class="text-danger" style="height: 18px"></span>
                                     </div>
                                 </div>
-                                <div class="form-group margin-bottom16">
+                                <div class="form-group margin-top" style="height: 65px">
                                     <label asp-for="Password" class="col-md-10 control-label margin-bottom"></label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-10" style="height: 65px">
                                         <input asp-for="Password" class="form-control" />
-                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                        <span asp-validation-for="Password" class="text-danger" ></span>
                                     </div>
                                 </div>
-                                <div class="form-group margin-bottom16">
+                                <div class="form-group margin-top" style="height: 65px">
                                     <label asp-for="ConfirmPassword" class="col-md-10 control-label margin-bottom"></label>
                                     <div class="col-md-10">
                                         <input asp-for="ConfirmPassword" class="form-control" />
-                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger" style="height: 18px"></span>
                                     </div>
                                 </div>
-                                <div class="form-group margin-bottom margin-bottom16">
+                                <div class="form-group  margin-top48">
                                     <div class="col-md-offset-2 col-md-10">
                                         <button type="submit" class="btn_signin" style="width: 100%;" >Sign in</button>
                                     </div>
