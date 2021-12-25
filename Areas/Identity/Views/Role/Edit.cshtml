@@ -24,9 +24,9 @@
             </div>
         </form>
         <hr>
-        <p>Features (claim) of the role:
+        @* <p>Features (claim) of the role:
             <a asp-action="AddRoleClaim" asp-route-roleid="@Model.role.Id">+ More claims</a>
-        </p>
+        </p> 
         @if (Model.Claims.Count > 0)
         {
             <ul>
@@ -41,7 +41,7 @@
                     </li>
                 }
             </ul>
-        }
+        } *@
     </div>
 </div>
 

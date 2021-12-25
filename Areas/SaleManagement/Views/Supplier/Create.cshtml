@@ -11,19 +11,21 @@
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-             <div class="information-title mx-5 mt-3">
+            <div class="information-title mx-5 mt-3">
                 <p>Create</p>
-        
-            <hr></div>
+
+                <hr>
+            </div>
             <div class="information-group">
                 <div class="information-group1  col">
                     <div class="form-group mx-5">
                         <label asp-for="SupplierName" class="control-label"></label>
                         <input asp-for="SupplierName" class="form-control" />
                         <span asp-validation-for="SupplierName" class="text-danger"></span>
-                </div>
-                <div class="form-group mx-5 mt-4 float-right">
-                    <input type="submit" value="Create" class="btn btn-primary sm " />
+                    </div>
+                    <div class="form-group mx-5 mt-4 float-right">
+                        <input type="submit" value="Create" class="btn btn-primary sm " />
+                    </div>
                 </div>
             </div>
         </form>
@@ -36,4 +38,3 @@
         Back
     </a>
 </div>
-
