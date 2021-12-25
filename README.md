@@ -5,6 +5,7 @@
 * [Introduction](#introduction)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
+* [Deployment](#deployment)
 * [How to install and run the project](#how-to-install-and-run-the-project)
 * [Usage](#usage)
 * [Acknowledgements](#acknowledgements)
@@ -60,6 +61,9 @@ A few of the things you can do with AIT Business management system:
 ![Dashboard](wwwroot/img/demoPage/createBill.png)
 
 
+## Deployment
+Web is deploying on [AIT Bussiness Management System](http://lucasuit-001-site1.etempurl.com/) until Feb 13, 2022. After that date, this link will be disable. 
+Please run it on localhost with below step!
 ## How to install and run the project
 To clone and run this application, you'll need [.Net Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework), [Visual Studio](https://visualstudio.microsoft.com/) and [MS SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) installed on your computer. 
 
