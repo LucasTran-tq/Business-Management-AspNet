@@ -67,7 +67,7 @@ Please run it on localhost with below step!
 ## How to install and run the project
 To clone and run this application, you'll need [.Net Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework), [Visual Studio](https://visualstudio.microsoft.com/) and [MS SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) installed on your computer. 
 
-You might want to look into `appsettings.json` to make change connectionstring: 
+You might want to look into `appsettings.json` to make change connection string: 
 ```
 "AppMvcConnectionString" : "Data Source=[YourComputer];Initial Catalog=[YourDatabaseName];User Id=[YourUserID];Password=[YourPassWord];"
 ```
