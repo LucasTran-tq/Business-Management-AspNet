@@ -1,4 +1,5 @@
-# AIT Business management system      ![logo](wwwroot/img/logo.svg)
+![logo](wwwroot/img/logo.svg)  
+# AIT Business management system      
 
 ## Table of Contents
 * [Introduction](#introduction)
@@ -63,7 +64,9 @@ A few of the things you can do with AIT Business management system:
 To clone and run this application, you'll need [.Net Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework), [Visual Studio](https://visualstudio.microsoft.com/) and [MS SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) installed on your computer. 
 
 You might want to look into `appsettings.json` to make change connectionstring: 
-`"AppMvcConnectionString" : "Data Source=[YourComputer];Initial Catalog=[YourDatabaseName];User Id=[YourUserID];Password=[YourPassWord];"`
+```
+"AppMvcConnectionString" : "Data Source=[YourComputer];Initial Catalog=[YourDatabaseName];User Id=[YourUserID];Password=[YourPassWord];"
+```
 
 
 After that your command line will be in terminal:
@@ -83,10 +86,14 @@ Once the dependencies are installed, you can run `dotnet watch run` to start the
 
 
 ## AIT Team
-Created by: 
-[![Tran Quoc Thang](https://avatars.githubusercontent.com/u/64716374?s=400&v=4)](https://github.com/LucasTran-tq)  | 
-[![Nguyen Huu Phat](https://avatars.githubusercontent.com/u/68334213?v=4)](https://github.com/nguyenhuuphat2001)  | 
-[![Bui Thanh Phu](https://avatars.githubusercontent.com/u/74527830?v=4)](https://github.com/phubuideptrai)  | 
+<!-- [![Tran Quoc Thang](https://avatars.githubusercontent.com/u/64716374?s=400&v=4)](https://github.com/LucasTran-tq) | 
+[![Nguyen Huu Phat](https://avatars.githubusercontent.com/u/68334213?v=4)](https://github.com/nguyenhuuphat2001) | 
+[![Bui Thanh Phu](https://avatars.githubusercontent.com/u/74527830?v=4)](https://github.com/phubuideptrai) | 
+---|--- -->
+
+- [Tran Quoc Thang](https://github.com/LucasTran-tq)
+- [Nguyen Huu Phat](https://github.com/nguyenhuuphat2001)
+- [Bui Thanh Phu](https://github.com/phubuideptrai)
 
 
 
