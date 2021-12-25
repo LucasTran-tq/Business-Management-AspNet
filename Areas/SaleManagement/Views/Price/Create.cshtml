@@ -11,33 +11,35 @@
     <div class="col-md-6 bg-white rounded shadow-lg">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-             <div class="information-title mx-5 mt-3">
+            <div class="information-title mx-5 mt-3">
                 <p>Create</p>
-        
-            <hr></div>
-                <div class="information-group">
-                    <div class="information-group1  col">
-                <div class="form-group mx-5">
-                    <label asp-for="ProductId" class="control-label"></label>
-                    <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select>
-                </div>
-                <div class="form-group mx-5">
-                    <label asp-for="PriceMoney" class="control-label"></label>
-                    <input asp-for="PriceMoney" class="form-control" />
-                    <span asp-validation-for="PriceMoney" class="text-danger"></span>
-                </div>
-                <div class="form-group mx-5">
-                    <label asp-for="StartTime" class="control-label"></label>
-                    <input asp-for="StartTime" class="form-control" />
-                    <span asp-validation-for="StartTime" class="text-danger"></span>
-                </div>
-                <div class="form-group mx-5">
-                    <label asp-for="EndTime" class="control-label"></label>
-                    <input asp-for="EndTime" class="form-control" />
-                    <span asp-validation-for="EndTime" class="text-danger"></span>
-                </div>
-                <div class="form-group mx-5 mt-4 float-right">
-                    <input type="submit" value="Create" class="btn btn-primary sm " />
+
+                <hr>
+            </div>
+            <div class="information-group">
+                <div class="information-group1  col">
+                    <div class="form-group mx-5">
+                        <label asp-for="ProductId" class="control-label"></label>
+                        <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="PriceMoney" class="control-label"></label>
+                        <input asp-for="PriceMoney" class="form-control" />
+                        <span asp-validation-for="PriceMoney" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="StartTime" class="control-label"></label>
+                        <input asp-for="StartTime" class="form-control" />
+                        <span asp-validation-for="StartTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="EndTime" class="control-label"></label>
+                        <input asp-for="EndTime" class="form-control" />
+                        <span asp-validation-for="EndTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5 mt-4 float-right">
+                        <input type="submit" value="Create" class="btn btn-primary sm " />
+                    </div>
                 </div>
             </div>
         </form>
@@ -50,4 +52,3 @@
         Back
     </a>
 </div>
-
