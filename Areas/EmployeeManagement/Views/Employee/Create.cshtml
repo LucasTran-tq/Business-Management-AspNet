@@ -66,10 +66,15 @@
                         
                         <input asp-for="ImageByte" class="form-control" type="file"
                             onchange="return ShowImagePreview(this)" id="fileupload" hidden />
-                        <label for="fileupload" style="display: flex; justify-content: center;">
+                        <label for="fileupload" class=" container-profilepic" style="display: flex; justify-content: center;">
                            <img src="/img/defaultAvatar.jpg" alt="preview" id="imagePreview"
                             style="height: 200px; width: 200px; border-radius: 50%;" />
-                  
+                            <div class="middle-profilepic">
+                                <div class="text-profilepic"><i class="fas fa-camera margin-top100"></i>
+                                 <div class="text-profilepic">Change avatar
+                                </div>
+                                </div>
+                            </div>
                         </label>
                             <span asp-validation-for="ImageByte" class="text-danger"></span>
                         
