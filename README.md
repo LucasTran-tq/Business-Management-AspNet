@@ -1,9 +1,10 @@
 ![logo](wwwroot/img/logo.svg)  
 # AIT Business management system   
-- [AIT Company](http://lucasuit-001-site1.etempurl.com/)
+
 
 ## Table of Contents
 * [Introduction](#introduction)
+* [Video Demo](#video-demo)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Deployment](#deployment)
@@ -11,7 +12,10 @@
 * [Usage](#usage)
 * [Acknowledgements](#acknowledgements)
 * [AIT Team](#ait-team)
+* [License](#license)
+
 <!-- * [License](#license) -->
+
 
 
 ## Introduction
@@ -21,9 +25,12 @@ In each company, there is a separate way of doing business, but the operations a
 ![Dashboard](wwwroot/img/demoPage/dashboard.png)
 
 
+## Video Demo
+You can have a look with AIT Business management system through that video.
+
 
 ## Technologies Used
-Your Web application should use the following technologies, frameworks and development techniques:
+AIT Business management system should use the following technologies, frameworks and development techniques:
 
 - ASP.NET MVC
 - MS SQL Server as database back-end
@@ -63,14 +70,15 @@ A few of the things you can do with AIT Business management system:
 
 
 ## Deployment
-Web is deploying on [AIT Bussiness Management System](http://lucasuit-001-site1.etempurl.com/) until Feb 13, 2022. After that date, this link will be disable. 
+Web is deploying on [AIT Bussiness Management System](http://lucasuit-001-site1.etempurl.com/) until Feb 13, 2022.\ 
+After that date, this link will be disable. 
 Please run it on localhost with below step!
 ## How to install and run the project
 To clone and run this application, you'll need [.Net Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework), [Visual Studio](https://visualstudio.microsoft.com/) and [MS SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) installed on your computer. 
 
 You might want to look into `appsettings.json` to make change connection string: 
 ```
-"AppMvcConnectionString" : "Data Source=[YourComputer];Initial Catalog=[YourDatabaseName];User Id=[YourUserID];Password=[YourPassWord];"
+"AppMvcConnectionString" : "Data Source=[YourComputerName];Initial Catalog=[YourDatabaseName];User Id=[YourUserID];Password=[YourPassWord];"
 ```
 
 
@@ -81,29 +89,31 @@ After that your command line will be in terminal:
 
 
 ## Usage
-After you clone this repo to your desktop, go to its root directory and run `dotnet restore` to install its dependencies.
+After you clone this repo to your desktop, go to its root directory and run `dotnet restore` to install its dependencies.\
 Once the dependencies are installed, you can run `dotnet watch run` to start the application. You will then be able to access it at localhost:5000
 
+To enter AIT Business management system and use as administrator, you should:
+- Register new account
+- After enter the system, go to Database Management, then click `Seed Data` to create administrator account
+- To check administrator account, log out current account
+- Log in again with administrator account.\
+    UserName: `admin`.\
+    Password: `admin123`. 
 
 ## Acknowledgements
 - Thanks to [Microsoft](https://www.microsoft.com/vi-vn/) for supporting us with Asp.net documentation
-- Thanks to [stackoverflow](https://stackoverflow.com/) for supporting us 
+- Thanks to [Stackoverflow](https://stackoverflow.com/) for supporting us 
+- Thanks to [Github](https://github.com/) for supporting us control application's versions 
+- Thanks to [SmarterASP.NET](https://www.smarterasp.net/) for supporting us hosing web application
 
 
 ## AIT Team
-<!-- [![Tran Quoc Thang](https://avatars.githubusercontent.com/u/64716374?s=400&v=4)](https://github.com/LucasTran-tq) | 
-[![Nguyen Huu Phat](https://avatars.githubusercontent.com/u/68334213?v=4)](https://github.com/nguyenhuuphat2001) | 
-[![Bui Thanh Phu](https://avatars.githubusercontent.com/u/74527830?v=4)](https://github.com/phubuideptrai) | 
----|--- -->
-
 - [Tran Quoc Thang](https://github.com/LucasTran-tq)
 - [Nguyen Huu Phat](https://github.com/nguyenhuuphat2001)
 - [Bui Thanh Phu](https://github.com/phubuideptrai)
 
 
+## 📝 License
 
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+Copyright © 2021 [Thang Phu Phat](https://github.com/LucasTran-tq). <br />
+This project is [MIT](https://github.com/LucasTran-tq/Business-Management-AspNet/blob/main/LICENSE) licensed.
