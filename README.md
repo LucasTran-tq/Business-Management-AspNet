@@ -26,7 +26,7 @@ In each company, there is a separate way of doing business, but the operations a
 
 
 ## Video Demo
-You can have a look with AIT Business management system through that video.
+You can have a look with AIT Business management system through [the video](https://drive.google.com/file/d/13xiX5x_VPI3gQ6fpwlVZXEeGYY2wQXCk/view).
 
 
 ## Technologies Used
