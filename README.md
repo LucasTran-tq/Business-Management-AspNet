@@ -12,6 +12,8 @@
 * [Usage](#usage)
 * [Acknowledgements](#acknowledgements)
 * [AIT Team](#ait-team)
+* [License](#license)
+
 <!-- * [License](#license) -->
 
 
@@ -100,23 +102,18 @@ To enter AIT Business management system and use as administrator, you should:
 
 ## Acknowledgements
 - Thanks to [Microsoft](https://www.microsoft.com/vi-vn/) for supporting us with Asp.net documentation
-- Thanks to [stackoverflow](https://stackoverflow.com/) for supporting us 
+- Thanks to [Stackoverflow](https://stackoverflow.com/) for supporting us 
+- Thanks to [Github](https://github.com/) for supporting us control application's versions 
+- Thanks to [SmarterASP.NET](https://www.smarterasp.net/) for supporting us hosing web application
 
 
 ## AIT Team
-<!-- [![Tran Quoc Thang](https://avatars.githubusercontent.com/u/64716374?s=400&v=4)](https://github.com/LucasTran-tq) | 
-[![Nguyen Huu Phat](https://avatars.githubusercontent.com/u/68334213?v=4)](https://github.com/nguyenhuuphat2001) | 
-[![Bui Thanh Phu](https://avatars.githubusercontent.com/u/74527830?v=4)](https://github.com/phubuideptrai) | 
----|--- -->
-
 - [Tran Quoc Thang](https://github.com/LucasTran-tq)
 - [Nguyen Huu Phat](https://github.com/nguyenhuuphat2001)
 - [Bui Thanh Phu](https://github.com/phubuideptrai)
 
 
+## 📝 License
 
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+Copyright © 2021 [Thang Phu Phat](https://github.com/LucasTran-tq). <br />
+This project is [MIT](https://github.com/LucasTran-tq/Business-Management-AspNet/blob/main/LICENSE) licensed.
