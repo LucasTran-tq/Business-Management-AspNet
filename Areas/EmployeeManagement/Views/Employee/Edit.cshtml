@@ -59,13 +59,17 @@
                 </div>
                 <div class="information-group2" style="display: flex; justify-content: center; flex-direction: column;">
                     <div class="form-group mx-5">
-                        
-                        
                         <input asp-for="ImageByte" class="form-control" type="file"
                             onchange="return ShowImagePreview(this)" id="fileupload" hidden />
-                        <label for="fileupload" style="display: flex; justify-content: center;">
+                        <label for="fileupload" class=" container-profilepic" style="display: flex; justify-content: center;">
                             <img src="@(Model.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.ImageByte)))"
-                            id="imagePreview" alt="DefaultAvatar" style="max-width: 200px; max-height: 200px; border-radius: 50% !important;">
+                            id="imagePreview" class="photo-preview " alt="DefaultAvatar" style="max-width: 200px; max-height: 200px; border-radius: 50% !important;">
+                            <div class="middle-profilepic">
+                                <div class="text-profilepic"><i class="fas fa-camera margin-top100"></i>
+                                 <div class="text-profilepic">Change avatar
+                                </div>
+                                </div>
+                            </div>
                         </label>
                         <span asp-validation-for="ImageByte" class="text-danger"></span>
                     </div>

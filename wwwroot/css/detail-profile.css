@@ -85,7 +85,42 @@
     height: 100%;
 }
 
+.photo-preview{
+    width: 100% !important;
+    max-width: 200px !important;
+    height: 100% !important;
+    max-height: 200px!important;
+    border-radius: 50% !important;
+  }
 
+  .middle-profilepic {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+	width: 100% !important;
+    max-width: 200px !important;
+    height: 100% !important;
+    max-height: 200px!important;
+    border-radius: 50% !important;
+  }
+  
+  .container-profilepic:hover .photo-preview {
+    opacity: 0.3;
+  }
+  
+  .container-profilepic:hover .middle-profilepic {
+    opacity: 1;
+  }
+  
+  .text-profilepic {
+    color: black;
+    font-size: 16px;
+  }
+
+  .margin-top100{
+	  margin-top: 100px;
+  }
 
 
 
