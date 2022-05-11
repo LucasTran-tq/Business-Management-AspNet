@@ -20,7 +20,7 @@
 
 ## Introduction
 In each company, there is a separate way of doing business, but the operations are relatively similar (HR, product management, finance, engineering,...). These operations to do on paper are easy to lead to errors, data loss, which takes a lot of time as well as is not focused, easy to repeat many times. Understanding these requirements, AIT company wants to build a software to manage the company's business system to meet the basic tasks.
-
+\This is the [Software Requirements Document](https://docs.google.com/document/d/1XslZNEgI-ZwAGA6tdiFFctRs1TUKHNEG/edit?usp=sharing&ouid=116992013396456829835&rtpof=true&sd=true)
 
 ![Dashboard](wwwroot/img/demoPage/dashboard.png)
 
