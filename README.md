@@ -76,7 +76,7 @@ Please run it on localhost with below step!
 ## How to install and run the project
 To clone and run this application, you'll need [.Net Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework), [Visual Studio](https://visualstudio.microsoft.com/) and [MS SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) installed on your computer. 
 
-It requires .Net version 5.0.\
+It requires .Net version 5.0.
 
 You might want to look into `appsettings.json` to make change connection string: 
 ```
@@ -134,5 +134,5 @@ To enter AIT Business management system and use as administrator, you should:
 
 ## 📝 License
 
-Copyright © 2021 [Thang Phu Phat](https://github.com/LucasTran-tq). <br />
+Copyright © 2021. <br />
 This project is [MIT](https://github.com/LucasTran-tq/Business-Management-AspNet/blob/main/LICENSE) licensed.
