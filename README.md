@@ -88,9 +88,6 @@ Set up
 Go to https://localhost:5001/database-manage/Index → Seed data, to create admin account
 
 After that your command line will be in terminal:
-- `dotnet restore` 
-- `dotnet ef database update`
-- `dotnet watch run`
 
 ```
 - Install dotnet
@@ -103,6 +100,11 @@ docker-compose up -d
 // build table for database
 dotnet ef migrations add Init
 dotnet ef database update
+```
+
+```
+dotnet restore
+dotnet watch run
 ```
 
 ## Usage
