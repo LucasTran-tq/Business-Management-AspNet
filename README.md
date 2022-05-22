@@ -76,17 +76,34 @@ Please run it on localhost with below step!
 ## How to install and run the project
 To clone and run this application, you'll need [.Net Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework), [Visual Studio](https://visualstudio.microsoft.com/) and [MS SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) installed on your computer. 
 
+It requires .Net version 5.0.\
+
 You might want to look into `appsettings.json` to make change connection string: 
 ```
-"AppMvcConnectionString" : "Data Source=[YourComputerName];Initial Catalog=[YourDatabaseName];User Id=[YourUserID];Password=[YourPassWord];"
+"AppMvcConnectionString" : "Data Source=[YourComputerName];Initial Catalog=[YourDatabaseName];User Id=[YourUserID];Password=[YourPassWord];"\
+"AppMvcConnectionString" : "Data Source=localhost,1433; Initial Catalog=appmvc; User ID=SA;Password=Password123”
 ```
 
+Set up
+Go to https://localhost:5001/database-manage/Index → Seed data, to create admin account
 
 After that your command line will be in terminal:
 - `dotnet restore` 
 - `dotnet ef database update`
 - `dotnet watch run`
 
+```
+- Install dotnet
+dotnet tool install --global dotnet-ef
+dotnet tool install --global dotnet-aspnet-codegenerator
+
+// run docker for Azure database
+docker-compose up -d
+
+// build table for database
+dotnet ef migrations add Init
+dotnet ef database update
+```
 
 ## Usage
 After you clone this repo to your desktop, go to its root directory and run `dotnet restore` to install its dependencies.\
