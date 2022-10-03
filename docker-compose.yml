@@ -1,9 +1,18 @@
 version: "3.7"                    
 
-services:                         
-  xtlab-mssql:
+services:  
+  web:
+      container_name: ait_asp
+      build: .
+      restart: always
+      ports:
+        - "8000:80"
+      depends_on:
+            - mssql
+
+  mssql:
     image: "mcr.microsoft.com/mssql/server:2017-latest"
-    container_name: sqlserver-xtlab
+    container_name: sqlserver
     restart: always
     hostname: mssql
     environment: 
@@ -13,6 +22,8 @@ services:
 
     volumes:
       - mssqlvolume:/var/opt/mssql/data # thư mục lưu DB
+      # - ./init:/docker-entrypoint-initdb.d/:ro
+      # - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
       # - ./bk:/var/opt/mssql/backup
     ports:
       - "1433:1433"     
